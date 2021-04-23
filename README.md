@@ -1,5 +1,5 @@
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/ALCHElVlY/hln-a#readme)
-[![something here](https://img.shields.io/github/v/release/ALCHElVlY/hln-a?include_prereleases)]
+[![something here](https://img.shields.io/github/v/release/ALCHElVlY/hln-a?include_prereleases)](https://github.com/ALCHElVlY/hln-a/tree/v1.1.0)
 <h1>Project Name</h1>
 </p>HLN-A</p>
 
