@@ -1,3 +1,4 @@
+[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/ALCHElVlY/standard-readme)
 <h1>Project Name</h1>
 </p>HLN-A</p>
 
