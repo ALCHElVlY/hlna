@@ -1,4 +1,4 @@
-[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/ALCHElVlY/hln-a#readme)
+[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=plastic)](https://github.com/ALCHElVlY/hln-a#readme)
 ![something here](https://img.shields.io/github/v/release/ALCHElVlY/hlna?color=blue&include_prereleases&label=version&style=plastic)
 <h1>Project Name</h1>
 </p>HLN-A</p>
