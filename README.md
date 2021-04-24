@@ -18,7 +18,7 @@
 [![][readme-shield]][readme-url]
 [![][version-shield]][version-url]
 [![][issues-shield]][issues-url]
-[![][discord-shield]][]
+[![][discord-shield]]
 
 
 
