@@ -28,7 +28,7 @@
     <img src="images/HLNA GitHub1.png" alt="Logo" width="380" height="275">
   </a>
 
-  <h3 align="center">HLN-A</h3>
+  <!-- <h3 align="center">HLN-A</h3> -->
 
   <p align="center">
     A Discord companion app for the online sandbox game ARK: Survival Evolved. Survivors can enjoy their favorite A.i. outside of the ARK with breeding reminders,
