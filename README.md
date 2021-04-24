@@ -40,9 +40,9 @@
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template">Invite the Bot</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/ALCHElVlY/hlna/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/ALCHElVlY/hlna/issues">Request Feature</a>
   </p>
 </p>
 
