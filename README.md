@@ -26,7 +26,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/HLNA GitHub2.png" alt="Logo" width="380" height="275">
+    <img src="images/HLNA GitHub2.png" alt="Logo" width="800" height="350">
   </a>
 
   <!-- <h3 align="center">HLN-A</h3> -->
