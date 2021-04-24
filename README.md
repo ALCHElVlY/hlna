@@ -35,7 +35,7 @@
     A Discord companion app for the online sandbox game ARK: Survival Evolved. Survivors can enjoy their favorite A.i. outside of the ARK with breeding reminders,
     clone cost calculations, wiki searchs, and more!
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Join the support discord »</strong></a>
+    <a href="https://discord.gg/WqunCan"><strong>Join the support discord »</strong></a>
     <br />
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template">Invite the Bot</a>
