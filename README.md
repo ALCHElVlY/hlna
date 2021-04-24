@@ -18,6 +18,7 @@
 [![][readme-shield]][readme-url]
 [![][version-shield]][version-url]
 [![][issues-shield]][issues-url]
+[![][discord-shield]][]
 
 
 
@@ -199,6 +200,7 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [readme-shield]: https://img.shields.io/badge/readme%20style-standard-blue.svg?style=plastic
 [readme-url]: https://github.com/ALCHElVlY/hln-a#readme
+[discord-shield]: https://img.shields.io/discord/686731263956090915?color=blue&label=Online%20Discord%20Members&style=plastic
 [version-shield]: https://img.shields.io/github/v/tag/ALCHElVlY/hlna?label=version
 [version-url]: https://github.com/ALCHElVlY/hlna/releases
 [issues-shield]: https://img.shields.io/github/issues/ALCHElVlY/hlna?color=blue&style=plastic
