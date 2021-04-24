@@ -15,9 +15,9 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-![readme-shield][readme-url]
-![version-shield][version-url]
-![issues-shield][issues-url]
+[![Readme][readme-shield]][readme-url]
+[![Version][version-shield]][version-url]
+[![Issues][issues-shield]][issues-url]
 
 
 
