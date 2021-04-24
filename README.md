@@ -81,7 +81,7 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-Hello, and let me first start off by thanking you taking the time to explore my first project application. I love video games like ARK, and I recently got into programming and it turns out, I really love that too! Of course there are many HLN-A discord bots out there, some do cool features, but there isn't just ONE that might appeal to your every need like THIS HLN-A bot might. My version of HLN-A is meant to assist users with their every ARK need, and if you own a PvE/PvP shop, this is the perfect bot to help run your store!
+Hello, and let me first start off by thanking you for taking the time to explore my first project application. I love video games like ARK, and I recently got into programming and it turns out, I really love that too! Of course there are many HLN-A discord bots out there, some do cool features, but there isn't just ONE that might appeal to your every need like THIS HLN-A bot might. My version of HLN-A is meant to assist users with their every ARK need, and if you own a PvE/PvP shop, this is the perfect bot to help run your store!
 
 Here's why:
 * Has many features like: wiki search commands, craft calculator, reminders, order/transaction tracking.
