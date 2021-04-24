@@ -18,6 +18,7 @@
 [![][readme-shield]][readme-url]
 [![][version-shield]][version-url]
 [![][issues-shield]][issues-url]
+![][discord-shield]
 
 
 
@@ -25,23 +26,23 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/HLNA GitHub2.png" alt="Logo" width="380" height="275">
   </a>
 
-  <h3 align="center">HLN-A</h3>
+  <!-- <h3 align="center">HLN-A</h3> -->
 
   <p align="center">
     A Discord companion app for the online sandbox game ARK: Survival Evolved. Survivors can enjoy their favorite A.i. outside of the ARK with breeding reminders,
     clone cost calculations, wiki searchs, and more!
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Join the support discord »</strong></a>
+    <a href="https://discord.gg/WqunCan"><strong>Join the support discord »</strong></a>
     <br />
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template">Invite the Bot</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/ALCHElVlY/hlna/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/ALCHElVlY/hlna/issues">Request Feature</a>
   </p>
 </p>
 
@@ -199,7 +200,8 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [readme-shield]: https://img.shields.io/badge/readme%20style-standard-blue.svg?style=plastic
 [readme-url]: https://github.com/ALCHElVlY/hln-a#readme
-[version-shield]: https://img.shields.io/github/v/tag/ALCHElVlY/hlna?label=version
+[discord-shield]: https://img.shields.io/discord/686731263956090915?color=blue&label=Online%20Discord%20Members&style=plastic
+[version-shield]: https://img.shields.io/github/v/tag/ALCHElVlY/hlna?label=version&style=plastic
 [version-url]: https://github.com/ALCHElVlY/hlna/releases
 [issues-shield]: https://img.shields.io/github/issues/ALCHElVlY/hlna?color=blue&style=plastic
 [issues-url]: https://github.com/ALCHElVlY/hlna/issues
