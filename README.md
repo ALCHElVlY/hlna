@@ -79,25 +79,22 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+Hello, and let me first start off by thanking you taking the time to explore my first project application. I love video games like ARK, and I recently got into programming and it turns out, I really love that too! Of course there are many HLN-A discord bots out there, some do cool features, but there isn't just ONE that might appeal to your every need like THIS HLN-A bot might. My version of HLN-A is meant to assist users with their every ARK need, and if you own a PvE/PvP shop, this is the perfect bot to help run your store!
 
 Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
+* Has many features like: wiki search commands, craft calculator, reminders, order/transaction tracking.
+* Fast responses, great uptime, and support for the bot almost 24/7.
+* Enjoy HLN-A personality in your discord server today!!
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have have contributed to expanding this template!
-
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
+Of course, no one application is going to be perfect, issues will arise and in turn should be reported so that they can be fixed later. Below you will find instructions on how to get the bot configured for your discord channel, but should you have additional questions feel free to click the link and join the support discord where you can get further assistance.
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-* [Laravel](https://laravel.com)
+Here are any frameworks/libraries used in HLN-A's development.
+* [Node.JS](https://nodejs.org/en/)
+* [Discord.JS](https://discord.js.org/#/)
 
 
 
