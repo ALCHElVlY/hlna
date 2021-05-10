@@ -102,32 +102,25 @@ Here are any frameworks/libraries used in HLN-A's development.
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Below you will find information regarding HLN-A setup and configuration.
 
-### Prerequisites
+### Initial Setup
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+HLN-A was designed to be as user friendly as possible. That being said, when you first invite the bot to your server, default settings for `guild_id`, `guild_name`, and `guild_ownerID` are automatically recorded in HLN-A's database, various other settings can be configured there after. Instructions for that you will find below.
 
-### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
-   ```
+### Customization
+
+The following settings can be configured for the bot:
+<ol>
+  <li>Bot Commands</li>
+  <li>Welcome Channel</li>
+  <li>Logs Channel</li>
+  <li>Patch Notes Channel</li>
+  <li>ARK News channel</li>
+</ol>
+
+Configuring channels for any of these settings will enable command restrictions (bot commands channel) and notifications to be sent to their respective channels.
 
 
 
@@ -147,16 +140,16 @@ See the [open issues](https://github.com/othneildrew/Best-README-Template/issues
 
 
 
-<!-- CONTRIBUTING -->
-## Contributing
+<!-- ACKNOWLEDGEMENTS -->
+## ACKNOWLEDGEMENTS
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+There are a number of people and aspirations that contributed to this applications birth. I had several people help in designing commands and functionality for the bot. Some UI suggestions as well. I would like to thank some of those people!
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. My amazing girlfriend Rey0Sun2187#6979 for pushing me to stick with it
+2. ShadowRune#9518 for his continued support for the project.
+3. Studio Wildcard for the creation of HLN-A in the game
+4. The several amazing programming discords I learned from
+5. Discord and Discord.JS for their part.
 
 
 
@@ -173,22 +166,6 @@ No license, this is a private project. Currently not open source.
 Alchemy - [@your_twitter](https://twitter.com/your_username) - beskar.labs@outlook.com
 
 Project Link: [https://github.com/ALCHElVlY/hlna](https://github.com/ALCHElVlY/hlna)
-
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Pages](https://pages.github.com)
-* [Animate.css](https://daneden.github.io/animate.css)
-* [Loaders.css](https://connoratherton.com/loaders)
-* [Slick Carousel](https://kenwheeler.github.io/slick)
-* [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
-* [Sticky Kit](http://leafo.net/sticky-kit)
-* [JVectorMap](http://jvectormap.com)
-* [Font Awesome](https://fontawesome.com)
 
 
 
