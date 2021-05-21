@@ -140,19 +140,6 @@ See the [open issues](https://github.com/othneildrew/Best-README-Template/issues
 
 
 
-<!-- ACKNOWLEDGEMENTS -->
-## ACKNOWLEDGEMENTS
-
-There are a number of people and aspirations that contributed to this applications birth. I had several people help in designing commands and functionality for the bot. Some UI suggestions as well. I would like to thank some of those people!
-
-1. My amazing girlfriend Rey0Sun2187#6979 for pushing me to stick with it
-2. ShadowRune#9518 for his continued support for the project.
-3. Studio Wildcard for the creation of HLN-A in the game
-4. The several amazing programming discords I learned from
-5. Discord and Discord.JS for their part.
-
-
-
 <!-- LICENSE -->
 ## License
 
@@ -168,7 +155,16 @@ Alchemy - [@your_twitter](https://twitter.com/your_username) - beskar.labs@outlo
 Project Link: [https://github.com/ALCHElVlY/hlna](https://github.com/ALCHElVlY/hlna)
 
 
+<!-- ACKNOWLEDGEMENTS -->
+## ACKNOWLEDGEMENTS
 
+There are a number of people and aspirations that contributed to this applications birth. I had several people help in designing commands and functionality for the bot. Some UI suggestions as well. I would like to thank some of those people!
+
+1. My amazing girlfriend Rey0Sun2187#6979 for pushing me to stick with it
+2. ShadowRune#9518 for his continued support for the project.
+3. Studio Wildcard for the creation of HLN-A in the game
+4. The several amazing programming discords I learned from
+5. Discord and Discord.JS for their part.
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
