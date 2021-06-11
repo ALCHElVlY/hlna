@@ -121,6 +121,7 @@ The following settings can be configured for the bot:
 </ol>
 
 Configuring channels for any of these settings will enable command restrictions (bot commands channel) and notifications to be sent to their respective channels.
+Some of the above mentioned features may require you to initiate an additional step (things like the welcome channel will require you to also save a welcome message). Steps on how to configure these additional features are discussed in the bots documentation.
 
 
 
