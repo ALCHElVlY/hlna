@@ -32,8 +32,8 @@
   <!-- <h3 align="center">HLN-A</h3> -->
 
   <p align="center">
-    A Discord companion app for the online sandbox game ARK: Survival Evolved. Survivors can enjoy their favorite A.i. outside of the ARK with breeding reminders,
-    clone cost calculations, wiki searchs, shop management, and more!
+    A Discord companion app for the online sandbox game ARK: Survival Evolved. Survivors can enjoy their favorite A.I. outside of the ARK with breeding reminders,
+    clone cost calculations, server statuses, shop management, and more!
     <br />
     <a href="https://discord.gg/WqunCan"><strong>Join the support discord »</strong></a>
     <br />
