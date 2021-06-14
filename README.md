@@ -83,6 +83,8 @@ Here's why:
 
 Of course, no one application is going to be perfect, issues will arise and in turn should be reported so that they can be fixed later. Below you will find instructions on how to get the bot configured for your discord channel, but should you have additional questions feel free to click the link and join the support discord where you can get further assistance.
 
+
+
 ## Built With
 
 Here are any frameworks/libraries used in HLN-A's development.
@@ -90,10 +92,13 @@ Here are any frameworks/libraries used in HLN-A's development.
 * [Discord.JS](https://discord.js.org/#/)
 
 
+
 <!-- Documentation -->
 ## Docs
 
 _See the [Documentation](https://alchelvly.gitbook.io/hlna-docs/) for further command details and usage._
+
+
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -112,9 +117,10 @@ No license, this is a private project. Currently not open source.
 <!-- CONTACT -->
 ## Contact
 
-Alchemy - [@your_twitter](https://twitter.com/your_username) - beskar.labs@outlook.com
-
-Project Link: [https://github.com/ALCHElVlY/hlna](https://github.com/ALCHElVlY/hlna)
+Email: beskar.labs@outlook.com
+Website: www.beskarlabs.com
+Facebook: n/a
+Twitter: n/a
 
 
 <!-- ACKNOWLEDGEMENTS -->
