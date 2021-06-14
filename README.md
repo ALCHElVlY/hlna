@@ -117,9 +117,9 @@ No license, this is a private project. Currently not open source.
 <!-- CONTACT -->
 ## Contact
 
-Email: beskar.labs@outlook.com
-Website: www.beskarlabs.com
-Facebook: n/a
+Email: beskar.labs@outlook.com<br>
+Website: www.beskarlabs.com<br>
+Facebook: n/a<br>
 Twitter: n/a
 
 
