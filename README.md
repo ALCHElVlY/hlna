@@ -58,16 +58,8 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#docs">Documentation</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
@@ -91,48 +83,17 @@ Here's why:
 
 Of course, no one application is going to be perfect, issues will arise and in turn should be reported so that they can be fixed later. Below you will find instructions on how to get the bot configured for your discord channel, but should you have additional questions feel free to click the link and join the support discord where you can get further assistance.
 
-### Built With
+## Built With
 
 Here are any frameworks/libraries used in HLN-A's development.
 * [Node.JS](https://nodejs.org/en/)
 * [Discord.JS](https://discord.js.org/#/)
 
 
+<!-- Documentation -->
+## Docs
 
-<!-- GETTING STARTED -->
-## Getting Started
-
-Below you will find information regarding HLN-A setup and configuration.
-
-### Initial Setup
-
-HLN-A was designed to be as user friendly as possible. That being said, when you first invite the bot to your server, default settings for `guild_id`, `guild_name`, and `guild_ownerID` are automatically recorded in HLN-A's database, various other settings can be configured there after. Instructions for that you will find below.
-
-
-### Customization
-
-The following settings can be configured for the bot:
-<ol>
-  <li>Bot Commands</li>
-  <li>Welcome Channel</li>
-  <li>Logs Channel</li>
-  <li>Patch Notes Channel</li>
-  <li>ARK News channel</li>
-</ol>
-
-Configuring channels for any of these settings will enable command restrictions (bot commands channel) and notifications to be sent to their respective channels.
-Some of the above mentioned features may require you to initiate an additional step (things like the welcome channel will require you to also save a welcome message). Details can be found in the bots documentation.
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://alchelvly.gitbook.io/hlna-docs/)_
-
-
+_Please refer to the [Documentation](https://alchelvly.gitbook.io/hlna-docs/)_
 
 <!-- ROADMAP -->
 ## Roadmap
