@@ -93,12 +93,12 @@ Here are any frameworks/libraries used in HLN-A's development.
 <!-- Documentation -->
 ## Docs
 
-_Please refer to the [Documentation](https://alchelvly.gitbook.io/hlna-docs/)_
+_See the [Documentation](https://alchelvly.gitbook.io/hlna-docs/) for further command details and usage._
 
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/ALCHElVlY/hlna/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/ALCHElVlY/hlna/issues) for a list of known issues, and [project board](https://github.com/ALCHElVlY/hlna/projects/1) for a list of planned updates.
 
 
 
