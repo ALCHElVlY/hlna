@@ -35,7 +35,7 @@
     A Discord companion app for the online sandbox game ARK: Survival Evolved. Survivors can enjoy their favorite A.I. outside of the ARK with breeding reminders,
     clone cost calculations, server statuses, shop management, and more!
     <br />
-    <a href="https://discord.gg/WqunCan"><strong>Join the support discord »</strong></a>
+    <a href="https://discord.gg/WqunCan"><strong>Join the support Discord »</strong></a>
     <br />
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template">Invite the Bot</a>
@@ -77,7 +77,7 @@ Hello, and let me first start off by thanking you for taking the time to explore
 
 Here's why:
 * Has many features like: wiki search commands, craft calculator, reminders, order/transaction tracking for shop keepers.
-* Global ban database, to track scammers across multiple discords at once.
+* Global ban database, to track scammers across multiple Discords at once.
 * ~~Global trade database, to allow players across PvE/PvP official servers to buy and sell items with in-game currency.~~
 * Fast responses, great uptime, and support for the bot almost 24/7.
 
