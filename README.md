@@ -76,12 +76,12 @@
 Hello, and let me first start off by thanking you for taking the time to explore my first project application. I love video games like ARK, and I recently got into programming and it turns out, I really love that too! Of course there are many HLN-A discord bots out there, some do cool features, but there isn't just ONE that might appeal to your every need like THIS HLN-A bot might. My version of HLN-A is meant to assist users with their every ARK need, and if you own a PvE/PvP shop, this is the perfect bot to help run your store!
 
 Here's why:
-* Has many features like: wiki search commands, craft calculator, reminders, order/transaction tracking for shop keepers.
+* Has many features like: craft calculator, ~~reminders~~, ~~order/transaction tracking for shop keepers~~, server statuses, and more!
 * Global ban database, to track scammers across multiple Discords at once.
 * ~~Global trade database, to allow players across PvE/PvP official servers to buy and sell items with in-game currency.~~
 * Fast responses, great uptime, and support for the bot almost 24/7.
 
-Of course, no one application is going to be perfect, issues will arise and in turn should be reported so that they can be fixed later. Below you will find instructions on how to get the bot configured for your discord channel, but should you have additional questions feel free to click the link and join the support discord where you can get further assistance.
+Of course, no one application is going to be perfect, issues will arise and in turn should be reported so that they can be fixed later. Be sure to check out the bots documentation to see how to set it up successfully for your Discord server!
 
 
 
