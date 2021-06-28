@@ -77,8 +77,11 @@ Hello, and let me first start off by thanking you for taking the time to explore
 
 Here's why:
 * Has many features like: craft calculator, ~~reminders~~, ~~order/transaction tracking for shop keepers~~, server statuses, and more!
-* Global ban database, to track scammers across multiple Discords at once.
+* ~~lobal ban database, to track scammers across multiple Discords at once.~~
 * ~~Global trade database, to allow players across PvE/PvP official servers to buy and sell items with in-game currency.~~
+* Moderation commands such as: kick and ban, as well as mute(manual ~~and timed~~) and sweep(bulk delete messages).
+* Customisable from prefix to bot command restrictions(applies to the channel), HLN-A can also set and deploy custom welcome messages
+* HLN-A has the ability to set 'role categories' which is not an official Discord thing (looks nice visually).
 * Fast responses, great uptime, and support for the bot almost 24/7.
 
 Of course, no one application is going to be perfect, issues will arise and in turn should be reported so that they can be fixed later. Be sure to check out the bots documentation to see how to set it up successfully for your Discord server!
@@ -132,7 +135,7 @@ There are a number of people and aspirations that contributed to this applicatio
 2. ShadowRune#9518 for his continued support for the project.
 3. Studio Wildcard for the creation of HLN-A in the game
 4. The several amazing programming discords I learned from
-5. Discord and Discord.JS for their part.
+5. Discord and Discord.JS for the creation of the platform and the programming library respectively.
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
