@@ -1,0 +1,38 @@
+{
+  "name": "hln-a",
+  "version": "2.0.0",
+  "description": "HLN-A is a Discord companion app designed to assist the Magma Moe's shop in their day to day operations",
+  "main": "src/client/index.js",
+  "scripts": {
+    "start": "node src/client/index.js",
+    "dev": "nodemon src/client/index.js",
+    "deployslash": "node deploy-commands.js",
+    "deleteslash": "node delete-commands.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ALCHElVlY/hlna.git"
+  },
+  "author": "William Holt (aka Alchemy)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ALCHElVlY/hlna/issues"
+  },
+  "homepage": "https://github.com/ALCHElVlY/hlna#readme",
+  "dependencies": {
+    "@discordjs/builders": "^0.8.2",
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "axios": "^0.24.0",
+    "chalk": "^4.1.2",
+    "discord.js": "^13.3.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "moment": "^2.29.1",
+    "mongoose": "^6.0.13"
+  },
+  "devDependencies": {
+    "concurrently": "^6.4.0",
+    "nodemon": "^2.0.15"
+  }
+}
