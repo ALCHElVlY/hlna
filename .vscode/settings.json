@@ -10,7 +10,7 @@
         "**/.project": true,
         "**/.settings": true,
         "**/.factorypath": true,
-        "**/.vscode": true,
+        "**/.vscode": false,
         "**/node_modules": true
     },
     "explorerExclude.backup": null
