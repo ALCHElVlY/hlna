@@ -91,6 +91,8 @@ Of course, no one application is going to be perfect, issues will arise and in t
 ## Built With
 
 Here are any frameworks/libraries used in HLN-A's development.
+* [MongoDB](#)
+* [Express.js](#)
 * [Node.JS](https://nodejs.org/en/)
 * [Discord.JS](https://discord.js.org/#/)
 
