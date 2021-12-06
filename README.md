@@ -75,8 +75,6 @@ This project was designed to help the ARK Discord store "Magma Moe's" in their d
 
 Here's why:
 * Has many features like: craft calculator, ~~reminders~~, ~~order/transaction tracking for shop keepers~~, server statuses, and more!
-* ~~lobal ban database, to track scammers across multiple Discords at once.~~
-* ~~Global trade database, to allow players across PvE/PvP official servers to buy and sell items with in-game currency.~~
 * Moderation commands such as: kick and ban, as well as mute(manual ~~and timed~~) and sweep(bulk delete messages).
 * Customisable from prefix to bot command restrictions(applies to the channel), HLN-A can also set and deploy custom welcome messages
 * HLN-A has the ability to set 'role categories' which is not an official Discord thing (looks nice visually).
