@@ -38,8 +38,6 @@
     <a href="https://discord.gg/WqunCan"><strong>Join the support Discord »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">Invite the Bot</a>
-    ·
     <a href="https://github.com/ALCHElVlY/hlna/issues">Report Bug</a>
     ·
     <a href="https://github.com/ALCHElVlY/hlna/issues">Request Feature</a>
