@@ -9,6 +9,5 @@ const slash = new SlashCommands(client);
 const guildID = '686731263956090915';
 
 (async () => {
-	client.logger.log('Deleting commands..');
 	await slash.deleteGuildOnly(guildID);
 })();

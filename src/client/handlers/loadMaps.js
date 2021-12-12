@@ -20,7 +20,7 @@ async function loadMaps(client) {
 		client.commands = new Collection();
 
 		// A Collection to store the command aliases
-		client.aliases = new Collection();
+		// client.aliases = new Collection();
 
 		// A Collection to store the guild configurable settings
 		client.settings = new Collection();

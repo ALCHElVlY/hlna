@@ -4,10 +4,11 @@
   "description": "HLN-A is a Discord companion app designed to assist the Magma Moe's shop in their day to day operations",
   "main": "src/client/index.js",
   "scripts": {
-    "start": "node src/client/index.js",
-    "dev": "nodemon src/client/index.js",
-    "deployslash": "node deploy-commands.js",
-    "deleteslash": "node delete-commands.js"
+    "start": "node src/server/server.js",
+    "client": "node src/client/index.js",
+    "dev": "concurrently \"nodemon src/server/server.js\" \"nodemon src/client/index.js\"",
+    "deployslash": "node src/deploy-commands.js",
+    "deleteslash": "node src/delete-commands.js"
   },
   "repository": {
     "type": "git",

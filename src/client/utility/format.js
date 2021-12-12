@@ -2,6 +2,9 @@
 // Import various classes from the discord.js library
 const {
 	MessageEmbed,
+	MessageActionRow,
+	MessageButton,
+	MessageSelectMenu,
 } = require('discord.js');
 
 // Import the buildser class from the discord.js library
@@ -43,6 +46,14 @@ exports.moment = moment;
 // Centralised scheme for embeds to use in other structures.
 exports.embed = () => new MessageEmbed()
 	.setColor('#cf3134');
+
+exports.row = () => new MessageActionRow();
+
+exports.button = () => new MessageButton()
+	.setStyle('PRIMARY');
+
+exports.menu = () => new MessageSelectMenu()
+	.setCustomId('select');
 
 // Simple human-readable print
 exports.prettyPrint = (value) => {

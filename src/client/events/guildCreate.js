@@ -5,6 +5,10 @@ module.exports = {
 	name: 'guildCreate',
 	once: false,
 	run: async (client, guild) => {
-		return;
+		axios.post(process.env.CONFIGURATION, {
+			guild_id: guild.id,
+		})
+			.then(() => console.log(`Added guild ${guild.name} to the database`))
+			.catch((e) => console.error(e));
 	},
 };

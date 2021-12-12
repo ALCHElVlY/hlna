@@ -8,14 +8,16 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
 // Import the routes
-/* const {
+const {
 	configRoutes,
-	userRoutes,
-} = require('./routes/index');*/
+	// userRoutes,
+	dossierRoutes,
+} = require('./routes/');
 
 // Route the API requests
-/* app.use('/api/settings', configRoutes);
-app.use('/api/users', userRoutes);*/
+app.use('/api/settings', configRoutes);
+// app.use('/api/users', userRoutes);
+app.use('/api/dossiers', dossierRoutes);
 
 /**
  * The connectServer function initialises the

@@ -1,5 +1,10 @@
 require('dotenv').config();
-// const format = require('../utils/format');
+
+// Import the format options
+const format = require('./format');
+const {
+	bold,
+} = format.formatOptions;
 
 module.exports = (client) => {
 	// Function to search the client for an emoji provided by the user either
@@ -15,21 +20,133 @@ module.exports = (client) => {
 		}
 	};
 
-	client.awaitReply = async (msg, question, limit = 60000) => {
-		const filter = m => m.author.id === msg.author.id;
-		await msg.reply({ content: question });
+	// Format the clone time to DD/HH/MM/SS
+	client.calculate = (number) => {
+		const days = Math.floor(number / 86400);
+		const hours = Math.floor(number / 3600) % 24;
+		const minutes = Math.floor(number / 60) % 60;
+		const seconds = Math.round(number % 60);
+		return [
+			`${bold(days)}d ${bold(hours)}h`,
+			`${bold(minutes)}m ${bold(seconds)}s`,
+		].join(' ');
+	};
+
+	// Set the multiplier for the tekgen command
+	client.set_multiplier = (radius) => {
+		const multiplier_setting = [];
+		switch (radius) {
+		case 1:
+			multiplier_setting.push('1');
+			break;
+		case 2:
+			multiplier_setting.push('1.33');
+			break;
+		case 5:
+			multiplier_setting.push('2.32');
+			break;
+		case 10:
+			multiplier_setting.push('3.97');
+			break;
+		}
+
+		// Return the multiplier
+		const multiplier_toSet = multiplier_setting;
+		return multiplier_toSet;
+	};
+
+	// Query the BattleMetrics API for ARK server info
+	client.fetchServerData = async (server) => {
+		const fetch = require('node-fetch');
+		const { SERVER_EMBED } = require ('./Embeds');
 		try {
-			const collected = await msg.channel.awaitMessages({
+			const match = server.match(/\d+/gm);
+			const standardFilter = `${process.env.BM_API_STANDARD}${server}`;
+			const freeBuildFilter = `${process.env.BM_API_GENESIS}${match}`;
+			const GenServers = [
+				'genone708',
+				'genone706',
+				'genone705',
+			];
+
+			// Check if the server is a standard server or freebuild server
+			if (GenServers.includes(server)) {
+				return fetch(freeBuildFilter)
+					.then((res) => res.json())
+					.then(async (d) => SERVER_EMBED(d.data[0].attributes));
+			}
+			else {
+				return fetch(standardFilter)
+					.then((res) => res.json())
+					.then(async (d) => SERVER_EMBED(d.data[0].attributes));
+			}
+		}
+		catch (e) {
+			console.log(e);
+		}
+	};
+
+	client.awaitReply = async (interaction, question, limit = 60000) => {
+		// Filter the message collector to only allow the interaction author
+		const filter = m => {
+			// If the message author is the interaction author, return true
+			if (m.author.id === interaction.user.id) return true;
+			// Else return false
+			return false;
+		};
+
+		// Send the prompt to the user
+		await interaction.channel.send({ content: question });
+
+		try {
+			const collected = await interaction.channel.awaitMessages({
 				filter,
 				max: 1,
 				maxProcessed: 1,
 				time: limit,
 				errors: ['time'],
 			});
-			return collected.first().content;
+			return collected.first();
 		}
 		catch (e) {
 			return false;
+		}
+	};
+
+	client.getMentions = async (message) => {
+		let hasMention = false;
+		const mentions = {
+			userMention: null || '',
+			roleMention: null || '',
+			channelMention: null || '',
+		};
+		// Check if there are any user mentions in this message
+		if (message.mentions.users.size === 0) {
+			hasMention = false;
+		}
+		else {
+			hasMention = true;
+			const userMention = await message.mentions.users.first();
+			console.log(userMention);
+			mentions.userMention = userMention.id;
+		}
+
+		// Check if there are any role mentions in this message
+		if (message.mentions.roles.size === 0) {
+			hasMention = false;
+		}
+		else {
+			hasMention = true;
+			const roleMention = await message.mentions.roles.first();
+			mentions.roleMention = roleMention.id;
+		}
+
+		// Check if the message contained any mentions
+		switch (hasMention) {
+		case true:
+			return mentions;
+		case false:
+			return message.content;
 		}
 	};
 

@@ -11,7 +11,7 @@ function loadCommand(file) {
 		console.log(`Loading Command: ${commandName}`);
 		const props = require(`../../../${file}`);
 		client.commands.set(commandName, props);
-		props.aliases.forEach(alias => client.aliases.set(alias, commandName));
+		// props.aliases.forEach(alias => client.aliases.set(alias, commandName));
 		return false;
 	}
 	catch (e) {

@@ -2,21 +2,13 @@ require('dotenv').config();
 const permissions = require('../structures/permissions');
 const format = require('../utility/format');
 
-// Import the AutoMod class
-const AutoMod = require('../structures/AutoMod');
-
 module.exports = {
 	name: 'messageCreate',
 	once: false,
 	run: async (client, message) => {
-		// Initialize the AutoMod class
-		const autoMod = new AutoMod();
 
 		// Ignore other bots
 		if (message.author.bot) return;
-		// Moderate trade messages
-		await autoMod.ModerateTrade(message, { enabled: true, staffOverride: true });
-
 
 		// Check for the prefix, either the default or the custom one
 		const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
