@@ -71,15 +71,15 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-This project was designed to help the ARK Discord store "Magma Moe's" in their day to day operations. HLN-A assists users in order transactions, and has an array or moderation and wiki related commands for all things ARK!! The perfect companion to help new survivors get all their information in the palm of their hand.
+This project was designed to help a survivor in their day to day operations of their ARK store. HLN-A assists users in order transactions, and has an array of moderation and wiki related commands for all things ARK!! The perfect companion to help any new survivors get all their information in the palm of their hand.
 
-Here's why:
-* Has many features like: craft calculator, ~~reminders~~, ~~order/transaction tracking for shop keepers~~, server statuses, and more!
+Here's what the bot features:
+* Commands like: craft, and clone calculator, ~~reminders~~, ~~order/transaction tracking(shop management for owners)~~, server statuses, and more!
 * Moderation commands such as: kick and ban, as well as mute(manual ~~and timed~~) and sweep(bulk delete messages).
 * Customisable from prefix to bot command restrictions(applies to the channel), HLN-A can also set and deploy custom welcome messages
 * Fast responses, great uptime, and support for the bot almost 24/7.
 
-Of course, no one application is going to be perfect, issues will arise and in turn should be reported so that they can be fixed later. Be sure to check out the bots documentation to see how to set it up successfully for your Discord server!
+Of course, no one application is going to be perfect, issues will arise and in turn should be reported so that they can be fixed later. Be sure to check out the bots documentation to see how to set it up successfully for your Discord server, as well as get additional command information!
 
 
 
@@ -129,7 +129,6 @@ Twitter: n/a
 There are a number of people and aspirations that contributed to this applications birth. I had several people help in designing commands and functionality for the bot. Some UI suggestions as well. I would like to thank some of those people!
 
 1. My amazing girlfriend Rey0Sun2187#6979 for pushing me to stick with it
-2. ShadowRune#9518 for his continued support for the project.
 3. Studio Wildcard for the creation of HLN-A in the game
 4. The several amazing programming discords I learned from
 5. Discord and Discord.JS for the creation of the platform and the programming library respectively.
