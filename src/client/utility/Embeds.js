@@ -137,6 +137,24 @@ const SERVER_EMBED = (data) => {
 	return embed;
 };
 
+const STATS_EMBED = (duration, version) => {
+	const embed = format.embed()
+		.setTitle('Statistics')
+		.addField('Memory Usage', `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB`, true)
+		.addField('Uptime', duration, true)
+		.addField('\u200b', '\u200b', true)
+		.addField('Users', client.users.cache.size.toLocaleString(), true)
+		.addField('Servers', client.guilds.cache.size.toLocaleString(), true)
+		.addField('Channels', client.channels.cache.size.toLocaleString(), true)
+		.addField('Running on', `Discord.js v${version}\nNode ${process.version}`)
+		.addField('Documentation', '[Click to visit](https://github.com/ALCHElVlY/hlna/blob/main/README.md)', true)
+		.addField('Support Discord', '[Click to visit](#)', true)
+		.setFooter('Developed by: Alchemy#1990');
+
+	// Return the embed
+	return embed;
+};
+
 module.exports = {
 	ERROR_EMBED,
 	SUCCESS_EMBED,
@@ -146,4 +164,6 @@ module.exports = {
 	TEKGEN_EMBED,
 	MILK_EMBED,
 	SERVER_EMBED,
+	// General Embeds
+	STATS_EMBED,
 };
