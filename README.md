@@ -144,4 +144,4 @@ There are a number of people and aspirations that contributed to this applicatio
 [version-url]: https://github.com/ALCHElVlY/hlna/releases
 [issues-shield]: https://img.shields.io/github/issues/ALCHElVlY/hlna?color=blue&style=for-the-badge
 [issues-url]: https://github.com/ALCHElVlY/hlna/issues
-[contributors-shield]: https://img.shields.io/github/contributors/ALCHElVlY/hlna?color=%2300BFFF&style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/ALCHElVlY/hlna?color=blue&style=for-the-badge
