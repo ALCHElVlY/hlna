@@ -20,7 +20,6 @@
 ![][contributors-shield]
 [![][issues-shield]][issues-url]
 ![][keywords-shield]
-<br>
 ![][discord-shield]
 
 
