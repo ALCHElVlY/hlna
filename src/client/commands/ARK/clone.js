@@ -16,6 +16,7 @@ const {
 
 // import the embed builders
 const {
+	CLONE_EMBED,
 	ERROR_EMBED,
 } = require('../../utility/Embeds');
 
@@ -25,11 +26,6 @@ const axios = require('axios');
 
 // Import the ARK official rates function
 const _getOfficialRates = require('../../utility/functions/getOfficialRates');
-
-// Import the clone embed
-const {
-	CLONE_EMBED,
-} = require('../../utility/Embeds');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -45,37 +41,27 @@ module.exports = {
 				.setRequired(true)),
 	category: 'ARK',
 	async execute(interaction) {
-		const values = interaction.options._hoistedOptions;
+		const creatureName = interaction.options._hoistedOptions[0].value.toProperCase();
+		const level = interaction.options._hoistedOptions[1].value;
 		const OfficialRates = await _getOfficialRates();
 		const mature_rate = await OfficialRates.get('BabyMatureSpeedMultiplier');
 
-		// Loop through the values
-		const userInputArray = [];
-		for (const value of values) {
-			const userInput = {};
-			userInput.key = value.name;
-			userInput.value = value.value;
-
-			// push the user input into an array
-			userInputArray.push(userInput);
-		}
-
 		// Search the database for the creature name
-		const creatureName = userInputArray[0].value.toProperCase();
-		const level = userInputArray[1].value;
 		const results = await axios.get(`${process.env.DOSSIER}/${creatureName}`);
 
-
 		try {
-			// Handle if the creature is not found
-			if (results.data === null) {
-				throw new Error(`${highlighted(creatureName)} not found in the database.`);
-			}
+			// Calculate the total time and cost to clone the creature
 			const BaseElementCost = results.data.base_cost;
 			const CostPerLevel = results.data.per_level_cost;
 			const CostForLevel = (level * CostPerLevel);
 			const clone_cost = (CostForLevel + BaseElementCost);
 			const clone_time = (clone_cost * (7 / mature_rate));
+
+
+			// Handle if the creature is not found
+			if (results.data === null) {
+				throw new Error(`${highlighted(creatureName)} not found in the database.`);
+			}
 
 			// Send the embed
 			interaction.reply({

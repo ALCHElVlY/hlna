@@ -58,7 +58,6 @@ module.exports = {
 							},
 							reason: ban.reason,
 						};
-
 						guildBans.push(data);
 					});
 					console.log(guildBans);
