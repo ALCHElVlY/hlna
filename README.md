@@ -19,6 +19,8 @@
 [![][version-shield]][version-url]
 ![][contributors-shield]
 [![][issues-shield]][issues-url]
+![][keywords-shield]
+<br>
 ![][discord-shield]
 
 
@@ -145,3 +147,4 @@ There are a number of people and aspirations that contributed to this applicatio
 [issues-shield]: https://img.shields.io/github/issues/ALCHElVlY/hlna?color=blue&style=for-the-badge
 [issues-url]: https://github.com/ALCHElVlY/hlna/issues
 [contributors-shield]: https://img.shields.io/github/contributors/ALCHElVlY/hlna?color=blue&style=for-the-badge
+[keywords-shield]: https://img.shields.io/github/package-json/keywords/ALCHElVlY/hlna?color=blue&style=for-the-badge
