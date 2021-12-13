@@ -17,6 +17,7 @@
 -->
 [![][readme-shield]][readme-url]
 [![][version-shield]][version-url]
+![][contributors-shield]
 [![][issues-shield]][issues-url]
 ![][discord-shield]
 
@@ -136,10 +137,11 @@ There are a number of people and aspirations that contributed to this applicatio
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[readme-shield]: https://img.shields.io/badge/readme%20style-standard-blue.svg?style=plastic
+[readme-shield]: https://img.shields.io/badge/readme%20style-standard-blue.svg?style=for-the-badge
 [readme-url]: https://github.com/ALCHElVlY/hlna#readme
-[discord-shield]: https://img.shields.io/discord/686731263956090915?color=blue&label=Online%20Discord%20Members&style=plastic
-[version-shield]: https://img.shields.io/github/v/tag/ALCHElVlY/hlna?label=version&style=plastic
+[discord-shield]: https://img.shields.io/discord/686731263956090915?color=blue&label=Online%20Discord%20Members&style=for-the-badge
+[version-shield]: https://img.shields.io/github/v/tag/ALCHElVlY/hlna?label=version&style=for-the-badge
 [version-url]: https://github.com/ALCHElVlY/hlna/releases
-[issues-shield]: https://img.shields.io/github/issues/ALCHElVlY/hlna?color=blue&style=plastic
+[issues-shield]: https://img.shields.io/github/issues/ALCHElVlY/hlna?color=blue&style=for-the-badge
 [issues-url]: https://github.com/ALCHElVlY/hlna/issues
+[contributors-shield]: https://img.shields.io/github/contributors/ALCHElVlY/hlna?color=%2300BFFF&style=for-the-badge
