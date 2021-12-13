@@ -33,10 +33,7 @@ class SlashCommands {
 		}
 
 		// Register the commands to the API
-		await this.rest.put(Routes.applicationCommands(
-			this.application,
-		),
-		{
+		await this.rest.put(Routes.applicationCommands(this.application), {
 			body: this.commandsToRegister,
 		});
 
@@ -78,10 +75,7 @@ class SlashCommands {
 	 */
 	async deleteAll() {
 		await this.client.wait(3000);
-		await this.rest.put(Routes.applicationCommands(
-			this.application,
-		),
-		{
+		await this.rest.put(Routes.applicationCommands(this.application), {
 			body: [],
 		});
 

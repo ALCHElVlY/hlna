@@ -45,13 +45,10 @@ exports.moment = moment;
 
 // Centralised scheme for embeds to use in other structures.
 exports.embed = () => new MessageEmbed()
-	.setColor('#cf3134');
-
+	.setColor('#9fd1ff');
 exports.row = () => new MessageActionRow();
-
 exports.button = () => new MessageButton()
 	.setStyle('PRIMARY');
-
 exports.menu = () => new MessageSelectMenu()
 	.setCustomId('select');
 

@@ -32,6 +32,28 @@ module.exports = (client) => {
 		].join(' ');
 	};
 
+	// Format the mute time to milliseconds
+	client.formatMuteTime = (time) => {
+		const duration = time.match(/(\d)/gm);
+		const timeUnit = time.match(/(\D)/gim);
+
+		// Determine the time unit
+		switch (timeUnit[0]) {
+		case 's':
+			return (duration[0] * 1000);
+		case 'm':
+			return (duration[0] * (1000 * 60));
+		case 'h':
+			return (duration[0] * (1000 * (60 * 60)));
+		case 'd':
+			return (duration[0] * (1000 * (60 * 60 * 24)));
+		case 'w':
+			return (duration[0] * (1000 * (60 * 60 * 24 * 7)));
+		default:
+			throw new Error('Duration out of range. Accepted units are [s, m, h, d, w]');
+		}
+	};
+
 	// Set the multiplier for the tekgen command
 	client.set_multiplier = (radius) => {
 		const multiplier_setting = [];
@@ -69,7 +91,7 @@ module.exports = (client) => {
 				'genone705',
 			];
 
-			// Check if the server is a standard server or freebuild server
+			// Check if the server is a standard server or freebuild(genesis) server
 			if (GenServers.includes(server)) {
 				return fetch(freeBuildFilter)
 					.then((res) => res.json())

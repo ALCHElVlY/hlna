@@ -34,7 +34,7 @@ const {
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('clone')
-		.setDescription('Calculates the time and element shard cost of cloning a creature in ARK.')
+		.setDescription('Calculates the time and cost of cloning a creature in ARK.')
 		.addStringOption(option =>
 			option.setName('creature_name')
 				.setDescription('The name of the creature to clone.')
@@ -43,6 +43,7 @@ module.exports = {
 			option.setName('creature_level')
 				.setDescription('The level of the creature being cloned.')
 				.setRequired(true)),
+	category: 'ARK',
 	async execute(interaction) {
 		const values = interaction.options._hoistedOptions;
 		const OfficialRates = await _getOfficialRates();

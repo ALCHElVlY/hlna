@@ -30,6 +30,7 @@ module.exports = {
 				.addChoice('2', 2)
 				.addChoice('5', 5)
 				.addChoice('10', 10)),
+	category: 'ARK',
 	async execute(interaction) {
 		const element = interaction.options._hoistedOptions[0].value;
 		const radius = interaction.options._hoistedOptions[1].value;

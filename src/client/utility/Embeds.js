@@ -2,6 +2,11 @@ require('dotenv').config();
 const client = require('../../client/index');
 const format = require('../../client/utility/format.js');
 
+// Import the format options
+const {
+	highlighted,
+} = format.formatOptions;
+
 const ERROR_EMBED = (error) => {
 	const errorEmoji = client.findEmoji('redX');
 	const embed = format.embed()
@@ -26,8 +31,81 @@ const SUCCESS_EMBED = (message) => {
 	return embed;
 };
 
+const HELP_EMBED = (helpData) => {
+	// Loop through the help data and extract the command
+	// categories. Only the first occurance of the category will be used
+	const categories = [];
+	for (const data of helpData) {
+		if (!categories.includes(data.Category)) {
+			categories.push(data.Category);
+		}
+	}
+
+	// Build the embed
+	const embed = format.embed()
+		.setTitle('Command List')
+		.setDescription([
+			'For example usage, visit the documentation!',
+		].join('\n'));
+
+	// Extract the commands for each category
+	const commands = {};
+	for (const category of categories.sort()) {
+		commands[category] = [];
+		for (const data of helpData) {
+			if (data.Category === category) {
+				commands[category].push(data.Command);
+			}
+		}
+	}
+
+	// Add the commands and categories to the embed
+	Object.entries(commands).forEach(([c, cmds]) => {
+		embed.addFields({
+			name: c,
+			value: cmds.join('\n').replace(/(^\w+)/gm, (s) => {
+				return highlighted(s);
+			}),
+			inline: false,
+		});
+	});
+
+
+	// Return the embed
+	return embed;
+};
+
+const KICK_DM_EMBED = (guild, reason) => {
+	const embed = format.embed()
+		.setColor('#FF8080')
+		.setTitle('Hello, you have been kicked from')
+		.setDescription([
+			`Guild: **${guild.name}**`,
+			`Reason: \`${reason}\``,
+		].join('\n'))
+		.setTimestamp()
+		.setFooter('goodbye!');
+
+	// Return the embed
+	return embed;
+};
+
+const BAN_DM_EMBED = (guild, reason) => {
+	const embed = format.embed()
+		.setColor('#FF8080')
+		.setTitle('Hello, you have been banned from')
+		.setDescription([
+			`Guild: **${guild.name}**`,
+			`Reason: \`${reason}\``,
+		].join('\n'))
+		.setTimestamp()
+		.setFooter('goodbye!');
+
+	// Return the embed
+	return embed;
+};
+
 const CLONE_EMBED = (creatureName, level, clone_cost, clone_time, mature_rate) => {
-	const { highlighted } = format.formatOptions;
 	const embed = format.embed()
 		.setColor('#ffffb3')
 		.setAuthor(`${client.user.username} | Clone Calculator`, client.user.displayAvatarURL())
@@ -53,7 +131,6 @@ const CLONE_EMBED = (creatureName, level, clone_cost, clone_time, mature_rate) =
 };
 
 const GENERATOR_EMBED = (fuel_amount, consumption_rate) => {
-	const { highlighted } = format.formatOptions;
 	const embed = format.embed()
 		.setColor('#ffffb3')
 		.setAuthor(`${client.user.username} | Generator Calculator`, client.user.displayAvatarURL())
@@ -68,7 +145,6 @@ const GENERATOR_EMBED = (fuel_amount, consumption_rate) => {
 };
 
 const TEKGEN_EMBED = (element, radius, consumption_rate) => {
-	const { highlighted } = format.formatOptions;
 	const embed = format.embed()
 		.setColor('#ffffb3')
 		.setAuthor(`${client.user.username} | Tek Generator Calculator`, client.user.displayAvatarURL())
@@ -84,7 +160,6 @@ const TEKGEN_EMBED = (element, radius, consumption_rate) => {
 };
 
 const MILK_EMBED = (food_level, consumption_rate) => {
-	const { highlighted } = format.formatOptions;
 	const embed = format.embed()
 		.setColor('#ffffb3')
 		.setAuthor(`${client.user.username} | Wyvern Milk Calculator`, client.user.displayAvatarURL())
@@ -155,9 +230,76 @@ const STATS_EMBED = (duration, version) => {
 	return embed;
 };
 
+const ADD_ROLE_EMBED = (member, role) => {
+	const embed = format.embed()
+		.setColor('#B3FFB3')
+		.setDescription([
+			`${client.findEmoji('greenCheckBox')}`,
+			`${role} has been added to ${member}.`,
+		].join(' '))
+		.setFooter([
+			'“You should be proud, the whole point of this',
+			'simulation is to identify the very best survivors.”',
+		].join(' '));
+
+	// Return the embed
+	return embed;
+};
+
+const REMOVE_ROLE_EMBED = (member, role) => {
+	const embed = format.embed()
+		.setColor('#B3FFB3')
+		.setDescription([
+			`${client.findEmoji('greenCheckBox')}`,
+			`${role} has been removed from ${member}.`,
+		].join(' '))
+		.setFooter('“He’ll get over it. We all do.”');
+
+	// Return the embed
+	return embed;
+};
+
+const ADD_MUTE_EMBED = (member, time) => {
+	switch (time) {
+	case null:
+		time = '';
+		break;
+	default:
+		time = `Duration: ${highlighted(time)}`;
+		break;
+	}
+
+	const embed = format.embed()
+		.setColor('#B3FFB3')
+		.setDescription([
+			`${client.findEmoji('greenCheckBox')}`,
+			`${member} has been muted. ` + time,
+		].join(' '))
+		.setFooter('“It fascinates me how you survivors find your own solutions to problems.”');
+
+	// Return the embed
+	return embed;
+};
+
+const REMOVE_MUTE_EMBED = (member) => {
+	const embed = format.embed()
+		.setColor('#B3FFB3')
+		.setDescription([
+			`${client.findEmoji('greenCheckBox')}`,
+			`${member} has been unmuted.`,
+		].join(' '))
+		.setFooter('“Did you feel a bit disjointed when you woke up in the simulation? That’s normal.”');
+
+	// Return the embed
+	return embed;
+};
+
 module.exports = {
 	ERROR_EMBED,
 	SUCCESS_EMBED,
+	HELP_EMBED,
+	KICK_DM_EMBED,
+	BAN_DM_EMBED,
 	// ARK Related Embeds
 	CLONE_EMBED,
 	GENERATOR_EMBED,
@@ -166,4 +308,9 @@ module.exports = {
 	SERVER_EMBED,
 	// General Embeds
 	STATS_EMBED,
+	// ActionLogger Embeds
+	ADD_ROLE_EMBED,
+	REMOVE_ROLE_EMBED,
+	ADD_MUTE_EMBED,
+	REMOVE_MUTE_EMBED,
 };

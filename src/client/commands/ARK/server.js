@@ -22,6 +22,7 @@ module.exports = {
 			option.setName('server_name')
 				.setDescription('The name of the server to search for.')
 				.setRequired(true)),
+	category: 'ARK',
 	async execute(interaction) {
 		const { value } = interaction.options._hoistedOptions[0];
 		const data = await client.fetchServerData(value);

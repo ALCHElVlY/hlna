@@ -1,49 +1,42 @@
 /* eslint-disable no-unused-vars */
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const format = require('../../utility/format');
 const client = require('../../index');
 const permissions = require('../../structures/permissions');
+
+// Import the embed builders
+const {
+	HELP_EMBED,
+	ERROR_EMBED,
+} = require('../../utility/embeds');
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('help')
-		.setDescription('Displays all available commands.')
-		.addStringOption(option =>
-			option.setName('command')
-				.setDescription('Display help for all, or specific commands.')
-				.setRequired(true)
-				.addChoices([
-					// Default choice
-					['All', 'all'],
-					// ARK
-					// Configuration
-					['Settings', 'settings'],
-					// General
-					['Test', 'test'],
-				])),
+		.setDescription('Displays all available commands.'),
+	category: 'General',
 	async execute(interaction) {
-		const embed = format.embed();
-		const settings = client.settings.get(interaction.guild.id);
-		const helpCategory = interaction.options._hoistedOptions[0].value;
-		console.log(client.commands);
+		const clientCommands = client.commands;
+		const commands = [];
 
-
-		embed.setTitle('Command List')
-			.setDescription([
-				'For example usage, visit the documentation!',
-			].join('\n'));
+		clientCommands.forEach((command) => {
+			const { name, description } = command.data;
+			const { category } = command;
+			const helpData = {
+				Category: category,
+				Command: `${name} → ${description}`,
+			};
+			commands.push(helpData);
+		});
 
 		try {
 			interaction.reply({
-				embeds: [embed],
+				embeds: [HELP_EMBED(commands)],
 				ephemeral: true,
 			});
 		}
 		catch(e) {
-			embed.setTitle('An error has occured.')
-				.setDescription(e.message);
 			return interaction.reply({
-				embeds: [embed],
+				embeds: [ERROR_EMBED(e.message)],
 				ephemeral: true,
 			});
 		}

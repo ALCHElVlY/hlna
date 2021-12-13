@@ -22,6 +22,7 @@ module.exports = {
 			option.setName('fuel_amount')
 				.setDescription('The amount of fuel in the generator.')
 				.setRequired(true)),
+	category: 'ARK',
 	async execute(interaction) {
 		const { value } = interaction.options._hoistedOptions[0];
 

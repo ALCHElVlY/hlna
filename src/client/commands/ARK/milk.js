@@ -22,6 +22,7 @@ module.exports = {
 			option.setName('food_level')
 				.setDescription('The food level of the baby Wyvern.')
 				.setRequired(true)),
+	category: 'ARK',
 	async execute(interaction) {
 		const { value } = interaction.options._hoistedOptions[0];
 

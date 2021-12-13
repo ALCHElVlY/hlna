@@ -15,6 +15,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('settings')
 		.setDescription('View, edit, or restore HLN-A\'s settings for this Discord.'),
+	category: 'Configuration',
 	async execute(interaction) {
 		// Import the client settings for the guild
 		const settings = client.settings.get(interaction.guild.id);

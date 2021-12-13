@@ -1,7 +1,7 @@
 {
   "name": "hln-a",
   "version": "2.0.0",
-  "description": "HLN-A is a Discord companion app designed to assist the Magma Moe's shop in their day to day operations",
+  "description": "HLN-A is a Discord companion app designed to assist a survivor in their day to day ARK operations",
   "main": "src/client/index.js",
   "scripts": {
     "server": "pm2 start src/server/server.js --name \"hlna-api\"",

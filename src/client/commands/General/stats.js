@@ -16,6 +16,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('stats')
 		.setDescription('Gives some useful bot statistics.'),
+	category: 'General',
 	async execute(interaction) {
 		const duration = moment.duration(client.uptime).format(' D [days], H [hrs], m [mins], s [secs]');
 
