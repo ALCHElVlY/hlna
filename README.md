@@ -20,7 +20,6 @@
 ![][contributors-shield]
 [![][issues-shield]][issues-url]
 ![][keywords-shield]
-![][discord-shield]
 
 
 
@@ -140,7 +139,6 @@ There are a number of people and aspirations that contributed to this applicatio
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [readme-shield]: https://img.shields.io/badge/readme%20style-standard-blue.svg?style=for-the-badge
 [readme-url]: https://github.com/ALCHElVlY/hlna#readme
-[discord-shield]: https://img.shields.io/discord/686731263956090915?color=blue&label=Online%20Discord%20Members&style=for-the-badge
 [version-shield]: https://img.shields.io/github/v/tag/ALCHElVlY/hlna?label=version&style=for-the-badge
 [version-url]: https://github.com/ALCHElVlY/hlna/releases
 [issues-shield]: https://img.shields.io/github/issues/ALCHElVlY/hlna?color=blue&style=for-the-badge
