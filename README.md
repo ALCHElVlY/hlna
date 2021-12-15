@@ -17,7 +17,9 @@
 -->
 [![][readme-shield]][readme-url]
 [![][version-shield]][version-url]
+![][contributors-shield]
 [![][issues-shield]][issues-url]
+![][keywords-shield]
 ![][discord-shield]
 
 
@@ -35,7 +37,7 @@
     A Discord companion app for the online sandbox game ARK: Survival Evolved. Survivors can enjoy their favorite A.I. outside of the ARK with breeding reminders,
     clone cost calculations, server statuses, shop management, and more!
     <br />
-    <a href="https://discord.gg/WqunCan"><strong>Join the support Discord »</strong></a>
+    <a href="https://discord.gg/WqunCan"><strong>« Join the support Discord »</strong></a>
     <br />
     <br />
     <a href="https://github.com/ALCHElVlY/hlna/issues">Report Bug</a>
@@ -136,10 +138,12 @@ There are a number of people and aspirations that contributed to this applicatio
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[readme-shield]: https://img.shields.io/badge/readme%20style-standard-blue.svg?style=plastic
+[readme-shield]: https://img.shields.io/badge/readme%20style-standard-blue.svg?style=for-the-badge
 [readme-url]: https://github.com/ALCHElVlY/hlna#readme
-[discord-shield]: https://img.shields.io/discord/686731263956090915?color=blue&label=Online%20Discord%20Members&style=plastic
-[version-shield]: https://img.shields.io/github/v/tag/ALCHElVlY/hlna?label=version&style=plastic
+[discord-shield]: https://img.shields.io/discord/686731263956090915?color=blue&label=Online%20Discord%20Members&style=for-the-badge
+[version-shield]: https://img.shields.io/github/v/tag/ALCHElVlY/hlna?label=version&style=for-the-badge
 [version-url]: https://github.com/ALCHElVlY/hlna/releases
-[issues-shield]: https://img.shields.io/github/issues/ALCHElVlY/hlna?color=blue&style=plastic
+[issues-shield]: https://img.shields.io/github/issues/ALCHElVlY/hlna?color=blue&style=for-the-badge
 [issues-url]: https://github.com/ALCHElVlY/hlna/issues
+[contributors-shield]: https://img.shields.io/github/contributors/ALCHElVlY/hlna?color=blue&style=for-the-badge
+[keywords-shield]: https://img.shields.io/github/package-json/keywords/ALCHElVlY/hlna?color=blue&style=for-the-badge
