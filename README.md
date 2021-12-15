@@ -77,7 +77,7 @@ This project was designed to help a survivor in their day to day operations of t
 Here's what the bot features:
 * Commands like: craft, and clone calculator, ~~reminders~~, ~~order/transaction tracking(shop management for owners)~~, server statuses, and more!
 * Moderation commands such as: kick and ban, as well as mute(manual ~~and timed~~) and sweep(bulk delete messages).
-* Customisable from prefix to bot command restrictions(applies to the channel), HLN-A can also set and deploy custom welcome messages
+* HLN-A offers those survivors who run non-RMT shops additional shop management. You can set the currency in which you accept, users will be able to use the shop slash command to purchase wares that you list. _Understand that I as the developer of this bot **DO NOT** support the use of real money trading in any form. If you are caught using this bot to run a RMT shop, you and any associated player will be permanently blacklisted from HLN-A use, and you will be reported._
 * Fast responses, great uptime, and support for the bot almost 24/7.
 
 Of course, no one application is going to be perfect, issues will arise and in turn should be reported so that they can be fixed later. Be sure to check out the bots documentation to see how to set it up successfully for your Discord server, as well as get additional command information!
