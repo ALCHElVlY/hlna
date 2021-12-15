@@ -105,6 +105,57 @@ const BAN_DM_EMBED = (guild, reason) => {
 	return embed;
 };
 
+const CRAFT_EMBED = (itemData, amount) => {
+	// Get the experience from the itemData
+	const experience = (itemData.experienced_gained === null)
+		? 0
+		: itemData.experienced_gained;
+	// Get the level from the itemData
+	const level = (itemData.req_level)
+		? itemData.req_level
+		: 'None';
+	// Get the ingredients from the itemData
+	const ingredients = (itemData.ingredient_list)
+		? itemData.ingredient_list
+		: 'None';
+	// Get the total ingredients from the itemData
+	const total_ingredients = ingredients.replace(/(\d+)/gm, (m) => {
+		const parsedIngredientQty = new Number(parseInt(m)) + '';
+		return (parsedIngredientQty * amount).toLocaleString();
+	});
+	// Get the total experience from the itemData
+	const total_exp = (experience && experience > 0)
+		? (experience * amount).toLocaleString()
+		: 'None';
+
+	// Build the embed
+	const embed = format.embed()
+		.setColor('#ffffb3')
+		.setAuthor(`${client.user.username} | Craft Calculator`, client.user.displayAvatarURL())
+		.setDescription([
+			`**Crafting**: ${highlighted(itemData.name)}\n` +
+			`**Amount**: ${highlighted(amount)}`,
+		].join('\n'))
+		.setThumbnail(itemData.image_url)
+
+		.addFields({
+			name: 'Crafting Ingredients',
+			value: `${total_ingredients}`
+				.replace(/(x\d+,\d+|x\d+)/gm, function(d) {
+					return highlighted(d);
+				})
+				.replace(/(,\B)/gm, '\n'),
+			inline: true,
+		}, {
+			name: 'Additional Info',
+			value: `Required level: ${level}\nExperience points gained: ${total_exp}`,
+			inline: false,
+		});
+
+	// Return the embed
+	return embed;
+};
+
 const CLONE_EMBED = (creatureName, level, clone_cost, clone_time, mature_rate) => {
 	const embed = format.embed()
 		.setColor('#ffffb3')
@@ -301,6 +352,7 @@ module.exports = {
 	KICK_DM_EMBED,
 	BAN_DM_EMBED,
 	// ARK Related Embeds
+	CRAFT_EMBED,
 	CLONE_EMBED,
 	GENERATOR_EMBED,
 	TEKGEN_EMBED,

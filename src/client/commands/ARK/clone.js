@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-require('dotenv').config();
 const { SlashCommandBuilder } = require('@discordjs/builders');
 String.prototype.toProperCase = function(opt_lowerCaseTheRest) {
 	return (opt_lowerCaseTheRest ? this.toLowerCase() : this)
@@ -20,8 +19,7 @@ const {
 	ERROR_EMBED,
 } = require('../../utility/Embeds');
 
-// Import the client & axios
-const client = require('../../index');
+// Import axios
 const axios = require('axios');
 
 // Import the ARK official rates function
@@ -30,7 +28,7 @@ const _getOfficialRates = require('../../utility/functions/getOfficialRates');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('clone')
-		.setDescription('Calculates the time and cost of cloning a creature in ARK.')
+		.setDescription('Calculates the time and cost of cloning a creature.')
 		.addStringOption(option =>
 			option.setName('creature_name')
 				.setDescription('The name of the creature to clone.')
@@ -46,8 +44,12 @@ module.exports = {
 		const OfficialRates = await _getOfficialRates();
 		const mature_rate = await OfficialRates.get('BabyMatureSpeedMultiplier');
 
-		// Search the database for the creature name
-		const results = await axios.get(`${process.env.DOSSIER}/${creatureName}`);
+		// Send an API request to get the creature data
+		const results = await axios.get(`${process.env.DOSSIER}/${creatureName}`, {
+			headers: {
+				'Authorization': 'Bearer ' + process.env.API_KEY,
+			},
+		});
 
 		try {
 			// Calculate the total time and cost to clone the creature

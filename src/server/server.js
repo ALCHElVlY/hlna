@@ -7,17 +7,20 @@ const PORT = process.env.PORT || 5000;
 // Express body parser
 app.use(express.json());
 
-// Import the routes
+// Import the routes & the auth middleware
+const checkAuth = require('../server/middleware/check-auth');
 const {
 	configRoutes,
 	// userRoutes,
 	dossierRoutes,
+	itemRoutes,
 } = require('./routes/');
 
 // Route the API requests
-app.use('/api/settings', configRoutes);
+app.use('/api/settings', checkAuth, configRoutes);
 // app.use('/api/users', userRoutes);
-app.use('/api/dossiers', dossierRoutes);
+app.use('/api/dossiers', checkAuth, dossierRoutes);
+app.use('/api/items', checkAuth, itemRoutes);
 
 /**
  * The connectServer function initialises the

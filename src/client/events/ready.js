@@ -11,7 +11,11 @@ module.exports = {
 		// Short delay to allow the bot to fully connect
 		// before trying to process refreshing the settings
 		setTimeout(async () => {
-			const res = await axios.get(process.env.CONFIGURATION);
+			const res = await axios.get(process.env.CONFIGURATION, {
+				headers: {
+					'Authorization': 'Bearer ' + process.env.API_KEY,
+				},
+			});
 			const cache = new Map();
 
 			// loop through the array to sort the data

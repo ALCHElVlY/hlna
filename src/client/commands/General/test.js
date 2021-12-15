@@ -8,14 +8,6 @@ module.exports = {
 		.setDescription('This is a test.'),
 	category: 'General',
 	async execute(interaction) {
-		const clientCommands = client.commands;
-		const commands = [];
-		console.log(clientCommands);
-
-		/* clientCommands.forEach((command) => {
-			const { name, description } = command.data;
-
-			console.log(`${name} → ${description}`);
-		});*/
+		// code
 	},
 };

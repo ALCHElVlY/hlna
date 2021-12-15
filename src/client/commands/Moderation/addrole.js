@@ -10,7 +10,7 @@ const {
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('addrole')
-		.setDescription('Adds a role to a member.')
+		.setDescription('Manually adds a role to a member.')
 		.addUserOption(option =>
 			option.setName('member')
 				.setDescription('The member to add the role to.')

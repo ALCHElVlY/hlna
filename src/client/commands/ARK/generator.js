@@ -1,12 +1,5 @@
 /* eslint-disable no-unused-vars */
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const client = require('../../index');
-
-// Import the format options
-const format = require('../../utility/format');
-const {
-	highlighted,
-} = format.formatOptions;
 
 // Import the generator embed
 const {

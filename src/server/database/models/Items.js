@@ -23,16 +23,10 @@ const ItemsSchema = new mongoose.Schema({
 		type: Number,
 		required: true,
 	},
-	ingredient_list: [{
-		ingredient_name: {
-			type: String,
-			required: true,
-		},
-		ingredient_amount: {
-			type: String,
-			required: true,
-		},
-	}],
+	ingredient_list: {
+		type: String,
+		required: true,
+	},
 	crafted_in: {
 		type: String,
 		required: true,

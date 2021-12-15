@@ -10,7 +10,7 @@ const {
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('removerole')
-		.setDescription('Removes a role from a member.')
+		.setDescription('Manually removes a role from a member.')
 		.addUserOption(option =>
 			option.setName('member')
 				.setDescription('The member to remove a role from.')
