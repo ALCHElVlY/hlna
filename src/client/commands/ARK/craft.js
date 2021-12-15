@@ -13,14 +13,13 @@ const {
 	highlighted,
 } = format.formatOptions;
 
-// import the embed builders
+// Import the embed builders
 const {
 	CRAFT_EMBED,
 	ERROR_EMBED,
 } = require('../../utility/Embeds');
 
-// Import the client & axios
-const client = require('../../index');
+// Import axios
 const axios = require('axios');
 
 
@@ -65,7 +64,7 @@ module.exports = {
 				return interaction.reply({
 					embeds: [ERROR_EMBED([
 						'Check the spelling of your search and try again.',
-						`If this message appears again, no data exists in the database for \`${itemName}\`.`,
+						`If this message appears again, no data exists in the database for \`${highlighted(itemName)}\`.`,
 					].join(' '))],
 					ephemeral: true,
 				});

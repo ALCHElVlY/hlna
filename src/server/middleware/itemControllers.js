@@ -1,10 +1,10 @@
 // Import the item model
-const Items = require('../database/models/Items');
+const Item = require('../database/models/Item');
 
 const getItemData = async (req, res) => {
 	try {
 		const { name } = req.params;
-		Items.findOne({ name })
+		Item.findOne({ name })
 			.then(data => res.json(data))
 			.catch(e => console.error(e));
 	}

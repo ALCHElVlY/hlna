@@ -2,6 +2,14 @@
   "name": "hln-a",
   "version": "2.0.0",
   "description": "HLN-A is a Discord companion app designed to assist a survivor in their day to day ARK operations",
+  "keywords": [
+    "hlna",
+    "hln-a",
+    "hln-a-discord-bot",
+    "hlna-discord-bot",
+    "ark-survival-discord-bot",
+    "ark discord bot"
+  ],
   "main": "src/client/index.js",
   "scripts": {
     "server": "pm2 start src/server/server.js --name \"hlna-api\"",
