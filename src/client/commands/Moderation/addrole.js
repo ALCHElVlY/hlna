@@ -11,6 +11,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('addrole')
 		.setDescription('Manually adds a role to a member.')
+		.setDefaultPermission(true)
 		.addUserOption(option =>
 			option.setName('member')
 				.setDescription('The member to add the role to.')

@@ -15,7 +15,8 @@ const {
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('stats')
-		.setDescription('Gives some useful bot statistics.'),
+		.setDescription('Gives some useful bot statistics.')
+		.setDefaultPermission(true),
 	category: 'General',
 	permissions: ['User'],
 	async execute(interaction) {

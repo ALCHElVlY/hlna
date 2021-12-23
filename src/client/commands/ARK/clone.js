@@ -29,6 +29,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('clone')
 		.setDescription('Calculates the time and cost of cloning a creature.')
+		.setDefaultPermission(true)
 		.addStringOption(option =>
 			option.setName('creature_name')
 				.setDescription('The name of the creature to clone.')

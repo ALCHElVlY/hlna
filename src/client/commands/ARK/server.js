@@ -11,6 +11,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('server')
 		.setDescription('Query the battlemetrics API for ARK Official server info.')
+		.setDefaultPermission(true)
 		.addStringOption(option =>
 			option.setName('server_name')
 				.setDescription('The name of the server to search for.')

@@ -27,6 +27,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('craft')
 		.setDescription('Calculates the total resource cost of crafting x amount of items.')
+		.setDefaultPermission(true)
 		.addStringOption(option =>
 			option.setName('item')
 				.setDescription('The name of the item to craft.')

@@ -12,7 +12,8 @@ const {
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('help')
-		.setDescription('Displays all available commands.'),
+		.setDescription('Displays all available commands.')
+		.setDefaultPermission(true),
 	category: 'General',
 	permissions: ['User'],
 	async execute(interaction) {
@@ -20,6 +21,7 @@ module.exports = {
 		const commands = [];
 
 		clientCommands.forEach((command) => {
+			console.log(command);
 			const { name, description } = command.data;
 			const { category } = command;
 			const helpData = {

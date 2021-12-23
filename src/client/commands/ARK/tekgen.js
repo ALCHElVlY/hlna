@@ -12,6 +12,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('tekgen')
 		.setDescription('Calculates the time before a tek generator runs out of fuel.')
+		.setDefaultPermission(true)
 		.addIntegerOption(option =>
 			option.setName('element')
 				.setDescription('The amount of element in the tek generator.')

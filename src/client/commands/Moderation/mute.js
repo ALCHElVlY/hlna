@@ -13,6 +13,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('mute')
 		.setDescription('Mute a member. Time based, or manual unmute.')
+		.setDefaultPermission(true)
 		.addUserOption(option =>
 			option.setName('member')
 				.setDescription('The member to mute.')

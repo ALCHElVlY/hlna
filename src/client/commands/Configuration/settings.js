@@ -14,7 +14,8 @@ const {
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('settings')
-		.setDescription('View, edit, or restore HLN-A\'s settings for this Discord.'),
+		.setDescription('View, edit, or restore HLN-A\'s settings for this Discord.')
+		.setDefaultPermission(true),
 	category: 'Configuration',
 	permissions: ['Server Owner'],
 	async execute(interaction) {

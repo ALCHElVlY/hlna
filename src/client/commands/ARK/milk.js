@@ -11,6 +11,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('milk')
 		.setDescription('Calculates the time before you can feed a baby Wyvern again.')
+		.setDefaultPermission(true)
 		.addIntegerOption(option =>
 			option.setName('food_level')
 				.setDescription('The food level of the baby Wyvern.')

@@ -14,6 +14,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('unban')
 		.setDescription('Unban a member from the server, or list all bans.')
+		.setDefaultPermission(true)
 		.addSubcommand(subcommand =>
 			subcommand.setName('member')
 				.setDescription('The member to unban.')

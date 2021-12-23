@@ -11,6 +11,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('removerole')
 		.setDescription('Manually removes a role from a member.')
+		.setDefaultPermission(true)
 		.addUserOption(option =>
 			option.setName('member')
 				.setDescription('The member to remove a role from.')

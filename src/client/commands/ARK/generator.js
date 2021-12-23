@@ -11,6 +11,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('generator')
 		.setDescription('Calculates the time before a gas generator runs out of fuel.')
+		.setDefaultPermission(true)
 		.addIntegerOption(option =>
 			option.setName('fuel_amount')
 				.setDescription('The amount of fuel in the generator.')
