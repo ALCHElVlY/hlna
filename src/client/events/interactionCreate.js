@@ -1,4 +1,6 @@
 const GuildSettings = require('../structures/GuildSettings');
+const format = require('../utility/format');
+const permissions = require('../structures/permissions');
 
 module.exports = {
 	name: 'interactionCreate',
@@ -9,6 +11,25 @@ module.exports = {
 		if (interaction.isCommand()) {
 			const command = client.commands.get(interaction.commandName);
 			if (!command) return;
+
+
+			// Get the users permission level
+			const level = permissions.fromContext(interaction);
+			const requiredLevel = permissions.fromName(command.permissions);
+			if (level < requiredLevel) {
+				const embed = format.embed()
+					.setColor('#ff8b8b')
+					.setDescription([
+						`${client.findEmoji('redCheckBox')} You do not have permission to use this command.`,
+						`Your permission level is ${level} (${permissions.list[level].name})`,
+						`This command requires a permission level of ${requiredLevel} (${command.permissions})`,
+					].join('\n'));
+
+				return interaction.reply({
+					embeds: [embed],
+					ephemeral: true,
+				});
+			}
 
 			try {
 				await command.execute(interaction);

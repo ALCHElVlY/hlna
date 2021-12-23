@@ -22,6 +22,7 @@ module.exports = {
 				.setDescription('The time to mute the member for. (ex: 1m, 1h, 1d, 1w)')
 				.setRequired(false)),
 	category: 'Moderation',
+	permissions: ['Moderator'],
 	async execute(interaction) {
 		const settings = client.settings.get(interaction.guild.id);
 		const muteRole = interaction.guild.roles.cache.get(settings['roles'].mute_role);

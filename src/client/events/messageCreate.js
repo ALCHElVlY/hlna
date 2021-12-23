@@ -1,4 +1,3 @@
-require('dotenv').config();
 const permissions = require('../structures/permissions');
 const format = require('../utility/format');
 

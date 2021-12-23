@@ -1,4 +1,4 @@
-require('dotenv').config();
+/* eslint-disable no-unused-vars */
 const axios = require('axios');
 
 module.exports = {

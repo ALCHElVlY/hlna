@@ -36,6 +36,7 @@ module.exports = {
 				.setDescription('The quantity of the item to craft.')
 				.setRequired(true)),
 	category: 'ARK',
+	permissions: ['User'],
 	async execute(interaction) {
 		const itemName = interaction.options._hoistedOptions[0].value.toProperCase()
 			.replace(/[s]$/gm, '')

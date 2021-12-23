@@ -7,6 +7,7 @@ module.exports = {
 		.setName('test')
 		.setDescription('This is a test.'),
 	category: 'General',
+	permissions: ['Bot Developer'],
 	async execute(interaction) {
 		// code
 	},

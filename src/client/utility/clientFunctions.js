@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 // Import the format options
 const format = require('./format');
 const {

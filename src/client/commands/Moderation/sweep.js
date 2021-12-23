@@ -19,6 +19,7 @@ module.exports = {
 				.setDescription('The channel to delete messages from.')
 				.setRequired(false)),
 	category: 'Moderation',
+	permissions: ['Moderator'],
 	async execute(interaction) {
 		const value = interaction.options._hoistedOptions;
 

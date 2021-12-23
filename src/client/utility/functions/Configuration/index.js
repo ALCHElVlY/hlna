@@ -1,7 +1,7 @@
-const configWorker_prefix = require('./configWorker_prefix');
 const configWorker_roles = require('./configWorker_roles');
+const configWorker_logs = require('./configWorker_logs');
 
 module.exports = {
-	configWorker_prefix,
+	configWorker_logs,
 	configWorker_roles,
 };

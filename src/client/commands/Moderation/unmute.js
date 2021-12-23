@@ -18,6 +18,7 @@ module.exports = {
 				.setDescription('The member to unmute.')
 				.setRequired(true)),
 	category: 'Moderation',
+	permissions: ['Moderator'],
 	async execute(interaction) {
 		const settings = client.settings.get(interaction.guild.id);
 		const muteRole = interaction.guild.roles.cache.get(settings['roles'].mute_role);

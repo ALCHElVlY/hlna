@@ -2,3 +2,6 @@ node_modules
 .env
 .eslintrc
 .vscode
+delete-commands.js
+deploy-commands.js
+genAuthToken.js

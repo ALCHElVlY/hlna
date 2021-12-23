@@ -14,6 +14,7 @@ module.exports = {
 		.setName('help')
 		.setDescription('Displays all available commands.'),
 	category: 'General',
+	permissions: ['User'],
 	async execute(interaction) {
 		const clientCommands = client.commands;
 		const commands = [];

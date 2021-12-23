@@ -25,6 +25,7 @@ module.exports = {
 			subcommand.setName('list')
 				.setDescription('List all bans in the server.')),
 	category: 'Moderation',
+	permissions: ['Moderator'],
 	async execute(interaction) {
 		const subcommand = interaction.options._subcommand;
 		const member = (interaction.options._hoistedOptions[0])

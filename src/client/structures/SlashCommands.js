@@ -7,7 +7,8 @@ const { Routes } = require('discord-api-types/v9');
 const Discord = require('discord.js');
 
 // Import the logger class
-const logger = require('./Logger');
+const Logger = require('./Logger');
+const logger = new Logger();
 
 class SlashCommands {
 	constructor(client) {

@@ -23,6 +23,7 @@ module.exports = {
 				.setDescription('The reason for banning the member.')
 				.setRequired(true)),
 	category: 'Moderation',
+	permissions: ['Moderator'],
 	async execute(interaction) {
 		const { member } = interaction.options._hoistedOptions[0];
 		const reason = interaction.options._hoistedOptions[1].value;

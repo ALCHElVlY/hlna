@@ -1,4 +1,4 @@
-require('dotenv').config();
+const client = require('../index');
 const reg = new RegExp(/\d+/);
 
 // Permissions
@@ -12,13 +12,13 @@ const permissions = [
 	{
 		name: 'Moderator',
 		check: (context) => {
-			const settings = context.self.settings.get(context.guild.id);
+			const settings = client.settings.get(context.guild.id);
 			// Check if the user running the command has the moderator role
 			if (context.guild) {
-				const id = reg.exec(settings['mod_role']);
+				const id = reg.exec(settings.roles['mod_role']);
 				if (!id) return false;
 				const role = context.guild.roles.cache.find(r => r.id === id[0]);
-				return role && context.message.member.roles.cache.has(role.id);
+				return role && context.member.roles.cache.has(role.id);
 			}
 			return false;
 		},
@@ -27,13 +27,13 @@ const permissions = [
 		// Server Admin, Copy paste pattern, lazy.
 		name: 'Administrator',
 		check: (context) => {
-			const settings = context.self.settings.get(context.guild.id);
+			const settings = client.settings.get(context.guild.id);
 			// Check if the user running the command has the admin role
 			if (context.guild) {
-				const id = reg.exec(settings['admin_role']);
+				const id = reg.exec(settings.roles['admin_role']);
 				if (!id) return false;
 				const role = context.guild.roles.cache.find(r => r.id === id[0]);
-				return role && context.message.member.roles.cache.has(role.id);
+				return role && context.member.roles.cache.has(role.id);
 			}
 			return false;
 		},
@@ -44,7 +44,7 @@ const permissions = [
 			// Check if the user running the command is the server owner
 			if (context.guild) {
 				const serverOwner = context.guild.ownerId;
-				if (context.message.author.id === serverOwner) return true;
+				if (context.user.id === serverOwner) return true;
 			}
 			return false;
 		},
@@ -52,14 +52,13 @@ const permissions = [
 	{
 		name: 'Bot Developer',
 		check: (context) => {
-			const settings = context.self.settings.get(context.guild.id);
+			const settings = client.settings.get(context.guild.id);
 			// Check if the user running the command has the developer role
 			if (context.guild) {
-				const id = reg.exec(settings['dev_role']);
+				const id = reg.exec(settings.roles['dev_role']);
 				if (!id) return false;
-				// Check if the user running the command has the developer role
 				const role = context.guild.roles.cache.find(r => r.id === id[0]);
-				return role && context.message.member.roles.cache.has(role.id);
+				return role && context.member.roles.cache.has(role.id);
 			}
 			return false;
 		},

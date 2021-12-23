@@ -38,6 +38,7 @@ module.exports = {
 				.setDescription('The level of the creature being cloned.')
 				.setRequired(true)),
 	category: 'ARK',
+	permissions: ['User'],
 	async execute(interaction) {
 		const creatureName = interaction.options._hoistedOptions[0].value.toProperCase();
 		const level = interaction.options._hoistedOptions[1].value;

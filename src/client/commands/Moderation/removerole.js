@@ -20,6 +20,7 @@ module.exports = {
 				.setDescription('The role to remove from the member.')
 				.setRequired(true)),
 	category: 'Moderation',
+	permissions: ['Moderator'],
 	async execute(interaction) {
 		const { member } = interaction.options._hoistedOptions[0];
 		const { role } = interaction.options._hoistedOptions[1];

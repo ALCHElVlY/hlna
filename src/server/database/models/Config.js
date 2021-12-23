@@ -5,10 +5,23 @@ const ConfigSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	prefix: {
-		type: String,
-		require: true,
-		default: '.h',
+	features: {
+		shop_management: {
+			type: Boolean,
+			default: false,
+		},
+		member_welcome: {
+			type: Boolean,
+			default: false,
+		},
+		anti_raid: {
+			type: Boolean,
+			default: false,
+		},
+		invite_tracking: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	roles: {
 		admin_role: {
@@ -47,7 +60,7 @@ const ConfigSchema = new mongoose.Schema({
 			type: String,
 			required: true,
 		},
-		log_type: {
+		action_type: {
 			type: String,
 			required: true,
 		},

@@ -16,6 +16,7 @@ module.exports = {
 				.setDescription('The amount of fuel in the generator.')
 				.setRequired(true)),
 	category: 'ARK',
+	permissions: ['User'],
 	async execute(interaction) {
 		const { value } = interaction.options._hoistedOptions[0];
 

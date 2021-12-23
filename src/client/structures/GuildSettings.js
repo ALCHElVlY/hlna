@@ -3,10 +3,15 @@
 const Discord = require('discord.js');
 const client = require('../index');
 
+// Import the embed builders
+const {
+	ERROR_EMBED,
+} = require ('../utility/embeds');
+
 // Import the worker functions
 const {
-	configWorker_prefix,
 	configWorker_roles,
+	configWorker_logs,
 } = require('../utility/functions/Configuration/index');
 
 class GuildSettings {
@@ -44,17 +49,22 @@ class GuildSettings {
 			if (response) {
 				const { content } = response.first();
 				switch (content) {
-				case 'prefix':
-					await configWorker_prefix(client, interaction);
-					break;
 				case 'roles':
 					await configWorker_roles(client, interaction, response);
 					break;
+				case 'log channels':
+					await configWorker_logs(client, interaction, response);
+					break;
+				default:
+					throw Error('That setting either does not exist or is not editable.');
 				}
 			}
 		}
 		catch (e) {
-			console.log(e);
+			interaction.channel.send({
+				embeds: [ERROR_EMBED(e.message)],
+				ephemeral: true,
+			});
 		}
 	}
 }

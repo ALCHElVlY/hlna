@@ -17,6 +17,7 @@ module.exports = {
 		.setName('stats')
 		.setDescription('Gives some useful bot statistics.'),
 	category: 'General',
+	permissions: ['User'],
 	async execute(interaction) {
 		const duration = moment.duration(client.uptime).format(' D [days], H [hrs], m [mins], s [secs]');
 

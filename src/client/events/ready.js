@@ -1,6 +1,5 @@
-require('dotenv').config();
 const axios = require('axios');
-const _getGameStatus = require('..//utility//functions//getGameStatus');
+const _getGameStatus = require('../utility/functions/getGameStatus');
 
 module.exports = {
 	name: 'ready',
@@ -21,7 +20,12 @@ module.exports = {
 			// loop through the array to sort the data
 			res.data.forEach(e => {
 				const toCache = {
-					prefix: e.prefix,
+					features: {
+						shop_management: e.features.shop_management,
+						member_welcome: e.features.member_welcome,
+						anti_raid: e.features.anti_raid,
+						invite_tracking: e.features.invite_tracking,
+					},
 					roles: {
 						admin_role: e.roles.admin_role,
 						dev_role: e.roles.dev_role,

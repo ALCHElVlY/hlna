@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 module.exports = {
 	name: 'error',
 	once: false,

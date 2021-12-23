@@ -16,6 +16,7 @@ module.exports = {
 		.setName('settings')
 		.setDescription('View, edit, or restore HLN-A\'s settings for this Discord.'),
 	category: 'Configuration',
+	permissions: ['Server Owner'],
 	async execute(interaction) {
 		// Import the client settings for the guild
 		const settings = client.settings.get(interaction.guild.id);
@@ -30,18 +31,24 @@ module.exports = {
 				`${GitHubRepo} • ${devDiscord}`,
 			].join('\n'));
 
-		// Set the general display
-		embed.addField('General', (() => {
+		// Set the features display
+		embed.addField('Features', (() => {
 			let general_settings = '';
-			Object.entries(settings)
-				.filter(([key]) => key.includes('prefix'))
+			Object.entries(settings.features)
 				.forEach(([key, value]) => {
-					general_settings += format.prettyPrint(`${key}: ${highlighted(value)},`);
+					// Check if the role settings are empty
+					if (value !== false) {
+						general_settings += format.prettyPrint(`${key}: ${client.findEmoji('greenCheckBox')} ${highlighted('enabled')},`);
+					}
+					else {
+						// If the role settings have not be set, display null
+						general_settings += format.prettyPrint(`${key}: ${client.findEmoji('redCheckBox')} ${highlighted('disabled')},`);
+					}
 				});
 			return general_settings.split(',').join('\n');
 		})(), true);
 
-		// Add a blank space between the general settings and roles
+		// Add a blank space between the feature settings and roles
 		embed.addField('\u200b', '\u200b', true);
 
 		// Set the role settings display
@@ -61,6 +68,25 @@ module.exports = {
 				});
 			return role_settings.split(',').join('\n');
 		})(), true);
+
+		// Add a blank space between the role settings and log channels
+		// embed.addField('\u200b', '\u200b', false);
+
+		// Set the log channel settings display
+		embed.addField('Log Channels', (() => {
+			let log_channels = '';
+			if (settings.log_channels.length > 0) {
+				settings.log_channels.forEach((channel) => {
+					log_channels += format.prettyPrint(
+						`<#${channel.channel_id}>: ${channel.channel_id} • ${channel.action_type.toUpperCase()},`,
+					);
+				});
+			}
+			else {
+				log_channels += highlighted('None');
+			}
+			return log_channels.split(',').join('\n');
+		})(), false);
 
 		// Build the embed message components
 		const row = format.row()

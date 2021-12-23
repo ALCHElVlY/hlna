@@ -1,11 +1,52 @@
-require('dotenv').config();
 const client = require('../../client/index');
 const format = require('../../client/utility/format.js');
+// const moment = format.moment;
 
 // Import the format options
 const {
 	highlighted,
 } = format.formatOptions;
+
+const MEMBER_JOIN_EMBED = (member) => {
+	const createdDate = Date.now() - member.user.createdTimestamp;
+	const embed = format.embed()
+		.setColor('#63CBEB')
+		.setDescription(`
+   		**Scanning Specimen**: ${member}
+		**Survivor ID**: ${member.user.id}
+		**Implant Created**: ${calculateAccAge(createdDate)}
+		
+		\`\`Ready when you are survivor.\`\`
+   		`)
+		.setThumbnail(process.env.WELCOME_IMAGE)
+		.setAuthor(member.user.tag, member.user.displayAvatarURL({
+			dynamic: true,
+			size: 512,
+		}));
+
+	// Return the embed
+	return embed;
+};
+
+const MEMBER_LEAVE_EMBED = (member) => {
+	const embed = format.embed()
+		.setColor('#2F3136')
+		.setAuthor(member.user.tag, member.user.displayAvatarURL({
+			dynamic: true,
+			size: 512,
+		}))
+		.setDescription(`
+			**Scanned Specimen**: ${member}
+			**Survivor ID**: ${member.user.id}
+			**Implant Created**: [Out of range]
+
+			\`\`Cheers mate, catch you later.\`\`
+			`)
+		.setThumbnail('https://imgur.com/6axfSUV.gif');
+
+	// Return the embed
+	return embed;
+};
 
 const ERROR_EMBED = (error) => {
 	const errorEmoji = client.findEmoji('redX');
@@ -345,6 +386,18 @@ const REMOVE_MUTE_EMBED = (member) => {
 	return embed;
 };
 
+// ----------------------------------- Functions -----------------------------------
+// The calculateAccAge function converts the account age(in milliseconds)
+// to a human readable format
+function calculateAccAge(num) {
+	const years = Math.floor(num / (1000 * 60 * 60 * 24 * 365));
+	const months = Math.floor(num / (1000 * 60 * 60 * 24 * 30) % 12);
+	const days = Math.floor(num / (1000 * 60 * 60 * 24) % 30);
+	const hours = Math.floor(num / (1000 * 60 * 60) % 24);
+
+	return `${years}Y ${months}M ${days}D ${hours}H`;
+}
+
 module.exports = {
 	ERROR_EMBED,
 	SUCCESS_EMBED,
@@ -361,6 +414,8 @@ module.exports = {
 	// General Embeds
 	STATS_EMBED,
 	// ActionLogger Embeds
+	MEMBER_JOIN_EMBED,
+	MEMBER_LEAVE_EMBED,
 	ADD_ROLE_EMBED,
 	REMOVE_ROLE_EMBED,
 	ADD_MUTE_EMBED,
