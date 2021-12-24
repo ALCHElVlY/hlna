@@ -60,11 +60,59 @@ const ConfigSchema = new mongoose.Schema({
 			type: String,
 			required: true,
 		},
-		action_type: {
+		log_type: {
 			type: String,
 			required: true,
 		},
 	}],
+	ark_shop: {
+		shop_status: {
+			type: String,
+			required: true,
+		},
+		accepted_payments: [{
+			type: String,
+			required: true,
+		}],
+		order_channel: {
+			name: {
+				type: String,
+				required: true,
+			},
+			id: {
+				type: String,
+				required: true,
+			},
+		},
+		order_key: {
+			emoji: {
+				type: String,
+				required: true,
+			},
+			description: {
+				type: String,
+				required: true,
+			},
+		},
+		items: [{
+			name: {
+				type: String,
+				required: true,
+			},
+			description: {
+				type: String,
+				required: true,
+			},
+			seller: {
+				type: String,
+				required: true,
+			},
+			price: {
+				type: String,
+				required: true,
+			},
+		}],
+	},
 });
 
 const Config = mongoose.model('configuration', ConfigSchema);

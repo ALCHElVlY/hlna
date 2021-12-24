@@ -32,10 +32,11 @@ module.exports = {
 			}
 
 			// Remove the mute role
-			member.roles.remove(muteRole);
+			await member.roles.remove(muteRole);
+			await member.timeout(null);
 
 			// Send the success embed
-			interaction.reply({
+			await interaction.reply({
 				embeds: [REMOVE_MUTE_EMBED(member)],
 				ephemeral: true,
 			});

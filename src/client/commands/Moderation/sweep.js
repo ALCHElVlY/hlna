@@ -30,7 +30,9 @@ module.exports = {
 	permissions: ['Moderator'],
 	async execute(interaction) {
 		const { value } = interaction.options._hoistedOptions[0];
-		const { channel } = interaction.options._hoistedOptions[1] || undefined;
+		const channel = (interaction.options._hoistedOptions[1])
+			? interaction.options._hoistedOptions[1].channel
+			: undefined;
 		const amount = parseInt(value);
 
 		try {

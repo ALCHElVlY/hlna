@@ -79,7 +79,7 @@ module.exports = {
 			if (settings.log_channels.length > 0) {
 				settings.log_channels.forEach((channel) => {
 					log_channels += format.prettyPrint(
-						`<#${channel.channel_id}>: ${channel.channel_id} • ${channel.action_type.toUpperCase()},`,
+						`<#${channel.channel_id}>: ${channel.channel_id} • ${channel.log_type.toUpperCase()},`,
 					);
 				});
 			}

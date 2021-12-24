@@ -32,11 +32,16 @@ module.exports = {
 			? interaction.options._hoistedOptions[1].value
 			: null;
 		const muteDuration = (time) ? client.formatMuteTime(time) : null;
+		const muteTime = (31536000000 * 100);
 
 		try {
+			// Check if the member using the command has the required permissions
+			if (!interaction.member.permissions.has(Permissions.FLAGS.MODERATE_MEMBERS)) {
+				throw Error('You do not have the required permissions to mute members.');
+			}
 			// Handle if the member being muted is a moderator
 			// bypasses if the author is an administrator
-			if (member.permissions.has(Permissions.FLAGS.MANAGE_ROLES) &&
+			if (member.permissions.has(Permissions.FLAGS.MODERATE_MEMBERS) &&
 				!interaction.memberPermissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
 				throw new Error('You cannot mute an administrator.');
 			}
@@ -55,20 +60,24 @@ module.exports = {
 			default:
 				switch (time) {
 				case null:
-					member.roles.add(muteRole);
-					return interaction.reply({
+					await member.roles.add(muteRole);
+					await member.timeout(muteTime, 'This is a test manual unmute');
+					await interaction.reply({
 						embeds: [ADD_MUTE_EMBED(member, time)],
 						ephemeral: true,
 					});
+					break;
 				default:
-					member.roles.add(muteRole);
-					interaction.reply({
+					await member.roles.add(muteRole);
+					await member.timeout(muteTime, 'This is a test timed mute');
+					await interaction.reply({
 						embeds: [ADD_MUTE_EMBED(member, time)],
 						ephemeral: true,
 					});
 					setTimeout(() => {
 						member.roles.remove(muteRole);
 					}, muteDuration);
+					break;
 				}
 			}
 		}
