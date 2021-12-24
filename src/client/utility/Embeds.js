@@ -5,12 +5,20 @@ const format = require('../../client/utility/format.js');
 // Import the format options
 const {
 	highlighted,
+	channelMention,
 } = format.formatOptions;
 
 const MEMBER_JOIN_EMBED = (member) => {
 	const createdDate = Date.now() - member.user.createdTimestamp;
 	const embed = format.embed()
 		.setColor('#63CBEB')
+		.setAuthor({
+			name: member.user.tag,
+			iconURL: member.user.displayAvatarURL({
+				dynamic: true,
+				size: 512,
+			}),
+		})
 		.setDescription(`
    		**Scanning Specimen**: ${member}
 		**Survivor ID**: ${member.user.id}
@@ -18,11 +26,7 @@ const MEMBER_JOIN_EMBED = (member) => {
 		
 		\`\`Ready when you are survivor.\`\`
    		`)
-		.setThumbnail(process.env.WELCOME_IMAGE)
-		.setAuthor(member.user.tag, member.user.displayAvatarURL({
-			dynamic: true,
-			size: 512,
-		}));
+		.setThumbnail(process.env.WELCOME_IMAGE);
 
 	// Return the embed
 	return embed;
@@ -31,10 +35,13 @@ const MEMBER_JOIN_EMBED = (member) => {
 const MEMBER_LEAVE_EMBED = (member) => {
 	const embed = format.embed()
 		.setColor('#2F3136')
-		.setAuthor(member.user.tag, member.user.displayAvatarURL({
-			dynamic: true,
-			size: 512,
-		}))
+		.setAuthor({
+			name: member.user.tag,
+			iconURL: member.user.displayAvatarURL({
+				dynamic: true,
+				size: 512,
+			}),
+		})
 		.setDescription(`
 			**Scanned Specimen**: ${member}
 			**Survivor ID**: ${member.user.id}
@@ -43,6 +50,21 @@ const MEMBER_LEAVE_EMBED = (member) => {
 			\`\`Cheers mate, catch you later.\`\`
 			`)
 		.setThumbnail('https://imgur.com/6axfSUV.gif');
+
+	// Return the embed
+	return embed;
+};
+
+const MESSAGE_BULK_DELETE_EMBED = (content) => {
+	const embed = format.embed()
+		.setColor('#63CBEB')
+		.setTitle('Message Bulk Delete')
+		.setDescription([
+			`**Amount**: ${content[2]}`,
+			`**Deleted by**: ${content[0].tag}`,
+			`**Deleted from**: ${channelMention(content[1])}`,
+		].join('\n'))
+		.setTimestamp();
 
 	// Return the embed
 	return embed;
@@ -172,7 +194,13 @@ const CRAFT_EMBED = (itemData, amount) => {
 	// Build the embed
 	const embed = format.embed()
 		.setColor('#ffffb3')
-		.setAuthor(`${client.user.username} | Craft Calculator`, client.user.displayAvatarURL())
+		.setAuthor({
+			name: `${client.user.username} | Craft Calculator`,
+			iconURL: client.user.displayAvatarURL({
+				dynamic: true,
+				size: 512,
+			}),
+		})
 		.setDescription([
 			`**Crafting**: ${highlighted(itemData.name)}\n` +
 			`**Amount**: ${highlighted(amount)}`,
@@ -200,7 +228,13 @@ const CRAFT_EMBED = (itemData, amount) => {
 const CLONE_EMBED = (creatureName, level, clone_cost, clone_time, mature_rate) => {
 	const embed = format.embed()
 		.setColor('#ffffb3')
-		.setAuthor(`${client.user.username} | Clone Calculator`, client.user.displayAvatarURL())
+		.setAuthor({
+			name: `${client.user.username} | Clone Calculator`,
+			iconURL: client.user.displayAvatarURL({
+				dynamic: true,
+				size: 512,
+			}),
+		})
 		.setDescription(
 			'**Creature**: ' + `${highlighted(creatureName.toProperCase())}` + '\n' +
                     '**Level**: ' + `${highlighted(level)}`,
@@ -225,7 +259,13 @@ const CLONE_EMBED = (creatureName, level, clone_cost, clone_time, mature_rate) =
 const GENERATOR_EMBED = (fuel_amount, consumption_rate) => {
 	const embed = format.embed()
 		.setColor('#ffffb3')
-		.setAuthor(`${client.user.username} | Generator Calculator`, client.user.displayAvatarURL())
+		.setAuthor({
+			name: `${client.user.username} | Generator Calculator`,
+			iconURL: client.user.displayAvatarURL({
+				dynamic: true,
+				size: 512,
+			}),
+		})
 		.setThumbnail(process.env.GASOLINE)
 		.setDescription([
 			`**Fuel Qty**: ${highlighted(fuel_amount)}`,
@@ -239,7 +279,13 @@ const GENERATOR_EMBED = (fuel_amount, consumption_rate) => {
 const TEKGEN_EMBED = (element, radius, consumption_rate) => {
 	const embed = format.embed()
 		.setColor('#ffffb3')
-		.setAuthor(`${client.user.username} | Tek Generator Calculator`, client.user.displayAvatarURL())
+		.setAuthor({
+			name: `${client.user.username} | Tek Generator Calculator`,
+			iconURL: client.user.displayAvatarURL({
+				dynamic: true,
+				size: 512,
+			}),
+		})
 		.setThumbnail(process.env.ELEMENT)
 		.setDescription([
 			`**Fuel Amount**: ${highlighted(element)}`,
@@ -254,7 +300,13 @@ const TEKGEN_EMBED = (element, radius, consumption_rate) => {
 const MILK_EMBED = (food_level, consumption_rate) => {
 	const embed = format.embed()
 		.setColor('#ffffb3')
-		.setAuthor(`${client.user.username} | Wyvern Milk Calculator`, client.user.displayAvatarURL())
+		.setAuthor({
+			name: `${client.user.username} | Wyvern Milk Calculator`,
+			iconURL: client.user.displayAvatarURL({
+				dynamic: true,
+				size: 512,
+			}),
+		})
 		.setThumbnail(process.env.WYVERN_MILK)
 		.setDescription([
 			`**Food Level**: ${highlighted(food_level)}`,
@@ -416,6 +468,7 @@ module.exports = {
 	// ActionLogger Embeds
 	MEMBER_JOIN_EMBED,
 	MEMBER_LEAVE_EMBED,
+	MESSAGE_BULK_DELETE_EMBED,
 	ADD_ROLE_EMBED,
 	REMOVE_ROLE_EMBED,
 	ADD_MUTE_EMBED,

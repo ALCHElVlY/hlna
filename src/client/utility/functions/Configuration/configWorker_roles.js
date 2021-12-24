@@ -65,7 +65,7 @@ const configWorker_role_update = async (client, interaction, roleSetting) => {
 		await axios.put(`${process.env.CONFIGURATION}/${guild.id}`, {
 			key: `roles.${roleSetting}`,
 			value: newSetting.value,
-		});
+		}, { headers: { 'Authorization': 'Bearer ' + process.env.API_KEY } });
 
 		// Update the key in the guild settings
 		settings[`${newSetting.key}`] = newSetting.value;

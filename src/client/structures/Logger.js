@@ -2,6 +2,7 @@
 const {
 	MEMBER_JOIN_EMBED,
 	MEMBER_LEAVE_EMBED,
+	MESSAGE_BULK_DELETE_EMBED,
 } = require('../utility/Embeds');
 
 const chalk = require('chalk');
@@ -32,13 +33,20 @@ class Logger {
      * @param {*} channel - The channel to send the log to
      * @param {*} actionType - The type of log
      */
-	log(content, channel, actionType) {
+	async log(content = [], channel, actionType) {
 		switch (actionType) {
 		case 'member_join':
-			channel.send({ embeds: [MEMBER_JOIN_EMBED(content)] });
+			await channel.send({ embeds: [MEMBER_JOIN_EMBED(content)] });
 			break;
 		case 'member_leave':
-			channel.send({ embeds: [MEMBER_LEAVE_EMBED(content)] });
+			await channel.send({ embeds: [MEMBER_LEAVE_EMBED(content)] });
+			break;
+		case 'message_bulk_delete':
+			await channel.send({ embeds: [MESSAGE_BULK_DELETE_EMBED([
+				content[0].user,
+				content[0].channelId,
+				content[1],
+			])] });
 			break;
 		default:
 			console.log(`${this.timestamp} ${chalk.bgBlue('LOG')} ${content} `);

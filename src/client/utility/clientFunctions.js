@@ -161,6 +161,16 @@ module.exports = (client) => {
 			mentions.roleMention = roleMention.id;
 		}
 
+		// Check if there are any channel mentions in this message
+		if (message.mentions.channels.size === 0) {
+			hasMention = false;
+		}
+		else {
+			hasMention = true;
+			const channelMention = await message.mentions.channels.first();
+			mentions.channelMention = channelMention.id;
+		}
+
 		// Check if the message contained any mentions
 		switch (hasMention) {
 		case true:

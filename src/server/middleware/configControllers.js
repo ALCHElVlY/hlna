@@ -46,12 +46,6 @@ const updateConfiguration = async (req, res) => {
 		const data = req.body;
 		const key = data.key;
 		switch (key) {
-		case 'prefix':
-			Config.findOne({ guild_id })
-				.updateOne({}, { $set: { prefix: data.value } })
-				.then(() => res.json({ success: true }))
-				.catch(e => res.status(404).json({ success: false }));
-			break;
 		case 'roles.admin_role':
 			Config.findOne({ guild_id })
 				.updateOne({}, { $set: { 'roles.admin_role': data.value } })
@@ -79,6 +73,18 @@ const updateConfiguration = async (req, res) => {
 		case 'roles.mute_role':
 			Config.findOne({ guild_id })
 				.updateOne({}, { $set: { 'roles.mute_role': data.value } })
+				.then(() => res.json({ success: true }))
+				.catch(e => res.status(404).json({ success: false }));
+			break;
+		case 'log_channels_add':
+			Config.findOne({ guild_id })
+				.updateOne({}, { $push: { 'log_channels': data.value } })
+				.then(() => res.json({ success: true }))
+				.catch(e => res.status(404).json({ success: false }));
+			break;
+		case 'log_channels_remove':
+			Config.findOne({ guild_id })
+				.updateOne({}, { $pull: { 'log_channels': data.value } })
 				.then(() => res.json({ success: true }))
 				.catch(e => res.status(404).json({ success: false }));
 			break;

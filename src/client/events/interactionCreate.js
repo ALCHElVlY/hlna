@@ -16,6 +16,7 @@ module.exports = {
 			// Get the users permission level
 			const level = permissions.fromContext(interaction);
 			const requiredLevel = permissions.fromName(command.permissions);
+			// Check if the user has the required permissions to run the command
 			if (level < requiredLevel) {
 				const embed = format.embed()
 					.setColor('#ff8b8b')
@@ -58,10 +59,15 @@ module.exports = {
 
 				// Clear the message components
 				(async () => {
-					await interaction.message.edit({
-						embeds: [...interaction.message.embeds],
-						components: [],
-					});
+					try {
+						await interaction.message.edit({
+							embeds: [...interaction.message.embeds],
+							components: [],
+						});
+					}
+					catch (e) {
+						console.log(e.message);
+					}
 				})();
 
 				// Handle editing the guild settings
