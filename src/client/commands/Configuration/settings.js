@@ -130,11 +130,17 @@ module.exports = {
 
 				// Handle the collector
 				collector.on('end', async () => {
-					// If the collector has ended, remove the message components
-					await interaction.editReply({
-						embeds: [embed],
-						components: [],
-					});
+					try {
+						// If the collector has ended, remove the message components
+						await interaction.editReply({
+							embeds: [embed],
+							components: [],
+						});
+					}
+					catch (e) {
+						if (e.message === 'Unknown Message') return;
+						console.log(e);
+					}
 				});
 			});
 		}

@@ -55,6 +55,28 @@ const MEMBER_LEAVE_EMBED = (member) => {
 	return embed;
 };
 
+const MEMBER_ROLE_ADD = (member, role) => {
+	const embed = format.embed()
+		.setColor('#63CBEB')
+		.setTitle('Role Added')
+		.setDescription(`${member} gained the role ${role}`)
+		.setTimestamp();
+
+	// Return the embed
+	return embed;
+};
+
+const MEMBER_ROLE_REMOVE = (member, role) => {
+	const embed = format.embed()
+		.setColor('#63CBEB')
+		.setTitle('Role Removed')
+		.setDescription(`${member} lost the role ${role}`)
+		.setTimestamp();
+
+	// Return the embed
+	return embed;
+};
+
 const MESSAGE_BULK_DELETE_EMBED = (content) => {
 	const embed = format.embed()
 		.setColor('#63CBEB')
@@ -468,6 +490,8 @@ module.exports = {
 	// ActionLogger Embeds
 	MEMBER_JOIN_EMBED,
 	MEMBER_LEAVE_EMBED,
+	MEMBER_ROLE_ADD,
+	MEMBER_ROLE_REMOVE,
 	MESSAGE_BULK_DELETE_EMBED,
 	ADD_ROLE_EMBED,
 	REMOVE_ROLE_EMBED,
