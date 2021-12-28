@@ -49,8 +49,21 @@ exports.embed = () => new MessageEmbed()
 exports.row = () => new MessageActionRow();
 exports.button = () => new MessageButton()
 	.setStyle('PRIMARY');
-exports.menu = () => new MessageSelectMenu()
-	.setCustomId('select');
+exports.rolemenu = (options = []) => {
+	const menu = new MessageSelectMenu()
+		.setCustomId('role-menu')
+		.setPlaceholder('Select a role');
+	for (const option of options) {
+		console.log(options);
+		menu.addOptions({
+			label: option.role.name,
+			description: `Add or remove the ${option.role.name} role`,
+			value: option.role.name,
+		});
+	}
+
+	return menu;
+};
 
 // Simple human-readable print
 exports.prettyPrint = (value) => {

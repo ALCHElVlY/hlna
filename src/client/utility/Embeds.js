@@ -58,7 +58,10 @@ const MEMBER_LEAVE_EMBED = (member) => {
 const MEMBER_ROLE_ADD = (member, role) => {
 	const embed = format.embed()
 		.setColor('#63CBEB')
-		.setTitle('Role Added')
+		.setAuthor({
+			name: 'Role Added',
+			iconURL: process.env.ROLE_ADDED,
+		})
 		.setDescription(`${member} gained the role ${role}`)
 		.setTimestamp();
 
@@ -69,7 +72,10 @@ const MEMBER_ROLE_ADD = (member, role) => {
 const MEMBER_ROLE_REMOVE = (member, role) => {
 	const embed = format.embed()
 		.setColor('#63CBEB')
-		.setTitle('Role Removed')
+		.setAuthor({
+			name: 'Role Removed',
+			iconURL: process.env.ROLE_REMOVED,
+		})
 		.setDescription(`${member} lost the role ${role}`)
 		.setTimestamp();
 

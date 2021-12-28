@@ -5,8 +5,8 @@ module.exports = {
 	once: false,
 	run: async (client, guild) => {
 		axios.delete(process.env.CONFIGURATION, {
-			guild_id: guild.id,
-		})
+			headers: { 'Authorization': 'Bearer ' + process.env.API_KEY },
+		}, { guild_id: guild.id })
 			.then(() => console.log(`Removed guild ${guild.name} from the database`))
 			.catch((e) => console.error(e));
 	},

@@ -54,7 +54,6 @@ const ConfigSchema = new mongoose.Schema({
 		channel_id: {
 			type: String,
 			required: true,
-			unique: true,
 		},
 		channel_name: {
 			type: String,
@@ -69,6 +68,7 @@ const ConfigSchema = new mongoose.Schema({
 		shop_status: {
 			type: String,
 			required: true,
+			default: 'closed',
 		},
 		accepted_payments: [{
 			type: String,
@@ -78,20 +78,24 @@ const ConfigSchema = new mongoose.Schema({
 			name: {
 				type: String,
 				required: true,
+				default: 'null',
 			},
 			id: {
 				type: String,
 				required: true,
+				default: 'null',
 			},
 		},
 		order_key: {
 			emoji: {
 				type: String,
 				required: true,
+				default: 'null',
 			},
 			description: {
 				type: String,
 				required: true,
+				default: 'null',
 			},
 		},
 		items: [{

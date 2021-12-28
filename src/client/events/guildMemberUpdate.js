@@ -14,8 +14,11 @@ module.exports = {
 		if (rolesAdded.size > 0) {
 			const guild = newMember.guild;
 			const settings = client.settings.get(guild.id);
-			const logChannel = client.channels.cache.get(settings.log_channels.find(c => c.log_type === 'role_add').channel_id);
+			if (settings.log_channels <= 0) return;
+			const logChannel = client.channels.cache.get(settings.log_channels
+				.find(c => c.log_type === 'role_add').channel_id);
 
+			// If no log channel is set, ignore
 			if (!logChannel) return;
 
 			try {
@@ -35,8 +38,11 @@ module.exports = {
 		if (rolesRemoved.size > 0) {
 			const guild = newMember.guild;
 			const settings = client.settings.get(guild.id);
-			const logChannel = client.channels.cache.get(settings.log_channels.find(c => c.log_type === 'role_remove').channel_id);
+			if (settings.log_channels <= 0) return;
+			const logChannel = client.channels.cache.get(settings.log_channels
+				.find(c => c.log_type === 'role_remove').channel_id);
 
+			// If no log channel is set, ignore
 			if (!logChannel) return;
 
 			try {

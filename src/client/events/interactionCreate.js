@@ -1,12 +1,16 @@
 const GuildSettings = require('../structures/GuildSettings');
 const format = require('../utility/format');
 const permissions = require('../structures/permissions');
+const RoleMenu = require('../structures/RoleMenu');
 
 module.exports = {
 	name: 'interactionCreate',
 	once: false,
 	run: async (client, interaction) => {
 		const guildsettings = new GuildSettings();
+		const rolemenu = new RoleMenu();
+
+
 		// Handle if the interaction is a command
 		if (interaction.isCommand()) {
 			const command = client.commands.get(interaction.commandName);
@@ -107,5 +111,18 @@ module.exports = {
 		}
 
 		// Handle if the interaction is a SelectMenu
+		if (interaction.isSelectMenu()) {
+			const { member, customId } = interaction;
+			const values = interaction.values[0];
+			const guild = await interaction.guild.fetch(interaction.guildId);
+			const role = guild.roles.cache.find(r => r.name === values);
+
+			switch (customId) {
+			case 'role-menu':
+				// Handle the role menu
+				await rolemenu.addRole(member, role);
+				break;
+			}
+		}
 	},
 };

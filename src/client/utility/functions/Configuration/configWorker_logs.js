@@ -66,73 +66,77 @@ const configWorker_add_log = async (client, interaction) => {
 			`Acceptable log types are: [${log_types.join(', ')}]`,
 		].join('\n'),
 	);
+	if (!response) return;
+	const content = response.content.split(' ');
+	const channelID = content[0].match(channelIDRegex)[0];
+	const channel = client.channels.cache.get(channelID);
+	const logChData = {
+		key: 'log_channels_add',
+		value: {
+			channel_name: channel.name,
+			channel_id: channelID,
+			log_type: content[1],
+		},
+	};
 
-	if (response) {
-		const content = response.content.split(' ');
-		const channelID = content[0].match(channelIDRegex)[0];
-		const channel = client.channels.cache.get(channelID);
-		const logChData = {
-			key: 'log_channels_add',
-			value: {
-				channel_name: channel.name,
-				channel_id: channelID,
-				log_type: content[1],
-			},
-		};
+	// Validate the log type
+	// Prevent adding a log type that doesn't exist
+	const formattedLogTypes = log_types.join(',').replace(/(`)/gm, '').split(',');
+	if (!formattedLogTypes.includes(content[1].toUpperCase())) {
+		return await interaction.channel.send({
+			embeds: [ERROR_EMBED(`${logChData.value.log_type} is not a valid log type!`)],
+		});
+	}
 
-		// Check if the channel already exist in the settings
-		const channelExists = settings.find(
-			(ch) => ch.channel_id === channelID,
-		);
+	// Check if the channel already exist in the settings
+	const channelExists = settings.find(
+		(ch) => ch.channel_id === channelID,
+	);
 		// Check if the log type already exists in the settings
-		const logTypeExists = settings.find(
-			(ch) => ch.log_type === content[1],
-		);
+	const logTypeExists = settings.find(
+		(ch) => ch.log_type === content[1],
+	);
 
+	// Determine the existence of the channel and log type
+	if (!channelExists && !logTypeExists) {
+		// Send an API request to update the database
+		await axios.put(`${process.env.CONFIGURATION}/${guild.id}`, {
+			key: logChData.key,
+			value: logChData.value,
+		}, { headers: { 'Authorization': 'Bearer ' + process.env.API_KEY } });
 
-		// Determine the existence of the channel and log type
-		if (!channelExists && !logTypeExists) {
-			// Send an API request to update the database
-			await axios.put(`${process.env.CONFIGURATION}/${guild.id}`, {
-				key: logChData.key,
-				value: logChData.value,
-			}, { headers: { 'Authorization': 'Bearer ' + process.env.API_KEY } });
+		// Update the key in the guild settings
+		await settings.push(logChData.value);
 
-			// Update the key in the guild settings
-			settings.push(logChData.value);
+		// send a success message
+		return await interaction.channel.send({
+			embeds:[SUCCESS_EMBED(`Added ${logChData.value.channel_name} to your log channel settings!`)],
+		});
+	}
+	else if (!channelExists && logTypeExists) {
+		return interaction.channel.send({
+			embeds: [ERROR_EMBED('Log type already exsits!')],
+		});
+	}
+	else if (channelExists && !logTypeExists) {
+		// Send an API request to update the database
+		await axios.put(`${process.env.CONFIGURATION}/${guild.id}`, {
+			key: logChData.key,
+			value: logChData.value,
+		}, { headers: { 'Authorization': 'Bearer ' + process.env.API_KEY } });
 
-			// send a success message
-			await interaction.channel.send({
-				embeds:[SUCCESS_EMBED(`Added ${logChData.value.channel_name} to your log channel settings!`)],
-			});
-			return;
-		}
-		else if (!channelExists && logTypeExists) {
-			return interaction.channel.send({
-				embeds: [ERROR_EMBED('Log type already exsits!')],
-			});
-		}
-		else if (channelExists && !logTypeExists) {
-			// Send an API request to update the database
-			await axios.put(`${process.env.CONFIGURATION}/${guild.id}`, {
-				key: logChData.key,
-				value: logChData.value,
-			}, { headers: { 'Authorization': 'Bearer ' + process.env.API_KEY } });
+		// Update the key in the guild settings
+		await settings.push(logChData.value);
 
-			// Update the key in the guild settings
-			settings.push(logChData.value);
-
-			// send a success message
-			await interaction.channel.send({
-				embeds:[SUCCESS_EMBED(`Added ${logChData.value.channel_name} to your log channel settings!`)],
-			});
-			return;
-		}
-		else {
-			return interaction.channel.send({
-				embeds: [ERROR_EMBED('Log type & channel already exsits!')],
-			});
-		}
+		// send a success message
+		return await interaction.channel.send({
+			embeds:[SUCCESS_EMBED(`Added ${logChData.value.channel_name} to your log channel settings!`)],
+		});
+	}
+	else {
+		return interaction.channel.send({
+			embeds: [ERROR_EMBED('Log type & channel already exsits!')],
+		});
 	}
 };
 
@@ -171,20 +175,24 @@ const configWorker_remove_log = async (client, interaction) => {
 		};
 
 
-		// Send an API request to update the database
-		await axios.put(`${process.env.CONFIGURATION}/${guild.id}`, {
-			key: logChData.key,
-			value: logChData.value,
-		}, { headers: { 'Authorization': 'Bearer ' + process.env.API_KEY } });
+		try {
+			// Send an API request to update the database
+			await axios.put(`${process.env.CONFIGURATION}/${guild.id}`, {
+				key: logChData.key,
+				value: logChData.value,
+			}, { headers: { 'Authorization': 'Bearer ' + process.env.API_KEY } });
 
-		// Remove the log channel from the settings
-		settings.pop(logChData.value);
+			// Remove the log channel from the settings
+			await settings.splice(settings.indexOf(logChData.value), 1);
 
-		// send a success message
-		await interaction.channel.send({
-			embeds:[SUCCESS_EMBED(`Removed ${logChData.value.channel_name} from your log channel settings!`)],
-		});
-		return;
+			// send a success message
+			return await interaction.channel.send({
+				embeds:[SUCCESS_EMBED(`Removed ${logChData.value.channel_name} from your log channel settings!`)],
+			});
+		}
+		catch (e) {
+			console.log(e);
+		}
 	}
 };
 

@@ -21,7 +21,6 @@ module.exports = {
 		const commands = [];
 
 		clientCommands.forEach((command) => {
-			console.log(command);
 			const { name, description } = command.data;
 			const { category } = command;
 			const helpData = {
