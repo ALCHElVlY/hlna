@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
-const _getGameStatus = (client) => {
-	const fetch = require('node-fetch');
+// Import the fetch library
+const fetch = require('node-fetch');
 
+
+const _getGameStatus = async (client) => {
 	try {
 		setInterval(() => {
 			fetch('http://arkdedicated.com/officialserverstatus.ini', {
@@ -27,7 +29,7 @@ const _getGameStatus = (client) => {
 
 /**
  * The formatGameStatus function cleans up the data returned
- * from the official server status API.
+ * from the ARK official server status API.
  */
 function formatGameStatus(string) {
 	const first = string.search(/>/);

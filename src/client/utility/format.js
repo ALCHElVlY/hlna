@@ -52,9 +52,12 @@ exports.button = () => new MessageButton()
 exports.rolemenu = (options = []) => {
 	const menu = new MessageSelectMenu()
 		.setCustomId('role-menu')
-		.setPlaceholder('Select a role');
+		.setPlaceholder('Select a role')
+		.setMinValues(0)
+		.setMaxValues(options.length);
+
+	// Loop through the options and add them to the menu
 	for (const option of options) {
-		console.log(options);
 		menu.addOptions({
 			label: option.role.name,
 			description: `Add or remove the ${option.role.name} role`,

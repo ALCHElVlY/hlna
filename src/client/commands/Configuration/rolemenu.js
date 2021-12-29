@@ -4,8 +4,6 @@ const {
 } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const format = require('../../utility/format');
-const client = require('../../index');
-const defaultEmoji = require('../../utility/defaultEmojis.json');
 
 // Import the format options
 const {
@@ -16,7 +14,6 @@ const {
 
 // Import the embed builders
 const {
-	STATS_EMBED,
 	ERROR_EMBED,
 } = require('../../utility/embeds');
 
@@ -30,12 +27,11 @@ module.exports = {
 	async execute(interaction) {
 		const msgCollectorFilter = (msg) => msg.author.id === interaction.user.id;
 		const options = [];
-		// const emojiRoleMappings = new Map();
 
 		try {
 			// Define prompt messages to send to the user
 			const promptMsg = [
-				'Enter the roles you with to add to the menu options',
+				'Enter the roles you wish to add to the menu options',
 				'Type \'.iamdone\' when you are finished. \'.stop\' to cancel.',
 			].join('\n');
 
@@ -67,19 +63,9 @@ module.exports = {
 					return;
 				}
 
-				// Split the emoji and role names
+				// If no role, return
 				const roleName = msg.content;
 				if (!roleName) return;
-
-				// Check if the emoji is a custom emoji
-				/* const customEmoji = cache.find(e =>
-					e.name.toLowerCase() === emojiName.toLowerCase());
-				const emoji = customEmoji || defaultEmoji[emojiName.toLowerCase()];
-				if (!emoji) {
-					return interaction.channel.send({
-						embeds: [ERROR_EMBED(`Emoji ${emojiName} does not exist!`)],
-					});
-				}*/
 
 				// Checks if the role exists in the guild.
 				const role = msg.guild.roles.cache.find(r =>
@@ -109,10 +95,7 @@ module.exports = {
 						components: [row],
 					});
 				}
-				else {
-					console.log(reason);
-					return;
-				}
+				return;
 			});
 		}
 		catch (e) {

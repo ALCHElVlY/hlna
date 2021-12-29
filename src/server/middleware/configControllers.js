@@ -18,7 +18,7 @@ const createConfiguration = async (req, res) => {
 const deleteConfiguration = async (req, res) => {
 	try {
 		const { guild_id } = req.body;
-		Config.deleteOne(guild_id)
+		Config.deleteOne({ guild_id })
 			.then(() => res.json({ success: true }))
 			.catch(e => res.status(404).json({ success: false }));
 	}

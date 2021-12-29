@@ -112,15 +112,29 @@ module.exports = {
 
 		// Handle if the interaction is a SelectMenu
 		if (interaction.isSelectMenu()) {
-			const { member, customId } = interaction;
-			const values = interaction.values[0];
+			const { customId, values, member } = interaction;
 			const guild = await interaction.guild.fetch(interaction.guildId);
-			const role = guild.roles.cache.find(r => r.name === values);
+			const roles = [];
+			const currentSelection = values.filter((option) => {
+				return !values.includes(option.value);
+			});
+
+			// Loop through the selected menu values and push them to the roles array
+			for (const role of currentSelection) {
+				const guildRole = guild.roles.cache.find(r => r.name === role);
+				roles.push(guildRole);
+			}
 
 			switch (customId) {
 			case 'role-menu':
 				// Handle the role menu
-				await rolemenu.addRole(member, role);
+				await rolemenu.addRoles(member, roles);
+				await interaction.reply({
+					content: (currentSelection.length <= 0)
+						? 'No roles chosen, selection reset.'
+						: 'Your roles have been updated!',
+					ephemeral: true,
+				});
 				break;
 			}
 		}
