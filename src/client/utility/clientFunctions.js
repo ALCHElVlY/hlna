@@ -42,11 +42,11 @@ module.exports = (client) => {
 		case 'm':
 			return (duration[0] * (1000 * 60));
 		case 'h':
-			return (duration[0] * (1000 * (60 * 60)));
+			return (duration[0] * (1000 * 3600));
 		case 'd':
-			return (duration[0] * (1000 * (60 * 60 * 24)));
+			return (duration[0] * (1000 * 86400));
 		case 'w':
-			return (duration[0] * (1000 * (60 * 60 * 24 * 7)));
+			return (duration[0] * (1000 * 604800));
 		default:
 			throw new Error('Duration out of range. Accepted units are [s, m, h, d, w]');
 		}

@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 // Client Variables
 const {
 	Client,

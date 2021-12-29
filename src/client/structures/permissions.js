@@ -3,7 +3,7 @@ const reg = new RegExp(/\d+/);
 
 // Permissions
 const permissions = [
-	// Default role
+	// Discord User *default role*
 	{
 		name: 'User',
 		check: () => true,
@@ -23,8 +23,8 @@ const permissions = [
 			return false;
 		},
 	},
+	// Server Administrator
 	{
-		// Server Admin, Copy paste pattern, lazy.
 		name: 'Administrator',
 		check: (context) => {
 			const settings = client.settings.get(context.guild.id);
@@ -38,6 +38,7 @@ const permissions = [
 			return false;
 		},
 	},
+	// Server Owner
 	{
 		name: 'Server Owner',
 		check: (context) => {
@@ -49,6 +50,7 @@ const permissions = [
 			return false;
 		},
 	},
+	// Bot Developer
 	{
 		name: 'Bot Developer',
 		check: (context) => {

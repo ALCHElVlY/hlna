@@ -7,7 +7,7 @@ const {
 	MessageSelectMenu,
 } = require('discord.js');
 
-// Import the buildser class from the discord.js library
+// Import the builders class from the discord.js library
 const {
 	// General formatting
 	bold,
