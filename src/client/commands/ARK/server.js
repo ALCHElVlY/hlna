@@ -13,7 +13,7 @@ module.exports = {
 		.setDescription('Query the battlemetrics API for ARK Official server info.')
 		.setDefaultPermission(true)
 		.addStringOption(option =>
-			option.setName('server_name')
+			option.setName('name')
 				.setDescription('The name of the server to search for.')
 				.setRequired(true)),
 	category: 'ARK',

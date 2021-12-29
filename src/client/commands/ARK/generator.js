@@ -13,7 +13,7 @@ module.exports = {
 		.setDescription('Calculates the time before a gas generator runs out of fuel.')
 		.setDefaultPermission(true)
 		.addIntegerOption(option =>
-			option.setName('fuel_amount')
+			option.setName('fuel')
 				.setDescription('The amount of fuel in the generator.')
 				.setRequired(true)),
 	category: 'ARK',

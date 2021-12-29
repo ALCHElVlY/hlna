@@ -31,11 +31,11 @@ module.exports = {
 		.setDescription('Calculates the time and cost of cloning a creature.')
 		.setDefaultPermission(true)
 		.addStringOption(option =>
-			option.setName('creature_name')
+			option.setName('name')
 				.setDescription('The name of the creature to clone.')
 				.setRequired(true))
 		.addStringOption(option =>
-			option.setName('creature_level')
+			option.setName('level')
 				.setDescription('The level of the creature being cloned.')
 				.setRequired(true)),
 	category: 'ARK',
