@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const RoleMenuSetup = require('../../utility/functions/Configuration/roleMenuSetup');
+const RoleMenu = require('../../structures/RoleMenu');
 
 // Import the embed builders
 const {
@@ -11,20 +11,42 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('rolemenu')
 		.setDescription('Create a self-assignable role menu.')
-		.addChannelOption(option =>
-			option.setName('channel')
-				.setDescription('The channel to send the menu to.')
-				.setRequired(false))
+		.addSubcommand(command =>
+			command.setName('setup')
+				.setDescription('Setup a role menu.')
+				.addChannelOption(option =>
+					option.setName('channel')
+						.setDescription('The channel to send the role menu to.')
+						.setRequired(false)))
+		.addSubcommand(command =>
+			command.setName('edit')
+				.setDescription('Edit the options of an existing role menu.')
+				.addStringOption(option =>
+					option.setName('id')
+						.setDescription('The ID of the role menu to edit.')
+						.setRequired(true)))
 		.setDefaultPermission(true),
 	category: 'Configuration',
 	permissions: ['Server Owner'],
 	async execute(interaction) {
+		const rolemenu = new RoleMenu();
+		const subcommand = interaction.options._subcommand;
 		const channel = interaction.options._hoistedOptions.length > 0
 			? interaction.options._hoistedOptions[0].channel
 			: interaction.channel;
+		const menuID = interaction.options._hoistedOptions.length > 0
+			? interaction.options._hoistedOptions[0].value
+			: null;
 
 		try {
-			await RoleMenuSetup(channel, interaction);
+			switch (subcommand) {
+			case 'setup':
+				await rolemenu.setup(channel, interaction);
+				break;
+			case 'edit':
+				console.log(menuID);
+				break;
+			}
 		}
 		catch (e) {
 			return interaction.reply({
