@@ -13,11 +13,11 @@ const format = require('../utility/format');
 const {
 	highlighted,
 	codeBlock,
-	bold,
 } = format.formatOptions;
 
 // Import the embed builders
 const {
+	ROLE_MENU_EMBED,
 	ERROR_EMBED,
 } = require('../utility/Embeds');
 
@@ -89,13 +89,15 @@ class RoleMenu {
 
 		// Create a message collector to listen for responses
 		const collector = new MessageCollector(
-			interaction.channel,
-			msgCollectorFilter.bind(null, interaction.message),
+			interaction.channel, {
+				filter: msgCollectorFilter,
+				time: ((10 * 60) * 1000),
+			},
 		);
 
 		// Handle collecting the role menu options
 		collector.on('collect', async (msg) => {
-		// Chek if the user is a bot
+			// Chek if the user is a bot
 			if (msg.author.bot) return;
 
 			// When the keyword is triggerd, stop the collector, and save the data to the database.
@@ -130,17 +132,19 @@ class RoleMenu {
 
 		// Handle when collector is stopped
 		collector.on('end', async (collected, reason) => {
-		// When the collector is stopped, save the data to the database.
+			// Handle if the collector was manually stopped
 			if (reason === 'Done command was issued. Collector stopped!') {
-			// Add the options to the message row
+				// Add the options to the message row
 				const roleMenu = format.rolemenu(options);
 				const row = format.row()
 					.addComponents(roleMenu);
 
+				// Clear the setup messages
 				await this.clearSetup(collected);
+
 				// Send the role menu to the channel
 				return await channel.send({
-					content: `${bold(interaction.guild.name)}'s Role Menu`,
+					embeds: [ROLE_MENU_EMBED(interaction.guild)],
 					components: [row],
 				});
 			}

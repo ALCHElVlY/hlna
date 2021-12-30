@@ -402,6 +402,17 @@ const STATS_EMBED = (duration, version) => {
 	return embed;
 };
 
+const ROLE_MENU_EMBED = (guild) => {
+	const embed = format.embed()
+		.setTitle(`${guild.name}'s Role Menu`)
+		.setDescription([
+			'Select all roles you wish to assign to yourself.',
+		].join('\n'));
+
+	// Return the embed
+	return embed;
+};
+
 const ADD_ROLE_EMBED = (member, role) => {
 	const embed = format.embed()
 		.setColor('#B3FFB3')
@@ -492,6 +503,7 @@ module.exports = {
 	MILK_EMBED,
 	SERVER_EMBED,
 	// General Embeds
+	ROLE_MENU_EMBED,
 	STATS_EMBED,
 	// ActionLogger Embeds
 	MEMBER_JOIN_EMBED,

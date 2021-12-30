@@ -129,11 +129,13 @@ module.exports = {
 			case 'role-menu':
 				// Handle the role menu
 				await rolemenu.addRoles(member, roles);
-				await interaction.reply({
-					content: (currentSelection.length <= 0)
-						? 'No roles chosen, selection reset.'
-						: 'Your roles have been updated!',
-					ephemeral: true,
+				await interaction.update({
+					components: [...interaction.message.components],
+				}).then(async () => {
+					await interaction.followUp({
+						content: 'Your roles have been updated!',
+						ephemeral: true,
+					});
 				});
 				break;
 			}
