@@ -181,8 +181,11 @@ module.exports = (client) => {
 	};
 
 	client.awaitConfirmation = async (message, content) => {
-		const response = await client.awaitReply(message, content + ' (yes/no)');
-		return ['y', 'yes'].includes(response);
+		const response = await client.awaitReply(message, `${message.user} ${content}` + ' **(yes/no)**');
+		if (['y', 'yes'].includes(response.content)) {
+			return true;
+		}
+		return false;
 	};
 
 	client.loadCommand = (file) => {

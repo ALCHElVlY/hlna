@@ -76,6 +76,8 @@ module.exports = {
 		// Set the log channel settings display
 		embed.addField('Log Channels', (() => {
 			let log_channels = '';
+
+			// Handle if the logs channel array is empty
 			if (settings.log_channels.length > 0) {
 				settings.log_channels.forEach((channel) => {
 					log_channels += format.prettyPrint(
@@ -86,6 +88,7 @@ module.exports = {
 			else {
 				log_channels += highlighted('None');
 			}
+
 			return log_channels.split(',').join('\n');
 		})(), false);
 
@@ -98,12 +101,6 @@ module.exports = {
 					.setLabel('Edit')
 					.setStyle('SECONDARY')
 					.setEmoji(':edit:911734573036109895'),
-				// The delete button
-				format.button()
-					.setCustomId('settings:_delete')
-					.setLabel('Delete')
-					.setStyle('SECONDARY')
-					.setEmoji(':delete:911736328553648199'),
 				// The restore button
 				format.button()
 					.setCustomId('settings:_restore')

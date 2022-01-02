@@ -43,7 +43,7 @@ module.exports = {
 
 		try {
 			// Handle if the amount is less than 1, or greater than 100
-			if (amount <= 1 || amount > 100) {
+			if (amount < 1 || amount > 100) {
 				return interaction.reply({
 					embeds: [ERROR_EMBED('Amount must be between 1 and 100.')],
 					ephemeral: true,

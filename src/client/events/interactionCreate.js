@@ -77,21 +77,6 @@ module.exports = {
 				// Handle editing the guild settings
 				await guildsettings.edit(interaction);
 				break;
-			case 'settings:_delete':
-				// If the user interacting is not the guild owner, ignore
-				if (interaction.user.id !== guildOwner) return;
-
-				// Clear the message components
-				(async () => {
-					await interaction.message.edit({
-						embeds: [...interaction.message.embeds],
-						components: [],
-					});
-				})();
-
-				// Handle deleting the guild settings
-				// await guildsettings.delete(interaction);
-				break;
 			case 'settings:_restore':
 				// If the user interacting is not the guild owner, ignore
 				if (interaction.user.id !== guildOwner) return;
@@ -105,7 +90,7 @@ module.exports = {
 				})();
 
 				// Handle restoring the guild settings
-				// await guildsettings.restore(interaction);
+				await guildsettings.restore(interaction);
 				break;
 			}
 		}

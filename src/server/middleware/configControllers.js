@@ -46,6 +46,12 @@ const updateConfiguration = async (req, res) => {
 		const data = req.body;
 		const key = data.key;
 		switch (key) {
+		case 'restore_settings':
+			Config.findOne({ guild_id })
+				.updateOne({}, { $set: data.value })
+				.then(() => res.json({ success: true }))
+				.catch(e => res.status(404).json({ success: false }));
+			break;
 		case 'roles.admin_role':
 			Config.findOne({ guild_id })
 				.updateOne({}, { $set: { 'roles.admin_role': data.value } })
