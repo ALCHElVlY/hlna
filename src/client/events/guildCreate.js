@@ -1,4 +1,5 @@
 const axios = require('axios');
+const defaultSettings = require('../utility/defaultSettings');
 
 module.exports = {
 	name: 'guildCreate',
@@ -13,5 +14,8 @@ module.exports = {
 				ID: guild.id,
 			}))
 			.catch((e) => console.error(e));
+
+		// Add the new guild to the settings cache
+		client.settings.set(guild.id, defaultSettings);
 	},
 };

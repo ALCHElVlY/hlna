@@ -8,6 +8,7 @@ const { Permissions } = require('discord.js');
 const {
 	KICK_DM_EMBED,
 	ERROR_EMBED,
+	SUCCESS_EMBED,
 } = require('../../utility/Embeds');
 
 module.exports = {
@@ -70,12 +71,26 @@ module.exports = {
 				});
 			}
 
+			// Handle if the reason is too long
+			if (reason.length < 1 || reason.length > 25) {
+				return interaction.reply({
+					embeds: [ERROR_EMBED('The reason must be between 1 and 25 characters.')],
+					ephemeral: true,
+				});
+			}
+
 			// Send the embed and kick the member
 			await member.send({
 				embeds: [KICK_DM_EMBED(interaction.guild, reason)],
 			})
 				.then(async () => await member.kick(reason))
 				.catch(e => '');
+
+			// Send a success message
+			return await interaction.reply({
+				embeds: [SUCCESS_EMBED(`Successfully kicked ${member.user.tag}`)],
+				ephemeral: true,
+			});
 		}
 		catch (e) {
 			return interaction.reply({

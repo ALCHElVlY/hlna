@@ -6,6 +6,7 @@ const format = require('../../client/utility/format.js');
 const {
 	highlighted,
 	channelMention,
+	userMention,
 } = format.formatOptions;
 
 const MEMBER_JOIN_EMBED = (member) => {
@@ -20,7 +21,7 @@ const MEMBER_JOIN_EMBED = (member) => {
 			}),
 		})
 		.setDescription(`
-   		**Scanning Specimen**: ${member}
+   		**Scanning Specimen**: ${userMention(member.user.id)}
 		**Survivor ID**: ${member.user.id}
 		**Implant Created**: ${calculateAccAge(createdDate)}
 		
@@ -50,6 +51,23 @@ const MEMBER_LEAVE_EMBED = (member) => {
 			\`\`Cheers mate, catch you later.\`\`
 			`)
 		.setThumbnail('https://imgur.com/6axfSUV.gif');
+
+	// Return the embed
+	return embed;
+};
+
+const MEMBER_BAN_ENBED = (member, reason) => {
+	console.log({
+		Member: member,
+		Ban_Reason: reason,
+	});
+	const embed = format.embed()
+		.setTitle('Member Banned')
+		.setDescription([
+			`**Member**: ${member}`,
+			`**Reason**: \`${reason}\``,
+		].join('\n'))
+		.setTimestamp();
 
 	// Return the embed
 	return embed;
@@ -191,6 +209,17 @@ const BAN_DM_EMBED = (guild, reason) => {
 		].join('\n'))
 		.setTimestamp()
 		.setFooter('goodbye!');
+
+	// Return the embed
+	return embed;
+};
+
+const BAN_LIST_EMBED = (guild, bans) => {
+	const embed = format.embed()
+		.setTitle(`${guild.name} ban list`)
+		.setDescription(bans.map((ban) => {
+			return `${userMention(ban.user.id)} - ${highlighted(ban.reason)}`;
+		}).join('\n'));
 
 	// Return the embed
 	return embed;
@@ -495,6 +524,7 @@ module.exports = {
 	HELP_EMBED,
 	KICK_DM_EMBED,
 	BAN_DM_EMBED,
+	BAN_LIST_EMBED,
 	// ARK Related Embeds
 	CRAFT_EMBED,
 	CLONE_EMBED,
@@ -508,6 +538,7 @@ module.exports = {
 	// ActionLogger Embeds
 	MEMBER_JOIN_EMBED,
 	MEMBER_LEAVE_EMBED,
+	MEMBER_BAN_ENBED,
 	MEMBER_ROLE_ADD,
 	MEMBER_ROLE_REMOVE,
 	MESSAGE_BULK_DELETE_EMBED,

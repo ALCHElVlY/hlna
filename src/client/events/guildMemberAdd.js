@@ -17,6 +17,7 @@ module.exports = {
 		const channelID = settings.log_channels
 			.find(c => c.log_type === 'member_joinleave').channel_id;
 		const logChannel = client.channels.cache.get(channelID);
+		console.log(console.log(settings.log_channels));
 
 		// If the channel is not found, do nothing
 		if (!logChannel) return;

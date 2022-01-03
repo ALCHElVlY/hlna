@@ -13,5 +13,8 @@ module.exports = {
 				ID: guild.id,
 			}))
 			.catch((e) => console.error(e));
+
+		// Remove the guild from the settings cache
+		client.settings.delete(guild.id);
 	},
 };

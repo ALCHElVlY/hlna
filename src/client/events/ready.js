@@ -33,6 +33,19 @@ module.exports = {
 						verified_role: e.roles.verified_role,
 						mute_role: e.roles.mute_role,
 					},
+					ark_shop: {
+						order_channel: {
+							name: e.ark_shop.order_channel.name,
+							id: e.ark_shop.order_channel.id,
+						},
+						order_key: {
+							emoji: e.ark_shop.order_key.emoji,
+							description: e.ark_shop.order_key.description,
+						},
+						shop_status: e.ark_shop.shop_status,
+						accepted_payments: e.ark_shop.accepted_payments,
+						items: e.ark_shop.items,
+					},
 					log_channels: e.log_channels,
 				};
 

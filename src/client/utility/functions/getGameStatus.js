@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 const _getGameStatus = async (client) => {
 	try {
-		setInterval(() => {
+		setInterval(async () => {
 			fetch('http://arkdedicated.com/officialserverstatus.ini', {
 				method: 'GET',
 				headers: {

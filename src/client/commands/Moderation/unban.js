@@ -1,13 +1,18 @@
 /* eslint-disable no-unused-vars */
-require('dotenv').config();
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const format = require('../../utility/format');
 const client = require('../../../client');
-const { Permissions } = require('discord.js');
+
+// Import the format options
+const {
+	userMention,
+} = format.formatOptions;
 
 // Import the embed builders
 const {
-	BAN_DM_EMBED,
+	BAN_LIST_EMBED,
 	ERROR_EMBED,
+	SUCCESS_EMBED,
 } = require('../../utility/Embeds');
 
 module.exports = {
@@ -30,7 +35,7 @@ module.exports = {
 	async execute(interaction) {
 		const subcommand = interaction.options._subcommand;
 		const member = (interaction.options._hoistedOptions[0])
-			? interaction.options._hoistedOptions[0].member
+			? interaction.options._hoistedOptions[0].value
 			: null;
 		const { guild } = interaction.member;
 		// const reason = interaction.options._hoistedOptions[1].value;
@@ -40,38 +45,43 @@ module.exports = {
 			// Determine the subcommand
 			switch (subcommand) {
 			case 'member':
-				// code
-				break;
-			case 'list':
-				guild.bans.fetch().then(bans => {
-					// Handle if the guild has no bans
-					if (bans.size <= 0) {
-						return interaction.reply({
-							embeds: [ERROR_EMBED('there are currently no bans for this server!')],
-							ephemeral: true,
-						});
-					}
-
-					bans.forEach(ban => {
-						const data = {
-							user: {
-								name: ban.user.username,
-								id: ban.user.id,
-							},
-							reason: ban.reason,
-						};
-						guildBans.push(data);
+				guild.members.unban(member).then(async () => {
+					await interaction.reply({
+						embeds: [SUCCESS_EMBED(`${userMention(member)} has been unbanned.`)],
+						ephemeral: true,
 					});
-					console.log(guildBans);
 				});
 				break;
+			case 'list':
+				guild.bans
+					.fetch().then(async (bans) => {
+						// Handle if the guild has no bans
+						if (bans.size <= 0) {
+							return interaction.reply({
+								embeds: [ERROR_EMBED('there are currently no bans for this server!')],
+								ephemeral: true,
+							});
+						}
+
+						bans.forEach(ban => {
+							const data = {
+								user: {
+									name: ban.user.username,
+									id: ban.user.id,
+								},
+								reason: ban.reason,
+							};
+							guildBans.push(data);
+						});
+
+						// Send the embed
+						await interaction.reply({
+							embeds: [BAN_LIST_EMBED(guild, guildBans)],
+							ephemeral: true,
+						});
+					});
+				break;
 			}
-			// Send the embed and ban the member
-			/* await member.send({
-				embeds: [BAN_DM_EMBED(interaction.guild, reason)],
-			})
-				.then(async () => await member.ban({ days: 7, reason: reason }))
-				.catch(e => '');*/
 		}
 		catch (e) {
 			return interaction.reply({
