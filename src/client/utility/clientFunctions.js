@@ -9,7 +9,7 @@ module.exports = (client) => {
 	// as a customEmoji or a unicodeEmoji
 	client.findEmoji = (ctx) => {
 		try {
-			const customEmoji = client.emojis.cache.find(e => e.name === ctx);
+			const customEmoji = client.emojis.cache.find(e => e.name === `${ctx}`);
 			return customEmoji.toString();
 		}
 		catch (e) {
