@@ -10,7 +10,7 @@ module.exports = (client) => {
 	client.findEmoji = (ctx) => {
 		try {
 			const customEmoji = client.emojis.cache.find(e => e.name === ctx);
-			return customEmoji.id;
+			return customEmoji.toString();
 		}
 		catch (e) {
 			console.log(e);
