@@ -17,6 +17,7 @@ module.exports = {
 			if (settings.log_channels <= 0) return;
 			const logChannel = client.channels.cache.get(settings.log_channels
 				.find(c => c.log_type === 'role_add').channel_id);
+			console.log(logChannel);
 
 			// If no log channel is set, ignore
 			if (!logChannel) return;
