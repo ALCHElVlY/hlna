@@ -80,7 +80,7 @@ module.exports = {
 	async execute(interaction) {
 		if (interaction.user.id !== '499426339321937954') return;
 		try {
-			console.log(interaction);
+			console.log(interaction.options._hoistedOptions);
 		}
 		catch (e) {
 			console.log(e);
