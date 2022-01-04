@@ -9,10 +9,8 @@ module.exports = {
 		console.log(ban.guild.bans);
 		const settings = client.settings.get(ban.guild.id);
 		if (settings.log_channels <= 0) return;
-		const logChannel = (settings)
-			? client.channels.cache.get(settings.log_channels
-				.find(c => c.log_type === 'member_ban').channel_id)
-			: undefined;
+		const logChannel = client.channels.cache.get(settings.log_channels
+			.find(c => c.log_type === 'member_ban').channel_id);
 
 		// If no log channel is set, ignore
 		if (!logChannel) return;
