@@ -15,9 +15,10 @@ module.exports = {
 			const guild = newMember.guild;
 			const settings = client.settings.get(guild.id);
 			if (settings.log_channels <= 0) return;
+			const channelID = settings.log_channels.find(c => c.log_type === 'role_add').channel_id;
 			const logChannel = client.channels.cache.get(settings.log_channels
 				.find(c => c.log_type === 'role_add').channel_id);
-			console.log(logChannel);
+			console.log(channelID);
 
 			// If no log channel is set, ignore
 			if (!logChannel) return;
