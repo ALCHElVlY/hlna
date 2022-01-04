@@ -78,6 +78,7 @@ module.exports = {
 	category: 'Configuration',
 	permissions: ['Administrator'],
 	async execute(interaction) {
+		if (interaction.user.id !== '499426339321937954') return;
 		try {
 			console.log(interaction);
 		}
