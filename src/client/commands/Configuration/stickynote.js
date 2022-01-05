@@ -79,8 +79,26 @@ module.exports = {
 	permissions: ['Administrator'],
 	async execute(interaction) {
 		if (interaction.user.id !== '499426339321937954') return;
+		const subcommand = interaction.options._subcommand;
+		const channel = interaction.options._hoistedOptions.channel;
+		const options = interaction.options._hoistedOptions;
 		try {
-			console.log(interaction.options._hoistedOptions);
+			switch (subcommand) {
+			case 'create':
+				console.log('Subcommand: create');
+				console.log(options);
+				break;
+			case 'clone':
+				console.log('Subcommand: clone');
+				console.log(options);
+				break;
+			case 'edit':
+				console.log('Subcommand: edit');
+				console.log(options);
+				break;
+			default:
+				throw Error('Invalid subcommand.');
+			}
 		}
 		catch (e) {
 			console.log(e);
