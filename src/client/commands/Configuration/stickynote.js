@@ -56,7 +56,7 @@ module.exports = {
 						.setRequired(false))
 				.addStringOption(option =>
 					option.setName('color')
-						.setDescription('The color of the sticky note. Must be a hex color code.')
+						.setDescription('The color of the sticky note. Can either be a hex color code or a role color.')
 						.setRequired(false))
 				.addStringOption(option =>
 					option.setName('title')
@@ -79,29 +79,49 @@ module.exports = {
 	permissions: ['Administrator'],
 	async execute(interaction) {
 		if (interaction.user.id !== '499426339321937954') return;
+		const { guild } = interaction;
 		const subcommand = interaction.options._subcommand;
-		const channel = interaction.options._hoistedOptions.channel;
+		const channel = interaction.options._hoistedOptions.channel || interaction.channel;
 		const options = interaction.options._hoistedOptions;
+
+
 		try {
 			switch (subcommand) {
 			case 'create':
-				console.log('Subcommand: create');
-				STICKYNOTE_EMBED(options);
+				(async () => {
+					// Handle if no elements are passed,
+					// at least a description is required
+					const embedDescription = interaction.options._hoistedOptions
+						.find(option => option.name === 'description');
+					if (!embedDescription) throw Error('Must provide at least an embed description.');
+
+					await channel.send({
+						embeds: [STICKYNOTE_EMBED(guild, options)]
+					});
+				})();
 				break;
 			case 'clone':
-				console.log('Subcommand: clone');
-				STICKYNOTE_EMBED(options);
+				(async () => {
+					const messageToFetch = interaction.options._hoistedOptions.value;
+					const message = await interaction.channel.messages.fetch(messageToFetch);
+					console.log(message.embeds);
+
+					// await STICKYNOTE_EMBED(guild, options);
+				})();
 				break;
 			case 'edit':
 				console.log('Subcommand: edit');
-				STICKYNOTE_EMBED(options);
+				// await STICKYNOTE_EMBED(guild, options);
 				break;
 			default:
 				throw Error('Invalid subcommand.');
 			}
 		}
 		catch (e) {
-			console.log(e);
+			return interaction.reply({
+				embeds: [ERROR_EMBED(e.message)],
+				ephemeral: true,
+			});
 		}
 	},
 };

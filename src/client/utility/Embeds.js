@@ -506,20 +506,31 @@ const REMOVE_MUTE_EMBED = (member) => {
 	return embed;
 };
 
-const STICKYNOTE_EMBED = (data) => {
-	const embedColor = data[0].value;
-	const embedTitle = data[0].value;
-	const embedDescription = data[0].value;
-	const embedAttachment = data[0].value;
-	const embedFooter = data[0].value;
+const STICKYNOTE_EMBED = (guild, data) => {
+	let embedColor = (data[0] !== undefined) ? data[0].value : null;
+	const embedTitle = (data[1] !== undefined) ? data[1].value : null;
+	const embedDescription = (data[2] !== undefined) ? data[2].value : null;
+	const embedImage = (data[3] !== undefined) ? data[3].value : null;
+	const embedFooter = (data[4] !== undefined) ? data[4].value : '';
 
-	console.log({
-		Color: embedColor,
-		Title: embedTitle,
-		Description: embedDescription,
-		Attachment: embedAttachment,
-		Footer: embedFooter,
-	});
+	// Check if the embed color is a hex color
+	// or if it is a role mention, get the role color
+	if (embedColor !== null) {
+		if (embedColor.startsWith('<@&')) {
+			const role = guild.roles.cache.get(embedColor.replace(/(\D+)/gm, ''));
+			embedColor = role.color;
+		}
+	}
+
+	const embed = format.embed()
+		.setColor(embedColor)
+		.setTitle(embedTitle)
+		.setDescription(embedDescription)
+		.setImage(embedImage)
+		.setFooter(embedFooter);
+
+	// Return the embed
+	return embed;
 };
 
 // ----------------------------------- Functions -----------------------------------
