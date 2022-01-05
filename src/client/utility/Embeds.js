@@ -507,7 +507,19 @@ const REMOVE_MUTE_EMBED = (member) => {
 };
 
 const STICKYNOTE_EMBED = (data) => {
-	console.log(data);
+	const embedColor = data[0].value;
+	const embedTitle = data[0].value;
+	const embedDescription = data[0].value;
+	const embedAttachment = data[0].value;
+	const embedFooter = data[0].value;
+
+	console.log({
+		Color: embedColor,
+		Title: embedTitle,
+		Description: embedDescription,
+		Attachment: embedAttachment,
+		Footer: embedFooter,
+	});
 };
 
 // ----------------------------------- Functions -----------------------------------
