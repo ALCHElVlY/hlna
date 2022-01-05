@@ -1,7 +1,7 @@
-const configWorker_roles = require('./configWorker_roles');
-const configWorker_logs = require('./configWorker_logs');
+const settings_roles = require('./settings_roles');
+const settings_logs = require('./settings_logs');
 
 module.exports = {
-	configWorker_logs,
-	configWorker_roles,
+	settings_roles,
+	settings_logs,
 };

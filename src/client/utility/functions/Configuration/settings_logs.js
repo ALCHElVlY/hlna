@@ -1,5 +1,5 @@
 // Import format.js
-const format = require('../../../utility/format.js');
+const format = require('../../format.js');
 const axios = require('axios');
 const channelIDRegex = new RegExp(/(\d+)/gm);
 
@@ -14,7 +14,7 @@ const {
 	ERROR_EMBED,
 } = require('../../Embeds');
 
-const configWorker_logs = async (client, interaction, response) => {
+const settings_logs = async (client, interaction, response) => {
 	// Await for the user response
 	response = await client.awaitReply(
 		interaction,
@@ -25,10 +25,10 @@ const configWorker_logs = async (client, interaction, response) => {
 		const action = response.content;
 		switch (action) {
 		case 'add':
-			await configWorker_add_log(client, interaction);
+			await _add_log(client, interaction);
 			break;
 		case 'remove':
-			await configWorker_remove_log(client, interaction);
+			await _remove_log(client, interaction);
 			break;
 		default:
 			throw Error('Invalid action!');
@@ -36,7 +36,7 @@ const configWorker_logs = async (client, interaction, response) => {
 	}
 };
 
-const configWorker_add_log = async (client, interaction) => {
+const _add_log = async (client, interaction) => {
 	// The settings for this guild
 	const settings = client.settings.get(interaction.guild.id).log_channels;
 	const guild = interaction.guild;
@@ -140,7 +140,7 @@ const configWorker_add_log = async (client, interaction) => {
 	}
 };
 
-const configWorker_remove_log = async (client, interaction) => {
+const _remove_log = async (client, interaction) => {
 	// The settings for this guild
 	const settings = client.settings.get(interaction.guild.id).log_channels;
 	const guild = interaction.guild;
@@ -196,4 +196,4 @@ const configWorker_remove_log = async (client, interaction) => {
 	}
 };
 
-module.exports = configWorker_logs;
+module.exports = settings_logs;

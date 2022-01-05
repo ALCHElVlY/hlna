@@ -101,14 +101,14 @@ const MEMBER_ROLE_REMOVE = (member, role) => {
 	return embed;
 };
 
-const MESSAGE_BULK_DELETE_EMBED = (content) => {
+const MESSAGE_BULK_DELETE_EMBED = (data) => {
 	const embed = format.embed()
 		.setColor('#63CBEB')
 		.setTitle('Message Bulk Delete')
 		.setDescription([
-			`**Amount**: ${content[2]}`,
-			`**Deleted by**: ${content[0].tag}`,
-			`**Deleted from**: ${channelMention(content[1])}`,
+			`**Amount**: ${data[2]}`,
+			`**Deleted by**: ${data[0].tag}`,
+			`**Deleted from**: ${channelMention(data[1])}`,
 		].join('\n'))
 		.setTimestamp();
 
@@ -506,6 +506,10 @@ const REMOVE_MUTE_EMBED = (member) => {
 	return embed;
 };
 
+const STICKYNOTE_EMBED = (data) => {
+	console.log(data);
+};
+
 // ----------------------------------- Functions -----------------------------------
 // The calculateAccAge function converts the account age(in milliseconds)
 // to a human readable format
@@ -525,6 +529,7 @@ module.exports = {
 	KICK_DM_EMBED,
 	BAN_DM_EMBED,
 	BAN_LIST_EMBED,
+	STICKYNOTE_EMBED,
 	// ARK Related Embeds
 	CRAFT_EMBED,
 	CLONE_EMBED,

@@ -5,7 +5,7 @@ const client = require('../../index');
 
 // Import the embed builders
 const {
-	STATS_EMBED,
+	STICKYNOTE_EMBED,
 	ERROR_EMBED,
 } = require('../../utility/embeds');
 
@@ -86,15 +86,15 @@ module.exports = {
 			switch (subcommand) {
 			case 'create':
 				console.log('Subcommand: create');
-				console.log(options);
+				STICKYNOTE_EMBED(options);
 				break;
 			case 'clone':
 				console.log('Subcommand: clone');
-				console.log(options);
+				STICKYNOTE_EMBED(options);
 				break;
 			case 'edit':
 				console.log('Subcommand: edit');
-				console.log(options);
+				STICKYNOTE_EMBED(options);
 				break;
 			default:
 				throw Error('Invalid subcommand.');

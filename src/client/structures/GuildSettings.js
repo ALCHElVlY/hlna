@@ -12,8 +12,8 @@ const {
 
 // Import the worker functions
 const {
-	configWorker_roles,
-	configWorker_logs,
+	settings_roles,
+	settings_logs,
 } = require('../utility/functions/Configuration/index');
 
 class GuildSettings {
@@ -52,10 +52,10 @@ class GuildSettings {
 				const { content } = response.first();
 				switch (content) {
 				case 'roles':
-					await configWorker_roles(client, interaction, response);
+					await settings_roles(client, interaction, response);
 					break;
 				case 'log channels':
-					await configWorker_logs(client, interaction, response);
+					await settings_logs(client, interaction, response);
 					break;
 				default:
 					throw Error('That setting either does not exist or is not editable.');
