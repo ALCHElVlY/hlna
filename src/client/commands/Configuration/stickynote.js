@@ -6,13 +6,14 @@ const client = require('../../index');
 // Import the embed builders
 const {
 	STICKYNOTE_EMBED,
+	SUCCESS_EMBED,
 	ERROR_EMBED,
 } = require('../../utility/embeds');
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('stickynote')
-		.setDescription('Creates, clone, or edit an existing sticky note.')
+		.setDescription('Create, clone, or edit an existing sticky note.')
 		.addSubcommand(command =>
 			command.setName('create')
 				.setDescription('Creates a sticky note from scratch.')
@@ -22,7 +23,7 @@ module.exports = {
 						.setRequired(false))
 				.addStringOption(option =>
 					option.setName('color')
-						.setDescription('The color of the sticky note. Must be a hex color code.')
+						.setDescription('The color of the sticky note. Can be a role mention or hex color code.')
 						.setRequired(false))
 				.addStringOption(option =>
 					option.setName('title')
@@ -78,7 +79,6 @@ module.exports = {
 	category: 'Configuration',
 	permissions: ['Administrator'],
 	async execute(interaction) {
-		if (interaction.user.id !== '499426339321937954') return;
 		const { guild } = interaction;
 		const subcommand = interaction.options._subcommand;
 		const channel = interaction.options._hoistedOptions.channel || interaction.channel;
@@ -90,11 +90,28 @@ module.exports = {
 			case 'create':
 				(async () => {
 					// Handle if no elements are passed,
-					// at least a description is required
+					// at least a stickynote color and description are required
 					const embedDescription = interaction.options._hoistedOptions
 						.find(option => option.name === 'description');
-					if (!embedDescription) throw Error('Must provide at least an embed description.');
+					const embedColor = interaction.options._hoistedOptions
+						.find(option => option.name === 'color');
+					if (!embedDescription) {
+						return interaction.reply({
+							embeds: [ERROR_EMBED('Must provide at least an embed description.')],
+							ephemeral: true,
+						});
+					}
+					else if (!embedColor) {
+						return interaction.reply({
+							embeds: [ERROR_EMBED('Must provide a color for the sticky note.')],
+							ephemeral: true,
+						});
+					}
 
+					await interaction.reply({
+						embeds: [SUCCESS_EMBED('Creating sticky note...')],
+						ephemeral: true,
+					});
 					await channel.send({
 						embeds: [STICKYNOTE_EMBED(guild, options)]
 					});
@@ -102,6 +119,7 @@ module.exports = {
 				break;
 			case 'clone':
 				(async () => {
+					if (interaction.user.id !== '499426339321937954') return;
 					const messageToFetch = interaction.options._hoistedOptions.value;
 					const message = await interaction.channel.messages.fetch(messageToFetch);
 					console.log(message.embeds);
@@ -110,6 +128,7 @@ module.exports = {
 				})();
 				break;
 			case 'edit':
+				if (interaction.user.id !== '499426339321937954') return;
 				console.log('Subcommand: edit');
 				// await STICKYNOTE_EMBED(guild, options);
 				break;

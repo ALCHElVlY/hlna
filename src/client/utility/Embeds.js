@@ -507,9 +507,10 @@ const REMOVE_MUTE_EMBED = (member) => {
 };
 
 const STICKYNOTE_EMBED = (guild, data) => {
+	const embed = format.embed()
 	let embedColor = (data[0] !== undefined) ? data[0].value : null;
 	const embedTitle = (data[1] !== undefined) ? data[1].value : null;
-	const embedDescription = (data[2] !== undefined) ? data[2].value : null;
+	let embedDescription = (data[2] !== undefined) ? data[2].value : null;
 	const embedImage = (data[3] !== undefined) ? data[3].value : null;
 	const embedFooter = (data[4] !== undefined) ? data[4].value : '';
 
@@ -522,9 +523,16 @@ const STICKYNOTE_EMBED = (guild, data) => {
 		}
 	}
 
-	const embed = format.embed()
+	// If the embed decription contains , $nl replace it with a new line
+	const newLineRegex = /\$nl/gm;
+	if (newLineRegex.test(embedDescription)) {
+		const formatDescription = embedDescription.replace(/(\$nl\s)/gm, '\n');
+		embedDescription = formatDescription;
+	}
+
+	
+	embed.setTitle(embedTitle)
 		.setColor(embedColor)
-		.setTitle(embedTitle)
 		.setDescription(embedDescription)
 		.setImage(embedImage)
 		.setFooter(embedFooter);
