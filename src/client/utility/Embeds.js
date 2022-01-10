@@ -507,7 +507,13 @@ const REMOVE_MUTE_EMBED = (member) => {
 };
 
 const STICKYNOTE_EMBED = (guild, data) => {
-	const embed = format.embed()
+	// If a channel was passed, remove it from the data array (otherwise this messes up the embed data)
+	const data_contains_channel = data.find(option => option.channel) ? true : false;
+	if (data_contains_channel) {
+		data.splice(0, 1);
+	}
+
+	const embed = format.embed();
 	let embedColor = (data[0] !== undefined) ? data[0].value : null;
 	const embedTitle = (data[1] !== undefined) ? data[1].value : null;
 	let embedDescription = (data[2] !== undefined) ? data[2].value : null;
@@ -530,7 +536,7 @@ const STICKYNOTE_EMBED = (guild, data) => {
 		embedDescription = formatDescription;
 	}
 
-	
+
 	embed.setTitle(embedTitle)
 		.setColor(embedColor)
 		.setDescription(embedDescription)
