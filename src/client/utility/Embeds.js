@@ -541,7 +541,7 @@ const STICKYNOTE_EMBED = (guild, data) => {
 		.setColor(embedColor)
 		.setDescription(embedDescription)
 		.setImage(embedImage)
-		.setFooter(embedFooter);
+		.setFooter({ text: embedFooter });
 
 	// Return the embed
 	return embed;
