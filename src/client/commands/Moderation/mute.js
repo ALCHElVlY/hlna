@@ -31,10 +31,8 @@ module.exports = {
     const muteRole = interaction.guild.roles.cache.get(
       settings['roles'].mute_role,
     );
-    const member = interaction.options.getString('member');
-    const time = interaction.options.getString('time')
-      ? interaction.options.getString('time')
-      : null;
+    const member = interaction.options.getMember('member');
+    const time = interaction.options.getString('time');
     const muteDuration = time ? client.formatMuteTime(time) : null;
     const muteTime = 31536000000 * 100;
 

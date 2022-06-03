@@ -34,11 +34,11 @@ module.exports = {
   permissions: ['Moderator'],
   async execute(interaction) {
     const subcommand = interaction.options.getSubcommand();
-    const member = interaction.options.getString('member')
-      ? interaction.options.getString('member')
+    const member = interaction.options._hoistedOptions.length > 0
+      ? interaction.options.getMember('member')
       : null;
     const { guild } = interaction.member;
-    // const reason = interaction.options._hoistedOptions[1].value;
+    // const reason = interaction.options.getString('reason);
     const guildBans = [];
 
     try {

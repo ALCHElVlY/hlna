@@ -63,7 +63,7 @@ module.exports = {
         .setDescription('Clone and resend an existing stickynote.')
         .addStringOption((option) =>
           option
-            .setName('id')
+            .setName('messageID')
             .setDescription('The message ID of the stickynote to clone.')
             .setRequired(true),
         ),
@@ -76,55 +76,46 @@ module.exports = {
           option
             .setName('channel')
             .setDescription('The channel to send the embed to.')
-            .setRequired(false),
-        )
+            .setRequired(false))
         .addStringOption((option) =>
           option
             .setName('color')
             .setDescription(
               'The color of the sticky note. Can either be a hex color code or a role color.',
             )
-            .setRequired(false),
-        )
+            .setRequired(false))
         .addStringOption((option) =>
           option
             .setName('title')
             .setDescription('The title of the sticky note.')
-            .setRequired(false),
-        )
+            .setRequired(false))
         .addStringOption((option) =>
           option
             .setName('description')
             .setDescription('The body of the stickynote.')
-            .setRequired(false),
-        )
+            .setRequired(false))
         .addStringOption((option) =>
           option
             .setName('image')
             .setDescription('The image to send with the stickynote.')
-            .setRequired(false),
-        )
+            .setRequired(false))
         .addStringOption((option) =>
           option
             .setName('footer')
             .setDescription('The footer of the stickynote.')
-            .setRequired(false),
-        ),
+            .setRequired(false)),
     )
     .setDefaultPermission(true),
   category: 'Configuration',
   permissions: ['Administrator'],
   async execute(interaction) {
     const { guild } = interaction;
-    const subcommand = interaction.options._subcommand;
+    const subcommand = interaction.options.getSubcommand();
     const has_channel = interaction.options._hoistedOptions.find(
-      (option) => option.name === 'channel',
-    )
-      ? true
-      : false;
+      (option) => option.name === 'channel') ? true : false;
     const channel = has_channel
       ? await client.channels.cache.get(
-          interaction.options._hoistedOptions[0].value,
+          interaction.options.getChannel('channel'),
         )
       : interaction.channel;
     const options = interaction.options._hoistedOptions;
@@ -135,11 +126,9 @@ module.exports = {
           // Handle if no elements are passed,
           // at least a stickynote color and description are required
           const embedDescription = interaction.options._hoistedOptions.find(
-            (option) => option.name === 'description',
-          );
+            (option) => option.name === 'description');
           const embedColor = interaction.options._hoistedOptions.find(
-            (option) => option.name === 'color',
-          );
+            (option) => option.name === 'color');
           if (!embedDescription) {
             return interaction.reply({
               embeds: [
@@ -178,7 +167,7 @@ module.exports = {
       case 'clone':
         (async () => {
           if (interaction.user.id !== '499426339321937954') return;
-          const messageToFetch = interaction.options._hoistedOptions.value;
+          const messageToFetch = interaction.options.getString('messageID');
           const message = await interaction.channel.messages.fetch(
             messageToFetch,
           );

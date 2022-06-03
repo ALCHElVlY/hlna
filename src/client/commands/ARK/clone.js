@@ -10,6 +10,7 @@ const { highlighted } = format.formatOptions;
 // Internal imports
 const { CLONE_EMBED, ERROR_EMBED } = require('../../utility/Embeds');
 const _getOfficialRates = require('../../utility/functions/getOfficialRates');
+const { axiosPrivate } = require('../../utility/Axios');
 
 String.prototype.toProperCase = function (opt_lowerCaseTheRest) {
   return (opt_lowerCaseTheRest ? this.toLowerCase() : this).replace(
@@ -31,7 +32,7 @@ module.exports = {
         .setDescription('The name of the creature to clone.')
         .setRequired(true),
     )
-    .addStringOption((option) =>
+    .addIntegerOption((option) =>
       option
         .setName('level')
         .setDescription('The level of the creature being cloned.')
@@ -41,8 +42,8 @@ module.exports = {
   permissions: ['User'],
   async execute(interaction) {
     const creatureName =
-      interaction.options._hoistedOptions[0].value.toProperCase();
-    const level = interaction.options._hoistedOptions[1].value;
+      interaction.options.getString('name').toProperCase();
+    const level = interaction.options.getInteger('level');
     const OfficialRates = await _getOfficialRates();
     const mature_rate = await OfficialRates.get('BabyMatureSpeedMultiplier');
 
@@ -52,6 +53,8 @@ module.exports = {
         Authorization: 'Bearer ' + process.env.API_KEY,
       },
     });
+    const test = await axiosPrivate(`${process.env.DOSSIER}/${creatureName}`);
+    console.log(test);
 
     try {
       // Calculate the total time and cost to clone the creature

@@ -37,14 +37,14 @@ module.exports = {
   permissions: ['Server Owner'],
   async execute(interaction) {
     const rolemenu = new RoleMenu();
-    const subcommand = interaction.options._subcommand;
+    const subcommand = interaction.options.getSubcommand();
     const channel =
       interaction.options._hoistedOptions.length > 0
-        ? interaction.options._hoistedOptions[0].channel
+        ? interaction.options.getChannel('channel')
         : interaction.channel;
     const menuID =
       interaction.options._hoistedOptions.length > 0
-        ? interaction.options._hoistedOptions[0].value
+        ? interaction.options.getString('id')
         : null;
 
     try {

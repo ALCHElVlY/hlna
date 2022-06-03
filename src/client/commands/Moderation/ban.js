@@ -33,7 +33,7 @@ module.exports = {
   category: 'Moderation',
   permissions: ['Moderator'],
   async execute(interaction) {
-    const member = interaction.options.getString('member');
+    const member = interaction.options.getMember('member');
     const reason = interaction.options.getString('reason');
 
     try {

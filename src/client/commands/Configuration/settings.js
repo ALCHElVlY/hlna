@@ -5,7 +5,12 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 // Internal imports
 const client = require('../../index');
 const format = require('../../utility/format');
-const { hyperlink, highlighted, codeBlock, roleMention } = format.formatOptions;
+const {
+  hyperlink,
+  highlighted,
+  codeBlock,
+  roleMention,
+} = format.formatOptions;
 
 module.exports = {
   data: new SlashCommandBuilder()

@@ -28,8 +28,8 @@ module.exports = {
   category: 'Moderation',
   permissions: ['Moderator'],
   async execute(interaction) {
-    const member = interaction.options.getString('member');
-    const role = interaction.options.getString('role');
+    const member = interaction.options.getMember('member');
+    const role = interaction.options.getRole('role');
 
     try {
       // Check if the member has the role

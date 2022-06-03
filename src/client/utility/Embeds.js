@@ -2,7 +2,11 @@ const client = require('../../client/index');
 const format = require('../../client/utility/format.js');
 
 // Import the format options
-const { highlighted, channelMention, userMention } = format.formatOptions;
+const {
+  highlighted,
+  channelMention,
+  userMention,
+} = format.formatOptions;
 
 const MEMBER_JOIN_EMBED = (member) => {
   const createdDate = Date.now() - member.user.createdTimestamp;
@@ -148,48 +152,6 @@ const SUCCESS_EMBED = (message) => {
   return embed;
 };
 
-const HELP_EMBED = (helpData) => {
-  // Loop through the help data and extract the command
-  // categories. Only the first occurance of the category will be used
-  const categories = [];
-  for (const data of helpData) {
-    if (!categories.includes(data.Category)) {
-      categories.push(data.Category);
-    }
-  }
-
-  // Build the embed
-  const embed = format
-    .embed()
-    .setTitle('Command List')
-    .setDescription(['For example usage, visit the documentation!'].join('\n'));
-
-  // Extract the commands for each category
-  const commands = {};
-  for (const category of categories.sort()) {
-    commands[category] = [];
-    for (const data of helpData) {
-      if (data.Category === category) {
-        commands[category].push(data.Command);
-      }
-    }
-  }
-
-  // Add the commands and categories to the embed
-  Object.entries(commands).forEach(([c, cmds]) => {
-    embed.addFields({
-      name: c,
-      value: cmds.join('\n').replace(/(^\w+)/gm, (s) => {
-        return highlighted(s);
-      }),
-      inline: false,
-    });
-  });
-
-  // Return the embed
-  return embed;
-};
-
 const KICK_DM_EMBED = (guild, reason) => {
   const embed = format
     .embed()
@@ -199,7 +161,7 @@ const KICK_DM_EMBED = (guild, reason) => {
       [`Guild: **${guild.name}**`, `Reason: \`${reason}\``].join('\n'),
     )
     .setTimestamp()
-    .setFooter('goodbye!');
+    .setFooter({ text: 'goodbye!' });
 
   // Return the embed
   return embed;
@@ -214,7 +176,7 @@ const BAN_DM_EMBED = (guild, reason) => {
       [`Guild: **${guild.name}**`, `Reason: \`${reason}\``].join('\n'),
     )
     .setTimestamp()
-    .setFooter('goodbye!');
+    .setFooter({ text: 'goodbye!' });
 
   // Return the embed
   return embed;
@@ -322,7 +284,7 @@ const CLONE_EMBED = (
         `${highlighted(level)}`,
     )
     .setThumbnail(process.env.CLONING_CHAMBER)
-    .setFooter(`Baby Mature Speed Multiplier: ${mature_rate}`)
+    .setFooter({ text: `Baby Mature Speed Multiplier: ${mature_rate}` })
 
     .addFields(
       {
@@ -434,7 +396,10 @@ const SERVER_EMBED = (data) => {
 				**› In-game Days:** ${data.details.time}
 				`,
     )
-    .setFooter('Powered by the battlemetrics API', process.env.BATTLEMETRICS)
+    .setFooter({
+      text: 'Powered by the Battlemetrics API',
+      iconURL: process.env.BATTLEMETRICS,
+    })
 
     .addFields(
       {
@@ -483,7 +448,7 @@ const STATS_EMBED = (duration, version) => {
       true,
     )
     .addField('Support Discord', '[Click to visit](#)', true)
-    .setFooter('Developed by: Alchemy#1990');
+    .setFooter({ text: 'Developed by: Alchemy#1990' });
 
   // Return the embed
   return embed;
@@ -511,12 +476,12 @@ const ADD_ROLE_EMBED = (member, role) => {
         `${role} has been added to ${member}.`,
       ].join(' '),
     )
-    .setFooter(
-      [
+    .setFooter({
+      text: [
         '“You should be proud, the whole point of this',
         'simulation is to identify the very best survivors.”',
       ].join(' '),
-    );
+    });
 
   // Return the embed
   return embed;
@@ -532,7 +497,7 @@ const REMOVE_ROLE_EMBED = (member, role) => {
         `${role} has been removed from ${member}.`,
       ].join(' '),
     )
-    .setFooter('“He’ll get over it. We all do.”');
+    .setFooter({ text: '“He’ll get over it. We all do.”' });
 
   // Return the embed
   return embed;
@@ -557,9 +522,9 @@ const ADD_MUTE_EMBED = (member, time) => {
         `${member} has been muted. ` + time,
       ].join(' '),
     )
-    .setFooter(
-      '“It fascinates me how you survivors find your own solutions to problems.”',
-    );
+    .setFooter({
+      text: '“It fascinates me how you survivors find your own solutions to problems.”',
+    });
 
   // Return the embed
   return embed;
@@ -575,16 +540,17 @@ const REMOVE_MUTE_EMBED = (member) => {
         `${member} has been unmuted.`,
       ].join(' '),
     )
-    .setFooter(
-      '“Did you feel a bit disjointed when you woke up in the simulation? That’s normal.”',
-    );
+    .setFooter({
+      text: '“Did you feel a bit disjointed when you woke up in the simulation? That’s normal.”',
+    });
 
   // Return the embed
   return embed;
 };
 
 const STICKYNOTE_EMBED = (guild, data) => {
-  // If a channel was passed, remove it from the data array (otherwise this messes up the embed data)
+  // If a channel was passed, remove it from the data
+  // array (otherwise this messes up the embed data)
   const data_contains_channel = data.find((option) => option.channel)
     ? true
     : false;
@@ -641,7 +607,6 @@ function calculateAccAge(num) {
 module.exports = {
   ERROR_EMBED,
   SUCCESS_EMBED,
-  HELP_EMBED,
   KICK_DM_EMBED,
   BAN_DM_EMBED,
   BAN_LIST_EMBED,

@@ -3,7 +3,10 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 // Internal imports
-const { TEKGEN_EMBED, ERROR_EMBED } = require('../../utility/embeds');
+const {
+  TEKGEN_EMBED,
+  ERROR_EMBED,
+} = require('../../utility/embeds');
 const client = require('../../index');
 
 module.exports = {
@@ -32,8 +35,8 @@ module.exports = {
   category: 'ARK',
   permissions: ['User'],
   async execute(interaction) {
-    const element = interaction.options._hoistedOptions[0].value;
-    const radius = interaction.options._hoistedOptions[1].value;
+    const element = interaction.options.getInteger('element');
+    const radius = interaction.options.getInteger('radius');
 
     // Set the multiplier and calulate the consumption rate.
     const multiplier = client.set_multiplier(radius);

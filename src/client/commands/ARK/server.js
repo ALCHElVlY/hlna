@@ -20,7 +20,7 @@ module.exports = {
   category: 'ARK',
   permissions: ['User'],
   async execute(interaction) {
-    const { value } = interaction.options._hoistedOptions[0];
+    const value = interaction.options.getString('name');
     const data = await client.fetchServerData(value);
 
     try {

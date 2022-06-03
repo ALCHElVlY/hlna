@@ -5,7 +5,10 @@ const { Permissions } = require('discord.js');
 
 // Interal imports
 const client = require('../../../client');
-const { REMOVE_MUTE_EMBED, ERROR_EMBED } = require('../../utility/Embeds');
+const {
+  REMOVE_MUTE_EMBED,
+  ERROR_EMBED,
+} = require('../../utility/Embeds');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -25,7 +28,7 @@ module.exports = {
     const muteRole = interaction.guild.roles.cache.get(
       settings['roles'].mute_role,
     );
-    const member = interaction.options.getString('member');
+    const member = interaction.options.getMember('member');
 
     try {
       // Check if the member is muted

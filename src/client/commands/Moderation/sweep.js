@@ -14,7 +14,7 @@ module.exports = {
     .setName('sweep')
     .setDescription('Bulk delete x amount of messages from a channel.')
     .setDefaultPermission(true)
-    .addNumberOption((option) =>
+    .addIntegerOption((option) =>
       option
         .setName('amount')
         .setDescription('The amount of messages to delete.')
@@ -31,9 +31,9 @@ module.exports = {
   async execute(interaction) {
     const logger = new Logger();
     const settings = client.settings.get(interaction.guild.id);
-    const value = interaction.options.getString('amount');
-    const channel = interaction.options.getString('channel')
-      ? interaction.options.getString('channel')
+    const value = interaction.options.getInteger('amount');
+    const channel = interaction.options._hoistedOptions.length > 0
+      ? interaction.options.getChannel('channel')
       : undefined;
     const amount = parseInt(value);
 

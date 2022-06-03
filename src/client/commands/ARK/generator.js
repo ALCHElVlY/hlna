@@ -24,7 +24,7 @@ module.exports = {
   category: 'ARK',
   permissions: ['User'],
   async execute(interaction) {
-    const { value } = interaction.options._hoistedOptions[0];
+    const value = interaction.options.getInteger('fuel');
 
     // Set the multiplier and calulate the consumption rate.
     const multiplier = 3600;

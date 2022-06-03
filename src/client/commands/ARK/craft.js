@@ -32,7 +32,7 @@ module.exports = {
         .setDescription('The name of the item to craft.')
         .setRequired(true),
     )
-    .addNumberOption((option) =>
+    .addIntegerOption((option) =>
       option
         .setName('quantity')
         .setDescription('The quantity of the item to craft.')
@@ -41,14 +41,14 @@ module.exports = {
   category: 'ARK',
   permissions: ['User'],
   async execute(interaction) {
-    const itemName = interaction.options._hoistedOptions[0].value
+    const itemName = interaction.options.getString('item')
       .toProperCase()
       .replace(/[s]$/gm, '')
       .replace('Mdsm', 'M.D.S.M.')
       .replace('Mrlm', 'M.R.L.M.')
       .replace('Mdsm', 'M.S.C.M.')
       .replace('Momi', 'M.O.M.I.');
-    const itemQty = interaction.options._hoistedOptions[1].value;
+    const itemQty = interaction.options.getInteger('quantity');
 
     // Send an API request to get the creature data
     const results = await axios.get(`${process.env.ITEMS}/${itemName}`, {
