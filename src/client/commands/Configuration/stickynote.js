@@ -63,7 +63,7 @@ module.exports = {
         .setDescription('Clone and resend an existing stickynote.')
         .addStringOption((option) =>
           option
-            .setName('messageID')
+            .setName('id')
             .setDescription('The message ID of the stickynote to clone.')
             .setRequired(true),
         ),
@@ -167,7 +167,7 @@ module.exports = {
       case 'clone':
         (async () => {
           if (interaction.user.id !== '499426339321937954') return;
-          const messageToFetch = interaction.options.getString('messageID');
+          const messageToFetch = interaction.options.getString('id');
           const message = await interaction.channel.messages.fetch(
             messageToFetch,
           );
