@@ -2,13 +2,11 @@
 // Built-in imports
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
-// External imports
-const axios = require('axios');
-
 // Internal imports
 const { CRAFT_EMBED, ERROR_EMBED } = require('../../utility/Embeds');
 const format = require('../../utility/format');
 const { highlighted } = format.formatOptions;
+const { axiosPrivate } = require('../../utility/Axios');
 
 String.prototype.toProperCase = function (opt_lowerCaseTheRest) {
   return (opt_lowerCaseTheRest ? this.toLowerCase() : this).replace(
@@ -51,11 +49,7 @@ module.exports = {
     const itemQty = interaction.options.getInteger('quantity');
 
     // Send an API request to get the creature data
-    const results = await axios.get(`${process.env.ITEMS}/${itemName}`, {
-      headers: {
-        Authorization: 'Bearer ' + process.env.API_KEY,
-      },
-    });
+    const results = await axiosPrivate.get(`${process.env.ITEMS}/${itemName}`);
 
     try {
       return interaction.reply({

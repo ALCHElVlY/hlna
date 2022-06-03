@@ -3,15 +3,13 @@
 const Discord = require('discord.js'); // JSDoc reference only
 const client = require('../index');
 
-// External imports
-const axios = require('axios');
-
 // Internal imports
 const { SUCCESS_EMBED, ERROR_EMBED } = require('../utility/embeds');
 const {
   settings_roles,
   settings_logs,
 } = require('../utility/functions/Configuration/index');
+const { axiosPrivate } = require('../utility/Axios');
 
 class GuildSettings {
   // eslint-disable-next-line no-empty-function
@@ -108,14 +106,11 @@ class GuildSettings {
 
     if (response) {
       // Send an API request to update the database
-      await axios.put(
-        `${process.env.CONFIGURATION}/${guild.id}`,
+      await axiosPrivate.put(`${process.env.CONFIGURATION}/${guild.id}`,
         {
           key: 'restore_settings',
           value: defaultSettings,
-        },
-        { headers: { Authorization: 'Bearer ' + process.env.API_KEY } },
-      );
+        });
 
       // Update the guild settings
       client.settings.set(guild.id, defaultSettings);

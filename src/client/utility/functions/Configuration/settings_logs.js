@@ -1,37 +1,15 @@
-// Import format.js
+// Built-in imports
+const Discord = require('discord.js'); // JSDoc reference only
+
+// Internal imports
+const { SUCCESS_EMBED, ERROR_EMBED } = require('../../Embeds');
 const format = require('../../format.js');
-const axios = require('axios');
+const { codeBlock } = format.formatOptions;
+const { axiosPrivate } = require('../../Axios');
+
 const channelIDRegex = new RegExp(/(\d+)/gm);
 
-// Import the format options
-const { codeBlock } = format.formatOptions;
-
-// Import the embed builders
-const { SUCCESS_EMBED, ERROR_EMBED } = require('../../Embeds');
-
-const settings_logs = async (client, interaction, response) => {
-  // Await for the user response
-  response = await client.awaitReply(
-    interaction,
-    'Would you like to `add` or `remove` a log channel?',
-  );
-
-  if (response) {
-    const action = response.content;
-    switch (action) {
-      case 'add':
-        await _add_log(client, interaction);
-        break;
-      case 'remove':
-        await _remove_log(client, interaction);
-        break;
-      default:
-        throw Error('Invalid action!');
-    }
-  }
-};
-
-const _add_log = async (client, interaction) => {
+const add_log = async (client, interaction) => {
   // The settings for this guild
   const settings = client.settings.get(interaction.guild.id).log_channels;
   const guild = interaction.guild;
@@ -92,14 +70,11 @@ const _add_log = async (client, interaction) => {
   // Determine the existence of the channel and log type
   if (!channelExists && !logTypeExists) {
     // Send an API request to update the database
-    await axios.put(
-      `${process.env.CONFIGURATION}/${guild.id}`,
+    await axiosPrivate.put(`${process.env.CONFIGURATION}/${guild.id}`,
       {
         key: logChData.key,
         value: logChData.value,
-      },
-      { headers: { Authorization: 'Bearer ' + process.env.API_KEY } },
-    );
+      });
 
     // Update the key in the guild settings
     await settings.push(logChData.value);
@@ -118,14 +93,11 @@ const _add_log = async (client, interaction) => {
     });
   } else if (channelExists && !logTypeExists) {
     // Send an API request to update the database
-    await axios.put(
-      `${process.env.CONFIGURATION}/${guild.id}`,
+    await axiosPrivate.put(`${process.env.CONFIGURATION}/${guild.id}`,
       {
         key: logChData.key,
         value: logChData.value,
-      },
-      { headers: { Authorization: 'Bearer ' + process.env.API_KEY } },
-    );
+      });
 
     // Update the key in the guild settings
     await settings.push(logChData.value);
@@ -144,8 +116,7 @@ const _add_log = async (client, interaction) => {
     });
   }
 };
-
-const _remove_log = async (client, interaction) => {
+const remove_log = async (client, interaction) => {
   // The settings for this guild
   const settings = client.settings.get(interaction.guild.id).log_channels;
   const guild = interaction.guild;
@@ -181,14 +152,11 @@ const _remove_log = async (client, interaction) => {
 
     try {
       // Send an API request to update the database
-      await axios.put(
-        `${process.env.CONFIGURATION}/${guild.id}`,
+      await axiosPrivate.put(`${process.env.CONFIGURATION}/${guild.id}`,
         {
           key: logChData.key,
           value: logChData.value,
-        },
-        { headers: { Authorization: 'Bearer ' + process.env.API_KEY } },
-      );
+        });
 
       // Remove the log channel from the settings
       await settings.splice(settings.indexOf(logChData.value), 1);
@@ -203,6 +171,35 @@ const _remove_log = async (client, interaction) => {
       });
     } catch (e) {
       console.log(e);
+    }
+  }
+};
+
+/**
+ * The settings_logs function handles adding or removing log channels from the
+ * guild settings profile in the database.
+ * @param {Discord.Client} client The discord client
+ * @param {Discord.Interaction} interaction A discord interaction
+ * @param {*} response callback function
+ */
+const settings_logs = async (client, interaction, response) => {
+  // Await for the user response
+  response = await client.awaitReply(
+    interaction,
+    'Would you like to `add` or `remove` a log channel?',
+  );
+
+  if (response) {
+    const action = response.content;
+    switch (action) {
+      case 'add':
+        await add_log(client, interaction);
+        break;
+      case 'remove':
+        await remove_log(client, interaction);
+        break;
+      default:
+        throw Error('Invalid action!');
     }
   }
 };

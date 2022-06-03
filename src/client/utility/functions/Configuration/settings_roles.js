@@ -1,41 +1,11 @@
-// External imports
-const axios = require('axios');
+// Built-in imports
+const Discord = require('discord.js'); // JSDoc reference only
 
 // Internal imports
 const format = require('../../../utility/format.js').formatOptions;
+const { axiosPrivate } = require('../../Axios');
 
-const configWorker_roles = async (client, interaction, response) => {
-  // Await for the user response
-  response = await client.awaitReply(
-    interaction,
-    'Which role would you like to edit?',
-  );
-
-  if (response) {
-    const role = response.content;
-    switch (role) {
-      case 'admin_role':
-        await configWorker_role_update(client, interaction, role);
-        break;
-      case 'dev_role':
-        await configWorker_role_update(client, interaction, role);
-        break;
-      case 'mod_role':
-        await configWorker_role_update(client, interaction, role);
-        break;
-      case 'verified_role':
-        await configWorker_role_update(client, interaction, role);
-        break;
-      case 'mute_role':
-        await configWorker_role_update(client, interaction, role);
-        break;
-      default:
-        console.log('Error: role not found in the guild settings!');
-    }
-  }
-};
-
-const configWorker_role_update = async (client, interaction, roleSetting) => {
+const update = async (client, interaction, roleSetting) => {
   // The settings for this guild
   const settings = client.settings.get(interaction.guild.id).roles;
   // Await for the user response
@@ -64,20 +34,17 @@ const configWorker_role_update = async (client, interaction, roleSetting) => {
     }
 
     // Send an API request to update the database
-    await axios.put(
-      `${process.env.CONFIGURATION}/${guild.id}`,
+    await axiosPrivate.put(`${process.env.CONFIGURATION}/${guild.id}`,
       {
         key: `roles.${roleSetting}`,
         value: newSetting.value,
-      },
-      { headers: { Authorization: 'Bearer ' + process.env.API_KEY } },
-    );
+      });
 
     // Update the key in the guild settings
     settings[`${newSetting.key}`] = newSetting.value;
 
     // Send a confirmation message
-    await interaction.channel.send(
+    return await interaction.channel.send(
       `${client.findEmoji('greenCheckBox')} ${format.highlighted(
         roleSetting,
       )} setting ` +
@@ -86,4 +53,42 @@ const configWorker_role_update = async (client, interaction, roleSetting) => {
   }
 };
 
-module.exports = configWorker_roles;
+/**
+ * The settings_roles function handles updating the roles for the guild
+ * profile in the database.
+ * @param {Discord.Client} client The discord client
+ * @param {Discord.Interaction} interaction A discord interaction
+ * @param {*} response callback function
+ */
+const settings_roles = async (client, interaction, response) => {
+  // Await for the user response
+  response = await client.awaitReply(
+    interaction,
+    'Which role would you like to edit?',
+  );
+
+  if (response) {
+    const role = response.content;
+    switch (role) {
+      case 'admin_role':
+        await update(client, interaction, role);
+        break;
+      case 'dev_role':
+        await update(client, interaction, role);
+        break;
+      case 'mod_role':
+        await update(client, interaction, role);
+        break;
+      case 'verified_role':
+        await update(client, interaction, role);
+        break;
+      case 'mute_role':
+        await update(client, interaction, role);
+        break;
+      default:
+        console.log('Error: role not found in the guild settings!');
+    }
+  }
+};
+
+module.exports = settings_roles;

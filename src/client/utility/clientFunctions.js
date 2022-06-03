@@ -1,15 +1,21 @@
 // Internal imports
 const format = require('./format');
 const { bold } = format.formatOptions;
+const unicodeEmojis = './unicodeEmojis.json';
 
 module.exports = (client) => {
   // Function to search the client for an emoji provided by the user either
   // as a customEmoji or a unicodeEmoji
   client.findEmoji = (ctx) => {
     try {
+      console.log(unicodeEmojis);
       const customEmoji = client.emojis.cache.find((e) => e.name === `${ctx}`);
-      if (!customEmoji || customEmoji === undefined)
+      // let unicodeEmoji;
+      if (!customEmoji) {
+        // unicodeEmoji = defaultEmoji.find((e) => e === `${ctx}`);
         return client.emojis.cache.get(ctx);
+      }
+
       return customEmoji.toString();
     } catch (e) {
       console.log(e);
@@ -71,8 +77,7 @@ module.exports = (client) => {
     }
 
     // Return the multiplier
-    const multiplier_toSet = multiplier_setting;
-    return multiplier_toSet;
+    return multiplier_setting;
   };
 
   // Query the BattleMetrics API for ARK server info

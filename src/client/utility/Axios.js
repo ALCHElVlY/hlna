@@ -17,7 +17,6 @@ const axiosPrivate = axios.create({
 // Interceptors
 axiosPrivate.interceptors.request.use(
   (config) => {
-    console.log(config);
     if (!config.headers["Authorization"]) {
       config.headers["Authorization"] = `Bearer ${process.env.API_KEY}`;
     }

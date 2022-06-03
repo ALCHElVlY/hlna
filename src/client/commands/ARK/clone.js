@@ -3,13 +3,12 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 // External imports
-const axios = require('axios');
-const format = require('../../utility/format');
-const { highlighted } = format.formatOptions;
 
 // Internal imports
 const { CLONE_EMBED, ERROR_EMBED } = require('../../utility/Embeds');
 const _getOfficialRates = require('../../utility/functions/getOfficialRates');
+const format = require('../../utility/format');
+const { highlighted } = format.formatOptions;
 const { axiosPrivate } = require('../../utility/Axios');
 
 String.prototype.toProperCase = function (opt_lowerCaseTheRest) {
@@ -48,13 +47,7 @@ module.exports = {
     const mature_rate = await OfficialRates.get('BabyMatureSpeedMultiplier');
 
     // Send an API request to get the creature data
-    const results = await axios.get(`${process.env.DOSSIER}/${creatureName}`, {
-      headers: {
-        Authorization: 'Bearer ' + process.env.API_KEY,
-      },
-    });
-    const test = await axiosPrivate(`${process.env.DOSSIER}/${creatureName}`);
-    console.log(test);
+    const results = await axiosPrivate.get(`${process.env.DOSSIER}/${creatureName}`);
 
     try {
       // Calculate the total time and cost to clone the creature
