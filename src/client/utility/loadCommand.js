@@ -5,17 +5,16 @@
  * @returns
  */
 function loadCommand(file) {
-	const client = require('../index');
-	const commandName = file.replace(/\w+\\/gm, '').split('.')[0];
-	try {
-		console.log(`Loading Command: ${commandName}`);
-		const props = require(`../../../${file}`);
-		client.commands.set(commandName, props);
-		// props.aliases.forEach(alias => client.aliases.set(alias, commandName));
-		return false;
-	}
-	catch (e) {
-		console.error(`Unable to load command ${commandName}: ${e}`);
-	}
+  const client = require('../index');
+  const commandName = file.replace(/\w+\\/gm, '').split('.')[0];
+  try {
+    console.log(`Loading Command: ${commandName}`);
+    const props = require(`../../../${file}`);
+    client.commands.set(commandName, props);
+    // props.aliases.forEach(alias => client.aliases.set(alias, commandName));
+    return false;
+  } catch (e) {
+    console.error(`Unable to load command ${commandName}: ${e}`);
+  }
 }
 module.exports = loadCommand;

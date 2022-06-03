@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {
-	getItemData,
-} = require('../../middleware/itemControllers');
+const { getItemData } = require('../../middleware/itemControllers');
 
 // @desc HTTP GET request to retrieve data for a specific item
 // @route GET api/items/:name

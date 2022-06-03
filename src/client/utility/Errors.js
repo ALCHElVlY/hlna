@@ -15,10 +15,10 @@
 	MISSING_GUILD_RESOLVECHANNEL: 'Must pass a guild to resolve a channel',
 };*/
 
-
 module.exports.CommandHandlerError = {
-	_FAILEDTOLOAD: (param1 = []) => console.log(
-		`❌ There was an error loading ${param1.length} files from the commands directory`,
-		'error',
-	),
+  _FAILEDTOLOAD: (param1 = []) =>
+    console.log(
+      `❌ There was an error loading ${param1.length} files from the commands directory`,
+      'error',
+    ),
 };

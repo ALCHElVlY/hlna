@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 const {
-	createConfiguration,
-	deleteConfiguration,
-	getConfiguration,
-	updateConfiguration,
+  createConfiguration,
+  deleteConfiguration,
+  getConfiguration,
+  updateConfiguration,
 } = require('../../middleware/configControllers');
 
 // @desc HTTP POST creates a bot configuration document in the database
