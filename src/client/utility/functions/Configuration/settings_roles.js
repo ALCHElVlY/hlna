@@ -86,7 +86,7 @@ const settings_roles = async (client, interaction, response) => {
         await update(client, interaction, role);
         break;
       default:
-        console.log('Error: role not found in the guild settings!');
+        throw new Error('Error: role not found in the guild settings!');
     }
   }
 };

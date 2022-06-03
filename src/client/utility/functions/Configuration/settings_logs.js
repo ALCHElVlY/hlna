@@ -199,7 +199,7 @@ const settings_logs = async (client, interaction, response) => {
         await remove_log(client, interaction);
         break;
       default:
-        throw Error('Invalid action!');
+        throw new Error('Invalid action!');
     }
   }
 };
