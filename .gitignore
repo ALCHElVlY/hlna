@@ -3,5 +3,6 @@ node_modules
 .eslintrc
 .vscode
 src/delete-commands.js
+src/delete-commands.ts
 src/deploy-commands.js
-src/genAuthToken.js
+src/deploy-commands.ts
