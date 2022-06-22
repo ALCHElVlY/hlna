@@ -1,5 +1,5 @@
 // External imports
-import { CommandInteraction, Guild, User } from 'discord.js';
+import { CommandInteraction, Guild, GuildMember, User } from 'discord.js';
 
 // Internal imports
 import { client } from '../bot';
@@ -18,31 +18,34 @@ export default class Permissions {
       {
         name: 'MODERATOR',
         check: (context: any) => {
-          const guild = context.member.guild as Guild;
+          const member = context.member as GuildMember;
+          const guild = member.guild as Guild;
           const settings = client.settings.get(guild.id);
           const id = this.reg.exec(settings.roles['mod_role']);
           if (!guild || !id) return false;
-          const role = guild.roles.cache.some((r) => r.id === id[0]);
-          if (role) return true;
+          const role = guild.roles.cache.find((r) => r.id === id[0]);
+          if (role && member.roles.cache.has(role.id)) return true;
           return false;
         },
       },
       {
         name: 'ADMINISTRATOR',
         check: (context: any) => {
-          const guild = context.member.guild as Guild;
+          const member = context.member as GuildMember;
+          const guild = member.guild as Guild;
           const settings = client.settings.get(guild.id);
           const id = this.reg.exec(settings.roles['admin_role']);
           if (!guild || !id) return false;
-          const role = guild.roles.cache.some((r) => r.id === id[0]);
-          if (role) return true;
+          const role = guild.roles.cache.find((r) => r.id === id[0]);
+          if (role && member.roles.cache.has(role.id)) return true;
           return false;
         },
       },
       {
         name: 'Server Owner',
         check: (context: any) => {
-          const guild = context.member.guild as Guild;
+          const member = context.member as GuildMember;
+          const guild = member.guild as Guild;
           const user = context.user as User;
           if (!guild) return false;
           const serverOwner = guild.ownerId;
@@ -53,23 +56,22 @@ export default class Permissions {
       {
         name: 'Bot Developer',
         check: (context: any) => {
-          const guild = context.member.guild as Guild;
+          const member = context.member as GuildMember;
+          const guild = member.guild as Guild;
           const settings = client.settings.get(guild.id);
           const id = this.reg.exec(settings.roles['dev_role']);
           if (!guild || !id) return false;
           const role = guild.roles.cache.find((r) => r.id === id[0]);
-          if (role) return true;
+          if (role && member.roles.cache.has(role.id)) return true;
           return false;
         },
       },
     ];
+    this.perms.forEach((p, i) => this._levels[p.name] = i);
     this.init();
   }
 
   // Setters
-  private set levels(args: any | undefined) {
-    this._perms.forEach((p, i) => this._levels[p.name] = i);
-  }
   private set reversedPerms(args: Array<IPermissionsArray>) {
     this._reversedPerms = args;
   }
@@ -83,6 +85,9 @@ export default class Permissions {
   }
   private get levels() {
     return this._levels;
+  }
+  private get perms() {
+    return this._perms;
   }
   private get reversedPerms(): Array<IPermissionsArray> {
     return this._reversedPerms;

@@ -27,7 +27,7 @@ export default class InteractionCreateEvent extends Event {
     const guildsettings = new GuildSettings(this.client);
     const rolemenu = new RoleMenu(this.client);
 
-    // Handle if the interaction is a command
+    // Handle if the interaction is a CommandInteraction
     if (interaction.isCommand()) {
       const command = this.client.commands.get(interaction.commandName);
       if (!command) return;
