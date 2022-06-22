@@ -1,5 +1,10 @@
 // External imports
-import { CommandInteraction, Guild, GuildMember, User } from 'discord.js';
+import {
+  CommandInteraction,
+  Guild,
+  GuildMember,
+  User,
+} from 'discord.js';
 
 // Internal imports
 import { client } from '../bot';
@@ -14,9 +19,9 @@ export default class Permissions {
 
   constructor() {
     this._perms = [
-      { name: 'USER', check: () => true },
+      { name: 'User', check: () => true },
       {
-        name: 'MODERATOR',
+        name: 'Moderator',
         check: (context: any) => {
           const member = context.member as GuildMember;
           const guild = member.guild as Guild;
@@ -29,7 +34,7 @@ export default class Permissions {
         },
       },
       {
-        name: 'ADMINISTRATOR',
+        name: 'Administrator',
         check: (context: any) => {
           const member = context.member as GuildMember;
           const guild = member.guild as Guild;
@@ -67,7 +72,7 @@ export default class Permissions {
         },
       },
     ];
-    this.perms.forEach((p, i) => this._levels[p.name] = i);
+    this.perms.forEach((p, i) => this.levels[p.name] = i);
     this.init();
   }
 
@@ -97,7 +102,6 @@ export default class Permissions {
   }
 
   private init(): void {
-    this.levels;
     this._reversedPerms = this._perms.slice().reverse()
     this._list = this._perms;
   }
