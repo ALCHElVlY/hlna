@@ -14,20 +14,17 @@ export default class ReadyEvent extends Event {
 
   public async run(): Promise<void> {
     console.log(`${this.client.user?.tag} has successfully connected!`);
+    ClientFunctions.Sleep(1000);
 
-    // Short delay to allow the bot to fully connect
-    // before trying to process refreshing the settings
-    setTimeout(async () => {
-      const res = await AxiosPrivate.get(clientConfig.CONFIGURATION);
-      const cache = new Collection<any, any>();
+    const res = await AxiosPrivate.get(clientConfig.CONFIGURATION);
+    const cache = new Collection<any, any>();
 
-      // loop through the array to sort the data
-      res.data.forEach((...entry: any) => {
-        const toCache: ICachedSettings = entry;
-        cache.set(entry.guild_id, toCache);
-        this.client.settings = cache;
-      });
-    }, 1000);
+    // loop through the array to sort the data
+    res.data.forEach((entry: any) => {
+      const toCache: ICachedSettings = entry;
+      cache.set(entry.guild_id, toCache);
+      this.client.settings = cache;
+    });
 
     ClientFunctions.RefreshGameStatus(this.client);
   }

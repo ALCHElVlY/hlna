@@ -2,25 +2,23 @@
 import { CommandInteraction, Guild, User } from 'discord.js';
 
 // Internal imports
-import DiscordClient from './DiscordClient';
+import { client } from '../bot';
 import { IPermissionsArray } from '../utils/interfaces';
 
 export default class Permissions {
-  readonly client: DiscordClient;
   readonly _reg: RegExp = new RegExp(/\d+/);
   private _levels: { [key: string]: number } = {};
   private _perms: Array<IPermissionsArray>;
   private _reversedPerms: Array<IPermissionsArray> = [];
   private _list: Array<IPermissionsArray> = [];
 
-  constructor(client: DiscordClient) {
-    this.client = client;
+  constructor() {
     this._perms = [
       { name: 'USER', check: () => true },
       {
         name: 'MODERATOR',
         check: (context: any) => {
-          const guild = context.guild as Guild;
+          const guild = context.member.guild as Guild;
           const settings = client.settings.get(guild.id);
           const id = this.reg.exec(settings.roles['mod_role']);
           if (!guild || !id) return false;
@@ -32,7 +30,7 @@ export default class Permissions {
       {
         name: 'ADMINISTRATOR',
         check: (context: any) => {
-          const guild = context.guild as Guild;
+          const guild = context.member.guild as Guild;
           const settings = client.settings.get(guild.id);
           const id = this.reg.exec(settings.roles['admin_role']);
           if (!guild || !id) return false;
@@ -44,7 +42,7 @@ export default class Permissions {
       {
         name: 'Server Owner',
         check: (context: any) => {
-          const guild = context.guild as Guild;
+          const guild = context.member.guild as Guild;
           const user = context.user as User;
           if (!guild) return false;
           const serverOwner = guild.ownerId;
@@ -55,7 +53,7 @@ export default class Permissions {
       {
         name: 'Bot Developer',
         check: (context: any) => {
-          const guild = context.guild as Guild;
+          const guild = context.member.guild as Guild;
           const settings = client.settings.get(guild.id);
           const id = this.reg.exec(settings.roles['dev_role']);
           if (!guild || !id) return false;

@@ -14,10 +14,10 @@
   "main": "dist/client/bot.js",
   "scripts": {
     "server": "pm2 start dist/server/server.js --name \"hlna-api\"",
-    "client": "pm2 start dist/client/index.js --name \"HLN-A\" --watch",
+    "client": "pm2 start dist/client/bot.js --name \"HLN-A\" --watch",
     "build": "concurrently \"npm run server\" \"npm run client\"",
     "dev-server": "node dist/server/server.js",
-    "dev": "concurrently \"nodemon dist/server/server.js\" \"nodemon dist/client/index.js\"",
+    "dev": "concurrently \"nodemon dist/server/server.js\" \"nodemon dist/client/bot.js\"",
     "deployslash": "node dist/deploy-commands.js",
     "deleteslash": "node dist/delete-commands.js"
   },
@@ -54,6 +54,7 @@
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/jsonwebtoken": "^8.5.8",
+    "@types/moment-duration-format": "^2.2.3",
     "@types/node": "^17.0.42",
     "concurrently": "^6.4.0",
     "nodemon": "^2.0.15"

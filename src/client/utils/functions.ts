@@ -1,5 +1,12 @@
 // External imports
-import { Message, EmojiResolvable, CommandInteraction, Snowflake, Collection } from 'discord.js';
+import {
+  Message,
+  CommandInteraction,
+  Snowflake,
+  Collection,
+  Emoji,
+  GuildEmoji,
+} from 'discord.js';
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
 import { bold } from '@discordjs/builders';
@@ -14,8 +21,7 @@ import { DiscordClient, Logger } from '../structures/index';
 import { IMessageMentions } from './interfaces';
 import { clientConfig } from '../../interfaces/env_config';
 import { EmbedEnum } from '../../enums';
-import defaultEmojis from './unicodeEmojis.json';
-import { client } from '../bot';
+import * as defaultEmojis from './unicodeEmojis.json';
 
 export default class ClientFunctions {
   /**
@@ -341,25 +347,23 @@ export default class ClientFunctions {
   public static FindEmoji(
     client: DiscordClient,
     emoji: string,
-  ): EmojiResolvable {
+  ): GuildEmoji | string | undefined {
     let emojiToReturn;
 
     try {
-      console.log(defaultEmojis);
       const customEmoji = client.emojis.cache.find((e) => e.name === emoji);
       if (customEmoji) {
         emojiToReturn = customEmoji;
+      } else if (!customEmoji) {
+        Object.entries(defaultEmojis).forEach(([key, value]) => {
+          if (key === emoji) emojiToReturn = value;
+        });
       }
-      // let unicodeEmoji;
-      /* if (!customEmoji) {
-        // unicodeEmoji = defaultEmoji.find((e) => e === `${ctx}`);
-        return client.emojis.cache.get(ctx);
-      }*/
     } catch (e) {
       console.log(e);
     }
 
-    return emojiToReturn as EmojiResolvable;
+    return emojiToReturn?.toString();
   }
 
   /**
@@ -412,8 +416,8 @@ export default class ClientFunctions {
   public static async DeployAllCommands(): Promise<void> {
     const commands: Collection<any, any> = new Collection();
     const commandsToRegister: Array<any> = [];
-    const rest = new REST({ version: '9' }).setToken(clientConfig.DEV_BOT_TOKEN);
-    const applicationID = clientConfig.DEV_APPLICATION_ID;
+    const rest = new REST({ version: '9' }).setToken(clientConfig.BOT_TOKEN);
+    const applicationID = clientConfig.APPLICATION_ID;
     const logger = new Logger();
     // Loop through the commands directory and load the commands
     const load = async (directory?: string): Promise<void> => {
@@ -469,8 +473,8 @@ export default class ClientFunctions {
   public static async DeployGuildOnlyCommands(guildID: Snowflake): Promise<void> {
     const commands: Collection<any, any> = new Collection();
     const commandsToRegister: Array<any> = [];
-    const rest = new REST({ version: '9' }).setToken(clientConfig.DEV_BOT_TOKEN);
-    const applicationID = clientConfig.DEV_APPLICATION_ID;
+    const rest = new REST({ version: '9' }).setToken(clientConfig.BOT_TOKEN);
+    const applicationID = clientConfig.APPLICATION_ID;
     const logger = new Logger();
     // Loop through the commands directory and load the commands
     const load = async (directory?: string): Promise<void> => {
@@ -525,8 +529,8 @@ export default class ClientFunctions {
    * Delete all client slash commands from the API. (**affects all guilds**)
    */
   public static async DeleteAllCommands(): Promise<void> {
-    const rest = new REST({ version: '9' }).setToken(clientConfig.DEV_BOT_TOKEN);
-    const applicationID = clientConfig.DEV_APPLICATION_ID;
+    const rest = new REST({ version: '9' }).setToken(clientConfig.BOT_TOKEN);
+    const applicationID = clientConfig.APPLICATION_ID;
     const logger = new Logger();
     await this.Sleep(1000);
 
@@ -543,8 +547,8 @@ export default class ClientFunctions {
    * @param guildID The guild ID
    */
   public static async DeleteGuildOnlyCommands(guildID: Snowflake): Promise<void> {
-    const rest = new REST({ version: '9' }).setToken(clientConfig.DEV_BOT_TOKEN);
-    const applicationID = clientConfig.DEV_APPLICATION_ID;
+    const rest = new REST({ version: '9' }).setToken(clientConfig.BOT_TOKEN);
+    const applicationID = clientConfig.APPLICATION_ID;
     const logger = new Logger();
     await this.Sleep(1000);
 

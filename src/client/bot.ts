@@ -24,4 +24,4 @@ export const client = new DiscordClient(
 );
 
 // Log the client in
-client.Login(clientConfig.DEV_BOT_TOKEN);
+client.Login(clientConfig.BOT_TOKEN);

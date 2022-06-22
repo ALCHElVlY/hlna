@@ -16,7 +16,7 @@ export default class GuildCreateEvent extends Event {
   }
 
   public async run(guild: Guild): Promise<void> {
-    const guildSettings = new GuildSettings(this.client);
+    const guildsettings = new GuildSettings(this.client);
 
     AxiosPrivate.post(clientConfig.CONFIGURATION, { guild_id: guild.id })
       .then(() =>
@@ -28,6 +28,6 @@ export default class GuildCreateEvent extends Event {
       .catch((e: any) => console.log(e));
 
     // Add the new guild to the settings cache
-    this.client.settings.set(guild.id, guildSettings.getDefaults);
+    this.client.settings.set(guild.id, guildsettings.Defaults);
   }
 }
