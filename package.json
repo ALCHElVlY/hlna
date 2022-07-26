@@ -13,8 +13,8 @@
   ],
   "main": "dist/client/bot.js",
   "scripts": {
-    "server": "pm2 start dist/server/server.js --name \"hlna-api\"",
-    "client": "pm2 start dist/client/bot.js --name \"HLN-A\" --watch",
+    "server": "node start dist/server/server.js",
+    "client": "node start dist/client/bot.js",
     "build": "concurrently \"npm run server\" \"npm run client\"",
     "dev-server": "node dist/server/server.js",
     "dev": "concurrently \"nodemon dist/server/server.js\" \"nodemon dist/client/bot.js\"",
